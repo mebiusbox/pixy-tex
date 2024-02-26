@@ -1,0 +1,688 @@
+\usepackage{subfiles}
+\usepackage{ifthen}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{polynom}
+\usepackage{multicol}
+\ifthenelse{\isundefined{\codebasewidth}}{
+    \def\codebasewidth{0.6em}
+}{}
+\ifthenelse{\isundefined{\pixycodesize}}{
+    \def\pixycodesize{\small}
+}{}
+\usepackage[bookmarks=true,bookmarksnumbered=true,colorlinks=true,linkcolor={blue},urlcolor={blue},hyperfootnotes=false,pdfborder={0,0,0},pdfpagemode=UseNone,unicode=true]{hyperref}
+\usepackage{bm}
+\usepackage{stmaryrd}
+\makeatletter
+% #1: 点同士の間隔
+\newcommand{\cdotsfillsub}[1][.25\zw]{\leavevmode\cleaders\hb@xt@#1{\hss\(\cdot\m@th\)\hss}\hfill\kern\z@\ignorespaces}
+\newcommand{\cdotsfill}[1]{\noindent\cdotsfillsub\ #1 \cdotsfillsub\par}
+\newcommand{\leaderfill}[1][0pt]{\noindent\hspace{#1}\cleaders\hbox{…………}\hfill \hspace{#1}\par}
+\makeatother
+\def\dashfill{\cleaders\hbox\ to 2em{-}\hfill}
+\def\Tasuki#1#2#3#4#5#6#7{% chktex 15
+\setbox0\hbox{
+\unitlength\ 0.1in
+\begin{picture}( 3.5000, 1.0000)( 0.0000, -1.0000)
+\special{pn 8}%
+\special{pa 0 0}%
+\special{pa 350 100}%
+\special{fp}%
+\special{pa 0 100}%
+\special{pa 350 0}%
+\special{fp}%
+\end{picture}%
+}
+\begin{array}{cccccl}
+#1 & &#3 & \longrightarrow & #5 & \\[-1ex]
+#2 & \raise1ex\box0 &#4 & \longrightarrow & #6 & (+ \\ \cline{1-5}
+& & & & #7
+\end{array}
+}% chktex 9
+%
+\newcommand{\Rev}[1]{\frac{1}{#1}}
+\newcommand{\Pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\Drv}[2]{\frac{d#1}{d#2}}
+\newcommand{\Ddrv}[2]{\frac{\delta #1}{\delta #2}}
+\newcommand{\PVEC}[1]{{\small\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\BVEC}[1]{{\small\begin{bmatrix}#1\end{bmatrix}}}
+\newcommand{\PVECs}[1]{{\scriptsize\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\BVECs}[1]{{\scriptsize\begin{bmatrix}#1\end{bmatrix}}}
+\newcommand{\PMAT}[2][]{{\small\begin{pmatrix}{#1}#2\end{pmatrix}}}
+\newcommand{\BMAT}[2][]{{\small\begin{bmatrix}{#1}#2\end{bmatrix}}}
+\newcommand{\DMAT}[2][]{{\small\left|\begin{matrix}{#1}#2\end{matrix}\right|}}
+% \newcommand{\Vvec}[1]{\left(\begin{array}{c}#1\end{array}\right)}
+% \newcommand{\Vmatrix}[2][]{\left(\begin{array}{#1}#2\end{array}\right)}
+% \newcommand{\Dmatrix}[2][]{\left|\begin{array}{#1}#2\end{array}\right|}
+\newcommand{\Inversion}[2][]{#1^{\!\mbox{\sf\tiny T}}}
+\newcommand{\Vecbm}[1]{\mbox{\boldmath \(#1\)}}
+\newcommand{\Beq}{\begin{equation}}
+\newcommand{\Eeq}{\end{equation}}
+\newcommand{\Beqn}{\begin{equation*}}
+\newcommand{\Eeqn}{\end{equation*}}
+\newcommand{\Va}{\Vecbm{a}}
+%------------------------------------------------------------
+% Color
+%
+\usepackage{color}
+\usepackage[x11names]{xcolor}
+\definecolor{colorthemeback}{RGB}{255,255,255}
+\definecolor{colorthemefore}{RGB}{77,77,77}
+\definecolor{colorthememain1}{RGB}{0,113,188}
+\definecolor{colorthememain2}{RGB}{255,80,80}
+\definecolor{colorthemesub1}{RGB}{242,242,242}
+\definecolor{colorthemesub2}{RGB}{226,241,250}
+\definecolor{colorthemesub3}{RGB}{255,234,234}
+\definecolor{graphcolor}{RGB}{204,0,0}
+\definecolor{graphsubcolor}{RGB}{0,80,255}
+%------------------------------------------------------------
+% Figure, Table, Graph
+%
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections,quotes,angles,shapes.misc,patterns,decorations.markings}
+\usepackage{tkz-euclide}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{here}
+\graphicspath{{images/}{../images/}}
+\usepackage{pgfplots}
+\DeclareMathOperator{\CDF}{cdf}
+
+\def\cdf(#1)(#2)(#3){0.5*(1+(erf((#1-#2)/(#3*sqrt(2)))))}%
+\tikzset{
+    declare function={
+        normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));
+        normpdf(\x,\m,\s)=exp(-(\x-\m)^2/(2*\s)^2)/(sqrt(2*pi)*\s);
+        gamma(\n)=(\n-1)!;
+        beta(\a,\b)=(gamma(\a)*gamma(\b))/gamma(\a+\b);
+        betapdf(\x,\a,\b)=(\x^(\a-1)*(1-\x)^(\b-1))/beta(\a,\b);
+    }
+}
+% \pgfplotsset{compat=1.12}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=newest}
+\pgfplotsset{grid style={dashed,gray}}
+\usepackage{wrapfig}
+\usepackage[hang,small,bf]{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\captionsetup{compatibility=false}
+%------------------------------------------------------------
+% Frame, Box
+%
+\usepackage{framed}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[many]{tcolorbox}
+\usepackage{varwidth}
+% 囲み（中央タイトル）
+\newenvironment{STDBOX}[2][]{
+    \ifthenelse{\equal{#2}{}}{
+        \mdfsetup{
+            frametitle={\colorbox{white}{\space#2\space}},
+            innertopmargin=10pt,
+            innerbottommargin=10pt,
+            % frametitleaboveskip=-\ht\strutbox,
+            frametitleaboveskip=-8pt,
+            frametitlealignment=\center,
+            #1
+            }
+    }{
+        \mdfsetup{
+        frametitle={\colorbox{white}{\space#2\space}},
+        innertopmargin=0pt,
+        innerbottommargin=10pt,
+        % frametitleaboveskip=-\ht\strutbox,
+        frametitleaboveskip=-8pt,
+        frametitlealignment=\center,
+        #1
+        }
+    }
+    \begin{mdframed}%
+    }
+    {\end{mdframed}}
+
+% \mdfdefinestyle{guidelinestyle}{%
+%     linecolor=black,
+%     linewidth=1pt,
+%     frametitlerule=true,
+%     frametitlefont=\sffamily\bfseries,
+%     frametitlebackgroundcolor=gray!20,
+%     innertopmargin=\topskip
+% }
+% \makeatletter
+% \define@key{thmdef}{mdthm}[{}]{%
+% \thmt@trytwice{\def\thmt@theoremdefiner{\mdtheorem[#1]}}{}}
+% \makeatother
+% \declaretheorem[mdthm={style=guidelinestyle},numberwithin=section]{theorem}
+
+\mdfdefinestyle{DUALSIDELINEBOX}{%
+    rightline=true,
+    innerleftmargin=10,
+    innerrightmargin=10,
+    outerlinewidth=3pt,
+    linewidth=3pt,
+    topline=false,
+    rightline=true,
+    bottomline=false,
+    skipabove=\topsep,
+    skipbelow=\topsep
+}
+
+% http://tex.bootmath.com/how-to-create-highlight-boxes-in-latex.html
+% \def\bracketcolor{red!75!black}
+% \def\bracketwidth{3pt}
+\def\bracketcolor{black}
+\def\bracketwidth{.5pt}
+\newtcolorbox{BRACKETBOX}[1][]{
+    breakable,
+    freelance,
+    title=#1,
+    colback=white,
+    colbacktitle=white,
+    coltitle=black,
+    fonttitle=\bfseries,
+    before skip=20pt plus 2pt minus 2pt,
+    after skip=20pt plus 2pt minus 2pt,
+    bottomrule=0pt,
+    boxrule=0pt,
+    colframe=white,
+    overlay unbroken and first={
+    \draw[\bracketcolor,line width=\bracketwidth]
+        ([xshift=5pt]frame.north west) -- 
+        (frame.north west) -- 
+        (frame.south west);
+    \draw[\bracketcolor,line width=\bracketwidth]
+        ([xshift=-5pt]frame.north east) -- 
+        (frame.north east) -- 
+        (frame.south east);
+    },
+    overlay unbroken app={
+    \draw[\bracketcolor,line width=\bracketwidth,line cap=rect]
+        (frame.south west) -- 
+        ([xshift=5pt]frame.south west);
+    \draw[\bracketcolor,line width=\bracketwidth,line cap=rect]
+        (frame.south east) -- 
+        ([xshift=-5pt]frame.south east);
+    },
+    overlay middle and last={
+    \draw[\bracketcolor,line width=\bracketwidth]
+        (frame.north west) -- 
+        (frame.south west);
+    \draw[\bracketcolor,line width=\bracketwidth]
+        (frame.north east) -- 
+        (frame.south east);
+    },
+    overlay last app={
+    \draw[\bracketcolor,line width=\bracketwidth,line cap=rect]
+        (frame.south west) --
+        ([xshift=5pt]frame.south west);
+    \draw[\bracketcolor,line width=\bracketwidth,line cap=rect]
+        (frame.south east) --
+        ([xshift=-5pt]frame.south east);
+    },
+}
+
+\newcommand{\SIMPLEBOX}[2]{%
+    \newcounter{#1}
+    \newenvironment{#1}[1][]{%
+        \stepcounter{#1}%
+        \mdfsetup{%
+            innertopmargin=0pt,%
+            % innertopmargin=-5pt,%
+            frametitleaboveskip=-8pt,%
+            % frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+            frametitle={%
+                \tikz[baseline=(current bounding box.east),outer sep=0pt]
+                \node[anchor=east,rectangle,fill=white]
+                {\strut \MakeUppercase#1~\csname the#1\endcsname\ifstrempty{##1}{}{:~##1}};},% chktex 41
+            innerbottommargin=1em,linecolor=#2,%
+            linewidth=0.5pt,topline=true,%
+        }%
+        \begin{mdframed}[]\relax%
+        }{\end{mdframed}}%
+}
+% \SIMPLEBOX{definition}{red!60}
+% \SIMPLEBOX{theorem}{black}
+\SIMPLEBOX{EXERCISEBOX}{black!50}
+\SIMPLEBOX{EXAMPLEBOX}{black!50}
+\makeatletter
+\newtcolorbox{CTNOTE}[1]{
+    breakable,
+    before skip=20pt plus 2pt minus 2pt,
+    after skip=20pt plus 2pt minus 2pt,
+    boxrule=0.4pt,
+    colframe=colorthemefore, colback=colorthemeback,
+    fonttitle=\gtfamily\bfseries, title=#1
+}
+\newtcolorbox{CTNOTEBLUE}[1]{
+    breakable,
+    before skip=20pt plus 2pt minus 2pt,
+    after skip=20pt plus 2pt minus 2pt,
+    boxrule=0.4pt,
+    colframe=colorthememain1, colback=colorthemeback,
+    fonttitle=\gtfamily\bfseries, title=#1
+}
+\newtcolorbox{CTNOTERED}[1]{
+    breakable,
+    before skip=20pt plus 2pt minus 2pt,
+    after skip=20pt plus 2pt minus 2pt,
+    boxrule=0.4pt,
+    colframe=colorthememain2, colback=colorthemeback,
+    fonttitle=\gtfamily\bfseries, title=#1
+}
+\newtcbox{\ctb}{
+    boxrule=0.4pt, colframe=colorthemefore, colback=colorthemeback, 
+    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
+}
+\newtcbox{\ctb@main}{
+    boxrule=0.4pt, colframe=colorthememain1, colback=colorthemeback, 
+    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
+}
+\newtcbox{\ctb@accent}{
+    boxrule=0.4pt, colframe=colorthememain2, colback=colorthemeback, 
+    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
+}
+\newtcbox{\ctbinv}{
+    boxrule=0.4pt, colframe=colorthemeback, colback=colorthemefore, 
+    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
+}
+\newtcbox{\ctbinv@main}{
+    boxrule=0.4pt, colframe=colorthememain1, colback=colorthememain1, 
+    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
+}
+\newtcbox{\ctbinv@accent}{
+    boxrule=0.4pt, colframe=colorthememain2, colback=colorthememain2, 
+    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
+}
+\newtcbox{\ctb@subgray}{
+    boxrule=0.4pt, colframe=colorthemefore, colback=colorthemesub1, 
+    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
+}
+\newtcbox{\ctb@subblue}{
+    boxrule=0.4pt, colframe=colorthememain1, colback=colorthemesub2, 
+    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
+}
+\newtcbox{\ctb@subred}{
+    boxrule=0.4pt, colframe=colorthememain2, colback=colorthemesub3, 
+    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
+}
+\newtcbox{\ctb@transparent}{
+    boxrule=0.4pt, colframe=colorthemeback, colback=colorthemeback, 
+    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
+}
+\newcommand{\CTBOX}[2]{
+    \begin{itemize}
+        \item[\ctb{\small #1}] #2
+    \end{itemize}
+}
+\newcommand{\CTBOXBLUE}[2]{
+    \begin{itemize}
+        \item[\ctb@main{\color{colorthememain1}\small #1}] #2
+    \end{itemize}
+}
+\newcommand{\CTBOXRED}[2]{
+    \begin{itemize}
+        \item[\ctb@accent{\color{colorthememain2}\small #1}] #2
+    \end{itemize}
+}
+\newcommand{\CTBOXINV}[2]{
+    \begin{itemize}
+        \item[\ctbinv{\color{colorthemeback}\small #1}] #2
+    \end{itemize}
+}
+\newcommand{\CTBOXINVBLUE}[2]{
+    \begin{itemize}
+        \item[\ctbinv@main{\color{colorthemeback}\small #1}] #2
+    \end{itemize}
+}
+\newcommand{\CTBOXINVRED}[2]{
+    \begin{itemize}
+        \item[\ctbinv@accent{\color{colorthemeback}\small #1}] #2
+    \end{itemize}
+}
+\newcommand{\CTBOXSUBGRAY}[2]{
+    \begin{itemize}
+        \item[\ctb@subgray{\color{colorthemefore}\small #1}] #2
+    \end{itemize}
+}
+\newcommand{\CTBOXSUBBLUE}[2]{
+    \begin{itemize}
+        \item[\ctb@subblue{\color{colorthememain1}\small #1}] #2
+    \end{itemize}
+}
+\newcommand{\CTBOXSUBRED}[2]{
+    \begin{itemize}
+        \item[\ctb@subred{\color{colorthememain2}\small #1}] #2
+    \end{itemize}
+}
+\newcommand{\CTBOXTRANS}[2]{
+    \begin{itemize}
+        \item[\ctb@transparent{\small #1}] #2
+    \end{itemize}
+}
+\makeatother
+%------------------------------------------------------------
+% Code
+%
+\usepackage{listings}
+\usepackage{verbatim}
+%------------------------------------------------------------
+\newtcbox{\hlbox}[1][]{
+    boxrule=0.4pt,
+    boxsep=2pt,
+    sharp corners,
+    colframe=white,
+    % colframe=gray!40,
+    % colframe=black,
+    colback=yellow,
+    top=0mm,
+    bottom=0mm,
+    left=0mm,
+    right=0mm,
+    on line,
+    #1
+}
+% \newtcbox{\HLBOX}[1][]{
+%     equal height group=dashedbox,
+%     nobeforeafter,
+%     colback=yellow,
+%     boxrule=0pt,
+%     boxsep=0pt,
+%     top=2pt,
+%     bottom=2pt,
+%     left=2pt,
+%     right=2pt,
+%     enhanced jigsaw,
+%     borderline horizontal={1pt}{0pt}{dashed},
+%     borderline vertical={1pt}{0pt}{dashed},
+%     #1
+% }
+\newcommand{\HL}[1]{\hlbox{\mbox{\small\rmfamily#1}}}
+\newcommand{\EM}[1]{\color{red!80!black}\textbf{#1}\color{black}}
+\newcommand{\EMM}[1]{\color{red!80!black}#1\color{black}}
+\definecolor{MSBlue}{rgb}{.204,.353,.541}
+\definecolor{MSLightBlue}{rgb}{.31,.506,.741}
+\newcommand{\EMSUB}[1]{\mbox{\hspace{.3\zw}\color{MSLightBlue}\textbf{#1}\color{black}\hspace{.3\zw}}}
+
+\newtcbox{\embox}{%
+    boxrule=0.4pt,%
+    colframe=red!75!black,%
+    colback=red!75!black,%
+    top=0mm, bottom=0mm, left=0mm, right=0mm,%
+    on line, arc=0.5mm%
+}
+\newcommand{\EMBOX}[1]{\mbox{\hspace{.3\zw}\embox{\small\color{white} #1\color{black}}\hspace{.3\zw}}}
+
+\newtcbox{\emcbox}{%
+    boxrule=0.4pt,%
+    colframe=colorthemesub1,%
+    colback=colorthemesub1,%
+    top=0mm, bottom=0mm, left=0mm, right=0mm,%
+    on line, arc=0.5mm%
+}
+\newcommand{\EMCBOX}[1]{\mbox{\hspace{.3\zw}\emcbox{\small\bfseries\color{black} #1}\hspace{.3\zw}}}
+\newcommand{\EMMCBOX}[1]{\mbox{\hspace{.3\zw}\emcbox{\small\ttfamily\color{black} #1}\hspace{.3\zw}}}
+
+\newtcolorbox{REDBOX}{
+    colback=red!5!white,
+    colframe=red!75!black
+}
+\newtcolorbox{REDBOXT}[1]{
+    colback=red!5!white,
+    colframe=red!75!black,
+    fonttitle=\bfseries,title=#1
+}
+\newtcbox{\INLINE}{
+    size=fbox, on line,
+    colframe=black!60,
+    colback=gray!10,
+    boxrule=1pt,
+    top=0.5mm,bottom=0.5mm,left=0.5mm,right=0.5mm,
+    fontupper=\ttfamily\small
+}
+\definecolor{MathColor}{rgb}{0.0,0.56,0.0}
+\newtcolorbox{MATHBOX}[1][]{%
+    % on line,
+    nobeforeafter, math upper, tcbox raise base, enhanced,
+    colframe=MathColor,
+    colback=white,
+    arc=4pt,
+    boxrule=2pt,
+    drop fuzzy shadow
+}
+%------------------------------------------------------------
+\renewcommand{\lstlistingname}{リスト}
+\lstset{
+    tabsize=4,
+    breaklines=true,
+    breakindent=0pt,
+    showspaces=false,
+    showstringspaces=false,
+    % showlines=false,
+    basicstyle=\codefont\pixycodesize,
+    % keywordstyle=\bfseries\color{green},
+    keywordstyle=\bfseries\color{blue},
+    keywordstyle={[2]\color{red!90!black}},
+    keywordstyle={[3]\color{red}},
+    commentstyle=\itshape\color{purple!40!black},
+    % identifierstyle=\color{blue},
+    stringstyle=\color{magenta},
+    xleftmargin=0mm,
+    framexleftmargin=0mm,
+    % framesep=0pt,
+    framextopmargin=6pt,
+    framexbottommargin=6pt,
+    % framerule=0.5pt,%
+    commentstyle=\color{green!50!black},
+    comment=[l]\%\ ,% chktex 26
+    % otherkeywords={String,async,await,Task,var},
+    % keywords=[2]{DatabaseField,DatabaseTable},
+    % keywords=[3]{@},
+    % escapeinside={(*@}{@*)},%
+    % escapeinside={\%*}{*)},
+    % lineskip=-1.ex,%
+    % lineskip=-1pt,
+    belowcaptionskip=1\baselineskip,
+    captionpos=b,
+    columns=fixed,
+    basewidth=\codebasewidth,
+}
+\lstnewenvironment{pre}[1][]
+    {\vspace{1\zw}\lstset{
+        frame=lrtb,
+        framerule=0.5pt,
+        xleftmargin=6pt,
+        framexleftmargin=6pt,
+        framesep=0pt,
+        framextopmargin=6pt,
+        framexbottommargin=6pt,
+        #1}}
+    {}
+\lstnewenvironment{code}[1][]{
+    \mdframed[%
+        backgroundcolor=black!5!white,%
+        innertopmargin=0pt,%
+        innerbottommargin=0pt,%
+        ]
+    \lstset{#1}
+    }{\endmdframed}
+\lstnewenvironment{code2}[1][]{
+    \mdframed[backgroundcolor=black!5!white]
+    \renewcommand{\thelstnumber}{\arabic{lstnumber}:}
+    \lstset{
+        numbers=left,
+        numberstyle=\codefont\pixycodesize,
+        xleftmargin=16pt,
+        framexleftmargin=6pt,
+        #1}
+    }{\endmdframed}
+\lstnewenvironment{source}[1][]
+    {\vspace{1\zw}
+     \lstset{
+        frame=lines,
+        framerule=0.5pt,
+        xleftmargin=6pt,
+        framexleftmargin=6pt,
+        framesep=0pt,
+        framextopmargin=6pt,
+        framexbottommargin=6pt,
+        rulecolor=\color{cyan},
+        backgroundcolor=\color{cyan!5!white},
+        #1}}
+    {}
+\lstnewenvironment{source2}[1][]
+    {\vspace{1\zw}
+     \renewcommand{\thelstnumber}{\arabic{lstnumber}:}
+     \lstset{
+        numbers=left,
+        numberstyle=\codefont\pixycodesize,
+        numbersep=4pt,
+        frame=lines,
+        framerule=0.5pt,
+        xleftmargin=16pt,
+        framexleftmargin=16pt,
+        framesep=0pt,
+        framextopmargin=6pt,
+        framexbottommargin=6pt,
+        rulecolor=\color{cyan},
+        backgroundcolor=\color{cyan!5!white},
+        #1}}
+    {}
+% \makeatletter
+% \def\lst@lettertrue{\let\lst@ifletter\iffalse}
+% \makeatother
+%------------------------------------------------------------
+\makeatletter
+\newdimen\fb@xsep%
+\newdimen\fb@xrule%
+\newcommand{\image}[5][H]{%
+    \ifthenelse{\equal{#4}{}}{%
+        \begin{figure}[#1]%
+            \centering%
+            \includegraphics[#2]{#3}%
+        \end{figure}%
+    }{%
+        \begin{figure}[#1]%
+            \centering%
+            \includegraphics[#2]{#3}%
+            \caption{#4}%
+            \label{#5}%
+        \end{figure}%
+    }%
+}
+\newcommand{\imageF}[4][H]{\image[#1]{width=16cm}{#2}{#3}{#4}}
+\newcommand{\imageH}[4][H]{\image[#1]{width=10cm}{#2}{#3}{#4}}
+\newcommand{\imageL}[4][H]{\image[#1]{width=8cm}{#2}{#3}{#4}}
+\newcommand{\imageM}[4][H]{\image[#1]{width=6cm}{#2}{#3}{#4}}
+\newcommand{\imageS}[4][H]{\image[#1]{width=4cm}{#2}{#3}{#4}}
+\newcommand{\frameimage}[5][H]{%
+    \fb@xsep=\fboxsep%
+    \fb@xrule=\fboxrule%
+    \fboxsep=0pt%
+    \fboxrule=0.5pt%
+    \ifthenelse{\equal{#4}{}}{%
+        \begin{figure}[#1]%
+            \centering%
+            \fbox{\includegraphics[#2]{#3}}%
+        \end{figure}%
+    }{%
+        \begin{figure}[#1]%
+            \centering%
+            \fbox{\includegraphics[#2]{#3}}%
+            \caption{#4}%
+            \label{#5}%
+        \end{figure}%
+    }%
+    \fboxsep=\fb@xsep%
+    \fboxrule=\fb@xrule%
+}
+\newcommand{\frameimageF}[4][H]{\frameimage[#1]{width=16cm}{#2}{#3}{#4}}
+\newcommand{\frameimageH}[4][H]{\frameimage[#1]{width=10cm}{#2}{#3}{#4}}
+\newcommand{\frameimageL}[4][H]{\frameimage[#1]{width=8cm}{#2}{#3}{#4}}
+\newcommand{\frameimageM}[4][H]{\frameimage[#1]{width=6cm}{#2}{#3}{#4}}
+\newcommand{\frameimageS}[4][H]{\frameimage[#1]{width=4cm}{#2}{#3}{#4}}
+\makeatother
+%------------------------------------------------------------
+\definecolor{frameinnercolor}{RGB}{49,44,44}
+\newcounter{theorem}
+\numberwithin{theorem}{section}
+\newtcolorbox{theobox}[1]{%
+    enhanced, frame empty, interior empty,
+    coltitle=white, fonttitle=\bfseries, colbacktitle=frameinnercolor,
+    extras broken={frame empty, interior empty},
+    borderline={0.5mm}{0mm}{frameinnercolor},
+    % sharp corners=downhill,
+    sharp corners,
+    breakable=true,
+    top=4mm,
+    before skip=3.5mm,
+    attach boxed title to top left={yshift=-3mm,xshift=3mm},
+    boxed title style={boxrule=0pt,sharp corners=all}, varwidth boxed title, title=#1}
+\newenvironment{theo}[2][]
+    {\refstepcounter{theorem}
+     \ifstrempty{#1}{\begin{theobox}{#2~\thetheorem.}}
+     {\begin{theobox}{#2~\thetheorem:~{#1}}}}
+    {\end{theobox}}
+\newenvironment{THEOREMBOX}[1][]
+    {\begin{theo}[#1]{定理}}
+    {\end{theo}}
+%------------------------------------------------------------
+\makeatletter
+\newenvironment{LBARBOX}[1][black]{%
+    \def\FrameCommand{\textcolor{#1}{\vrule width 1pt} \hspace{10pt}}% 
+    \MakeFramed {\advance\hsize-\width \FrameRestore}}% chktex 41
+    {\endMakeFramed}
+\newenvironment{LBARBOX2}[2][black]{%
+    \def\FrameCommand{\textcolor{#1}{\vrule width #2} \hspace{10pt}}% 
+    \MakeFramed {\advance\hsize-\width \FrameRestore}}% chktex 41
+    {\endMakeFramed}
+\makeatother
+%------------------------------------------------------------
+% 数式を下線または囲みで表示してその下に文字を表示
+\newcommand{\EXPRULINE}[2]{%
+    \mathop{\mathrm{\underline{#1}}}_{\text{\scriptsize#2}}%
+}
+\newcommand{\EXPRBOXED}[2]{%
+    \mathop{\mathrm{\boxed{#1}}}_{\text{\scriptsize#2}}%
+}
+\newcommand{\EXPRNOTE}[2][blue]{%
+    {\color{#1}\leftarrow\scalebox{0.65}{\(\displaystyle #2\)}}%
+}
+%------------------------------------------------------------
+\renewcommand{\contentsname}{目次}
+% \renewcommand{\figurename}{図}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{表}
+%------------------------------------------------------------
+% User definitions
+%
+\newcommand{\REF}[1]{\CTBOXSUBGRAY{参考}{#1}}
+\newcommand{\EXAMPLE}[1]{\CTBOX{例題}{#1}}
+\makeatletter
+\newcommand{\EXAMPLEJ}[3][.5]{
+    \vspace{#1\Cvs}
+    \begin{minipage}{\textwidth}
+    \begin{itemize}
+        \item[\ctb{\small 例文}] #2
+        \item[\ctb@transparent{}] \scriptsize #3
+    \end{itemize}
+    \end{minipage}
+    \vspace{.5\Cvs}
+}
+\newcommand{\EXAMPLEJITEM}[2]{
+    \begin{itemize}
+        \item[\ctb{\small 例文}] #1
+        \item[\ctb@transparent{}] \scriptsize #2
+    \end{itemize}
+}
+\makeatother
+\newenvironment{NOTE}[1][]
+    {\begin{CTNOTE}{#1}}
+    {\end{CTNOTE}}
+\newenvironment{RULE}[1][]
+    {\begin{theo}[#1]{原則}}
+    {\end{theo}}
+\makeatletter
+\newcommand{\nobreaklist}{\par\nobreak\@afterheading}% chktex 21
+\newcommand{\nobreaklistend}{\vspace{-.5\Cvs}}
+\makeatother
+\renewcommand{\labelenumi}{\textcircled{\scriptsize \theenumi}}

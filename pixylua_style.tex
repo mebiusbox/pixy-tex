@@ -1,0 +1,372 @@
+% \def\pixylayout{report_a4_11}
+% \def\pixylayout{report_a4_10}
+% \def\pixylayout{report_a5_11}
+% \def\pixylayout{report_a5_10}
+
+% \def\pixypagestyle{empty}
+% \def\pixypagestyle{headings}
+% \def\pixypagestyle{pixypagestyle1(2,3,4,5,6)}
+
+% \def\pixybooktype{single}
+% \def\pixybooktype{double}
+
+% \def\pixysectionstyle{default}
+% \def\pixysectionstyle{block}
+
+% \def\pixyheadrule{0pt}
+
+% \def\pixynombrefont{default}
+% \def\pixynombrefont{genei}
+
+% \def\pixymainfont{default}
+% \def\pixymainfont{Merriweather}
+% \def\pixymainfont{Libertine}
+
+% \def\pixyjafont{default}
+% \def\pixyjafont{BIZ}
+% \def\pixyjafont{DigiKyouka}
+% \def\pixyjafont{Yu}
+
+% \def\pixymathfont{default}
+% \def\pixymathfont{STIX}
+% \def\pixymathfont{XITS}
+
+% \def\pixycodefont{default}
+% \def\pixycodefont{Iosevka}
+% \def\pixycodefont{Sarasa}
+% \def\pixycodefont{Fira}
+% \def\pixycodefont{Inconsolata}
+%------------------------------------------------------------
+\usepackage[noto-otf,no-math,deluxe]{luatexja-preset}
+\usepackage{ifthen}
+%------------------------------------------------------------
+\ifthenelse{\isundefined{\pixylayout}}{
+    \def\pixylayout{default}
+}{}
+\ifthenelse{\isundefined{\pixypagestyle}}{
+    \def\pixypagestyle{default}
+}{}
+\ifthenelse{\isundefined{\pixyheadrule}}{
+    \def\pixyheadrule{.4pt}
+}{}
+\ifthenelse{\isundefined{\pixysectionstyle}}{
+    \def\pixysectionstyle{block}
+}{}
+\ifthenelse{\isundefined{\pixybooktype}}{
+    \def\pixybooktype{single}
+}{}
+\ifthenelse{\isundefined{\pixymainfont}}{
+    \def\pixymainfont{Merriweather}
+}{}
+\ifthenelse{\isundefined{\pixyjafont}}{
+    \def\pixyjafont{default}
+}{}
+\ifthenelse{\isundefined{\pixymathfont}}{
+    \def\pixymathfont{default}
+}{}
+\ifthenelse{\isundefined{\pixycodefont}}{
+    \def\pixycodefont{Inconsolata}
+}{}
+\ifthenelse{\isundefined{\pixynombrefont}}{
+    \def\pixynombrefont{default}
+}{}
+%------------------------------------------------------------
+% Layout
+%
+% \usepackage{geometry}
+% \geometry{left=20mm,right=10mm,top=10mm,bottom=15mm}
+\def\pixylayouttype{default}
+\ifthenelse{\equal{\pixylayout}{article_a4_11}}{% a4paper,11pt
+    \setlength{\textheight}{40\baselineskip}
+    \def\pixylayouttype{article}
+}{}
+\ifthenelse{\equal{\pixylayout}{article_a4_10}}{% a4paper,10pt
+    \setlength{\textheight}{43\baselineskip}
+    \def\pixylayouttype{article}
+}{}
+\ifthenelse{\equal{\pixylayout}{report_a4_11}}{% a4paper,11pt
+    \setlength{\textwidth}{51\zw}
+    \setlength{\textheight}{41\baselineskip}
+    \def\pixylayouttype{report}
+}{}
+\ifthenelse{\equal{\pixylayout}{report_a4_10}}{% a4paper,10pt
+    \setlength{\textwidth}{57\zw}
+    \setlength{\textheight}{45\baselineskip}
+    \def\pixylayouttype{report}
+}{}
+\ifthenelse{\equal{\pixylayout}{report_a5_11}}{% a5paper,11pt
+    \setlength{\textwidth}{33\zw}
+    \setlength{\textheight}{27\baselineskip}
+    \def\pixylayouttype{report}
+}{}
+\ifthenelse{\equal{\pixylayout}{report_a5_10}}{% a5paper,10pt
+    \setlength{\textwidth}{37\zw}
+    \setlength{\textheight}{31\baselineskip}
+    \def\pixylayouttype{report}
+}{}
+\ifthenelse{\equal{\pixylayout}{book_a4_11}}{% a4paper,11pt
+    \def\pixylayouttype{book}
+}{}
+\ifthenelse{\equal{\pixylayout}{book_a4_10}}{% a4paper,10pt
+    \def\pixylayouttype{book}
+}{}
+\ifthenelse{\equal{\pixylayouttype}{article}}{
+    % \setlength{\leftmargin}{0truecm}
+    % \setlength{\topmargin}{0truecm}
+    % \setlength{\topskip}{0truecm}
+    % \setlength{\footskip}{0truecm}
+    % \setlength{\oddsidemargin}{0truecm}
+    % \setlength{\evensidemargin}{0truecm}
+    % \setlength{\marginparwidth}{0truecm}
+    % \setlength{\marginparsep}{1truecm}
+    % \setlength{\fullwidth}{\textwidth}
+    % \setlength{\hoffset}{-12truemm}
+    \ifthenelse{\equal{\pixypagestyle}{default}}{
+        \global\setlength{\headsep}{0truecm}
+        \global\setlength{\headheight}{0truecm}
+        \global\setlength{\voffset}{-12truemm}
+    }{
+        \global\setlength{\headsep}{0truemm}
+        \global\setlength{\headheight}{0truecm}
+        % \global\setlength{\voffset}{-20truemm}
+    }
+    % \ifthenelse{\equal{\pixypagestyle}{pixypagestyle3}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    % \ifthenelse{\equal{\pixypagestyle}{pixypagestyle4}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    % \ifthenelse{\equal{\pixypagestyle}{pixypagestyle5}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    % \ifthenelse{\equal{\pixypagestyle}{pixypagestyle6}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    % \setlength{\parindent}{0em}
+    % \linespread{1.2} % 行間
+}{}
+\ifthenelse{\equal{\pixylayouttype}{report}}{
+    \setlength{\leftmargin}{0truecm}
+    \setlength{\topmargin}{0truecm}
+    \setlength{\oddsidemargin}{0truecm}
+    \setlength{\evensidemargin}{0truecm}
+    % \setlength{\marginparwidth}{0truecm}
+    % \setlength{\marginparsep}{1truecm}
+    \setlength{\fullwidth}{\textwidth}
+    \setlength{\hoffset}{-12truemm}
+    \ifthenelse{\equal{\pixypagestyle}{default}}{
+        \global\setlength{\headsep}{0truecm}
+        \global\setlength{\headheight}{0truecm}
+        \global\setlength{\voffset}{-12truemm}
+    }{
+        \global\setlength{\headsep}{10truemm}
+        % \global\setlength{\headheight}{0truecm}
+        \global\setlength{\voffset}{-20truemm}
+    }
+    \ifthenelse{\equal{\pixypagestyle}{pixypagestyle3}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    \ifthenelse{\equal{\pixypagestyle}{pixypagestyle4}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    \ifthenelse{\equal{\pixypagestyle}{pixypagestyle5}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    \ifthenelse{\equal{\pixypagestyle}{pixypagestyle6}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    \setlength{\parindent}{0em}
+    \linespread{1.2} % 行間
+}{}
+\ifthenelse{\equal{\pixylayouttype}{book}}{
+    \setlength{\leftmargin}{0truecm}
+    \setlength{\topmargin}{0truecm}
+
+    \ifthenelse{\equal{\pixybooktype}{double}}{
+        \setlength{\oddsidemargin}{10truemm}
+        \setlength{\evensidemargin}{0truemm}
+    }{% single
+        \setlength{\oddsidemargin}{5truemm}
+        \setlength{\evensidemargin}{\oddsidemargin}
+    }
+    \setlength{\marginparwidth}{0truecm}
+    \setlength{\marginparsep}{1truecm}
+    \setlength{\textwidth}{\fullwidth}
+    \setlength{\hoffset}{-10truemm}
+    \ifthenelse{\equal{\pixypagestyle}{default}}{
+        \global\setlength{\headsep}{0truecm}
+        \global\setlength{\headheight}{0truecm}
+        \global\setlength{\voffset}{-10truemm}
+    }{
+        \global\setlength{\headsep}{10truemm}
+        % \global\setlength{\headheight}{0truecm}
+        \global\setlength{\voffset}{-20truemm}
+    }
+    \ifthenelse{\equal{\pixypagestyle}{pixypagestyle3}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    \ifthenelse{\equal{\pixypagestyle}{pixypagestyle4}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    \ifthenelse{\equal{\pixypagestyle}{pixypagestyle5}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    \ifthenelse{\equal{\pixypagestyle}{pixypagestyle6}}{\global\addtolength{\textheight}{1\baselineskip}}{}
+    \setlength{\parindent}{0em}
+    \linespread{1.2} % 行間
+}{}
+%--------------------------------------------------------
+\def\codebasewidth{0.5em}
+% \newfontfamily{\merriweather}{Merriweather Sans}[
+%     UprightFont=* Regular,
+%     BoldFont=* Bold,
+%     BoldItalicFont=* Bold Italic,
+%     ItalicFont=* Italic,
+% ]
+\ifthenelse{\equal{\pixycodefont}{default}}{
+    \def\codefont{\ttfamily}
+}{}
+\ifthenelse{\equal{\pixycodefont}{Iosevka}}{
+    \newfontfamily{\codefont}{Iosevka Fixed}[
+        UprightFont=* Medium,
+        BoldFont=* Bold,
+        BoldItalicFont=* Bold Italic,
+        ItalicFont=* Medium Italic,
+    ]
+    \setmonofont{Iosevka Fixed Medium}
+}{}
+\ifthenelse{\equal{\pixycodefont}{IosevkaSS16}}{
+    \newfontfamily{\codefont}{Iosevka Fixed SS16}[
+        UprightFont=* Medium,
+        BoldFont=* Bold,
+        BoldItalicFont=* Bold Italic,
+        ItalicFont=* Medium Italic,
+    ]
+    \setmonofont{Iosevka Fixed Medium}
+}{}
+\ifthenelse{\equal{\pixycodefont}{Sarasa}}{
+    \newfontfamily{\codefont}{Sarasa Fixed J}[
+        UprightFont=* Semibold,
+        BoldFont=* Bold,
+        BoldItalicFont=* Bold Italic,
+        ItalicFont=* Semibold Italic,
+    ]
+    \setmonofont{Sarasa Fixed J Semibold}
+}{}
+\ifthenelse{\equal{\pixycodefont}{Fira}}{
+    \newfontfamily{\codefont}{Fira Mono}[
+        UprightFont=* Medium,
+        BoldFont=* Bold
+    ]
+    \setmonofont{Fira Mono Medium}
+    \def\codebasewidth{0.6em}
+}{}
+\ifthenelse{\equal{\pixycodefont}{Inconsolata}}{
+    \newfontfamily{\codefont}{Inconsolata Condensed}[
+        UprightFont=* Medium,
+        BoldFont=* Bold
+    ]
+    \setmonofont{Inconsolata Condensed Medium}
+    \def\codebasewidth{0.45em}
+}{}
+\ifthenelse{\equal{\pixynombrefont}{genei}}{
+    \newfontfamily{\genei}{GenEi Nombre Roman}
+    \def\nombrefont{\genei}
+}{\def\nombrefont{}}
+\ifthenelse{\equal{\pixymainfont}{Merriweather}}{
+    \setmainfont{Merriweather}[Scale=\Cjascale]
+    \setsansfont{Merriweather Sans}[Scale=\Cjascale]
+}{}
+\ifthenelse{\equal{\pixymainfont}{Libertine}}{
+    \setmainfont{Linux Libertine O}[Scale=\Cjascale]
+    \setsansfont{Linux Biolinum O}[Scale=\Cjascale]
+}{}
+\ifthenelse{\equal{\pixyjafont}{BIZ}}{
+    \setmainjfont[
+        Script=Default,
+        YokoFeatures={JFM=prop},
+        CharacterWidth=Proportional,
+        Kerning=On,
+    ]{BIZ UDPMincho Medium}
+}{}
+\ifthenelse{\equal{\pixyjafont}{DigiKyouka}}{
+    \setmainjfont[
+        Script=Default,
+        YokoFeatures={JFM=prop},
+        CharacterWidth=Proportional,
+        Kerning=On,
+    ]{UD Digi Kyokasho NK-R}
+}{}
+\ifthenelse{\equal{\pixyjafont}{Yu}}{
+    \setmainjfont[
+        Script=Default,
+        YokoFeatures={JFM=prop},
+        CharacterWidth=Proportional,
+        Kerning=On,
+    ]{Yu Mincho Regular}
+}{}
+
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{polynom}
+\usepackage{unicode-math}
+\ifthenelse{\equal{\pixymathfont}{default}}{
+    \setmathfont{TeXGyrePagella-Math}
+}{}
+% https://gzutetsu.hatenablog.jp/entry/2021/06/13/140823
+\ifthenelse{\equal{\pixymathfont}{STIX}}{
+    \unimathsetup{math-style=ISO,bold-style=ISO}
+    \setmathfont{STIX Two Math}[Scale=1.1]
+    \setmathfont{STIX Two Math}[Scale=1.1,range={"1D454,"1D488},StylisticSet={2},script-features={},sscript-features={}]
+}{}
+\ifthenelse{\equal{\pixymathfont}{XITS}}{
+    \setmathfont{XITS-Math}
+}{}
+%--------------------------------------------------------
+%--------------------------------------------------------
+% Section, Subsection
+%
+\usepackage[explicit]{titlesec}
+\usepackage{titleps}
+\ifthenelse{\equal{\pixysectionstyle}{block}}{
+\renewcommand*{\thesection}{\arabic{section}}
+% \titleformat*{\section}{\Large\bfseries}
+% \titleformat*{\subsection}{\normalize\bfseries}
+%------------------------------
+\titleformat{\section}[block]{}{}{0pt}{%
+    \normalfont\Large\bfseries \thesection.\hspace{0.5\zw} #1%
+}[\normalsize\vspace*{-.15\baselineskip}\titlerule]
+\titleformat{\subsection}%
+    {\large\bfseries}%
+    {\colorbox{black}{\color{white}\thesubsection}}%
+    {0.1cm}%
+    {\gdef\currentsectiontitle{#1}#1}
+\titleformat{\subsubsection}%
+    {}%
+    {\rlap{\color{MSLightBlue}\rule[-6pt]{\textwidth}{0.8pt}}\colorbox{MSLightBlue}{%
+        \raisebox{0pt}[10pt][3pt]{\makebox[30pt]{%
+        \normalfont\normalsize\bfseries\color{white}{\thesubsubsection}%
+        }}}%
+    }
+    {0pt}%
+    {\normalfont\normalsize\bfseries\color{MSLightBlue}\hspace{1\zw}#1}%
+    [\normalsize\vspace*{.3\baselineskip}]
+\setcounter{secnumdepth}{3}
+}{}
+\newpagestyle{pixypagestyle1}{%
+\headrule%
+\sethead{第~\thechapter~章 \quad \chaptertitle}{}{\thechapter.\thesection.~\sectiontitle}%
+\setfoot{}{\nombrefont\usepage}{}%
+}
+\newpagestyle{pixypagestyle2}{%
+\headrule%
+\sethead{}{}{第~\thechapter~章 \quad \sectiontitle}%
+\setfoot{}{\nombrefont\usepage}{}%
+}
+\newpagestyle{pixypagestyle3}{%
+\sethead{第~\thechapter~章 \quad \chaptertitle}{}{\small \thechapter.\thesection.~\sectiontitle~\(\bullet\)~\nombrefont\usepage}%
+\setfoot{}{}{}%
+}
+\newpagestyle{pixypagestyle4}{%
+\sethead{}{}{\small \thesection.~\sectiontitle~\(\bullet\)~\nombrefont\usepage}%
+\setfoot{}{}{}%
+}
+\newpagestyle{pixypagestyle5}[\small]{
+    \setheadrule{\pixyheadrule}%
+    \sethead[\nombrefont\thepage]%
+            []%
+            [\thesection~\sectiontitle]%
+            {\thesubsection~\subsectiontitle}%
+            {}%
+            {\nombrefont\thepage}%
+}
+\newpagestyle{pixypagestyle6}[\small]{
+    \setheadrule{\pixyheadrule}%
+    \sethead[\usepage~~\(\bullet\)~第~\thechapter~章 \quad \chaptertitle]%
+            []%
+            []%
+            {}%
+            {}%
+            {\thechapter.\thesection.~\sectiontitle~\(\bullet\)~~\nombrefont\usepage}%
+}
+\ifthenelse{\equal{\pixypagestyle}{default}}{}{
+    \pagestyle{\pixypagestyle}
+}

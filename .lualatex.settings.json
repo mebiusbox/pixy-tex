@@ -1,0 +1,25 @@
+{
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "lualatex",
+            "tools": ["lualatex"]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "lualatex",
+            "command": "lualatex",
+            "args": [
+                "--cmdx",
+                "-file-line-error",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-halt-on-error",
+                "--fmt=lualatex.fmt",
+                "%DOC%"
+            ],
+            "env": {}
+        }
+    ],
+    "latex-workshop.latex.autoClean.run": "never"
+}

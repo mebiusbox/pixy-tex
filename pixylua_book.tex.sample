@@ -1,0 +1,21 @@
+\input{texpixy/pixylua_book_a4_10}
+% \input{texpixy/pixylua_book_a4_11}
+% \def\pixybooktype{double}
+\input{texpixy/pixylua_style}
+\input{texpixy/pixylua}
+%--------------------------------------------------------
+\title{\TeX\ 文書テンプレート}
+\author{mebiusbox software}
+\begin{document}
+    \pagestyle{empty} \addtocontents{toc}{\protect\thispagestyle{empty}}
+    \maketitle
+    \setcounter{tocdepth}{2}
+    \tableofcontents
+    \cleardoublepage
+    \pagestyle{\pixypagestyle}
+
+    \chapter{\TeX\ テンプレート概要}
+    \section{ほげ}
+
+    あいうえお
+\end{document}
