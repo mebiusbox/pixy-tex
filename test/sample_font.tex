@@ -1,0 +1,36 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage[noto-otf,no-math,deluxe]{luatexja-preset}
+\newfontfamily{\roboto}{Roboto}
+\newfontfamily{\genei}{GenEi Nombre Roman}
+\newjfontfamily{\msgothic}{MS Gothic}
+%--------------------------------------------------------
+\title{\TeX 文書テンプレート}
+\author{mebiusbox software}
+\begin{document}
+    \maketitle
+    \section{はじめてのLua\TeX-ja}
+    ちゃんと日本語が出るかな？
+    \subsection{出たかな？}
+    長い文章を入力するとちゃんと右端のところで折り返されるかな？
+    大丈夫そうな気がするけど、ちょっと不安だけど何事も挑戦だよね．
+    \subsection{フォントサンプル}
+    (default)\par
+    The quick brown fox jumps over the lazy dog.\par
+    (sffamily)\par
+    {\sffamily The quick brown fox jumps over the lazy dog.}\par
+    (roboto)\par
+    {\fontspec{Roboto}The quick brown fox jumps over the lazy dog.}
+    (default)\par
+    いろはにほへとちりぬるを。吾輩は猫である．ABC\par
+    (gtfamily)\par
+    {\gtfamily いろはにほへとちりぬるを。吾輩は猫である．ABC}\par
+    (msgothic)\par
+    {\jfontspec{MS Gothic}いろはにほへとちりぬるを。吾輩は猫である．ABC}\par
+    (default)\par
+    いろはにほへとちりぬるを。吾輩は猫である．ABC\par
+    (roboto)\par
+    {\roboto いろはにほへとちりぬるを。吾輩は猫である．ABC}\par
+    (msgothic)\par
+    {\msgothic いろはにほへとちりぬるを。吾輩は猫である．ABC}\par
+    {\genei 1234567890}\par
+\end{document}

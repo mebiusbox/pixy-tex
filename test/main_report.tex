@@ -1,0 +1,26 @@
+\input{../pixylua_style}
+\input{../pixylua}
+%--------------------------------------------------------
+% Special commands for this document.
+% Name conventions: 'sp' + PascalCase
+%
+\newcommand{\spColumnColor}{cyan!10}
+%--------------------------------------------------------
+\title{\TeX\ 文書テンプレート}
+\author{mebiusbox software}
+\begin{document}
+    \pagestyle{empty} \addtocontents{toc}{\protect\thispagestyle{empty}}
+    \maketitle
+    \setcounter{tocdepth}{2}
+    \tableofcontents
+    \cleardoublepage
+    \pagestyle{\pixypagestyle}
+
+    \chapter{\TeX\ テンプレート概要}
+    \subfile{sections/usage}
+    \subfile{sections/base}
+    \subfile{sections/math}
+    \subfile{sections/code}
+    \subfile{sections/image}
+    \subfile{sections/mkdocs}
+\end{document}

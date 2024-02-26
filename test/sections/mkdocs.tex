@@ -1,0 +1,34 @@
+\documentclass[../main]{subfiles}
+\begin{document}
+\setcounter{section}{3}
+\section{MkDocsのコマンド}
+%------------------------------------------------------------
+
+サイトに必要なファイルを生成するにはビルドを行います。ビルドは以下のコマンドを実行します。
+
+\begin{code}
+mkdocs build
+\end{code}
+
+正常に生成されると \HL{site} フォルダに作成されます。インターネット上に公開する場合はこのフォルダ内をアップロードします。
+
+ビルドした内容を公開する前に、ローカルで確認したい場合は \EMSUB{serve} \INLINE{serve} \tcbox{serve} コマンドを実行し、サーバーを起動します。
+
+
+\begin{REDBOXT}{Title}
+    mkdocs serve
+\end{REDBOXT}
+
+\begin{MATHBOX}
+    mkdocs serve
+\end{MATHBOX}
+
+\begin{code}
+mkdocs serve
+\end{code}
+
+コマンドの出力に `Serving on http://127.0.0.1:8000` のようにアドレスとポート番号が表示されますので、そのアドレスをブラウザに入力して確認することが出来ます。
+
+`serve` を実行している間はファイルの追加や変更が検知されて自動的にビルドされます。
+%------------------------------------------------------------
+\end{document}

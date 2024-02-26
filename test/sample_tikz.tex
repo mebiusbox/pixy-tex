@@ -1,0 +1,50 @@
+\documentclass{ltjsarticle}
+\usepackage[noto-otf,no-math,deluxe]{luatexja-preset}
+\usepackage{subfiles}
+%------------------------------------------------------------
+% Figure, Table, Graph
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections,quotes,angles,shapes.misc,patterns,decorations.markings}
+\usepackage{tkz-euclide}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{here}
+\graphicspath{{images/}{../images/}}
+\usepackage{pgfplots}
+\usepackage{amsmath,amssymb}
+\DeclareMathOperator{\CDF}{cdf}
+% \usepackage{color,soul}
+% \usepackage[x11names]{xcolor}
+% \usepackage{multicol}
+\definecolor{graphcolor}{RGB}{204,0,0}
+\definecolor{graphsubcolor}{RGB}{0,80,255}
+
+\def\cdf(#1)(#2)(#3){0.5*(1+(erf((#1-#2)/(#3*sqrt(2)))))}%
+\tikzset{
+    declare function={
+        normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));
+        normpdf(\x,\m,\s)=exp(-(\x-\m)^2/(2*\s)^2)/(sqrt(2*pi)*\s);
+        gamma(\n)=(\n-1)!;
+        beta(\a,\b)=(gamma(\a)*gamma(\b))/gamma(\a+\b);
+        betapdf(\x,\a,\b)=(\x^(\a-1)*(1-\x)^(\b-1))/beta(\a,\b);
+    }
+}
+% \pgfplotsset{compat=1.12}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=newest}
+\pgfplotsset{grid style={dashed,gray}}
+\usepackage{wrapfig}
+\usepackage[hang,small,bf]{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\captionsetup{compatibility=false}
+%------------------------------------------------------------
+\title{Tikzによる作図}
+\author{mebiusbox}
+\begin{document}
+\maketitle
+    \subfile{sections/tikz_basic}
+    \subfile{sections/tikz_fourier_series}
+    \subfile{sections/tikz_linear_algebra}
+    \subfile{sections/tikz_probabilities}
+    \subfile{sections/tikz_quaternion}
+\end{document}

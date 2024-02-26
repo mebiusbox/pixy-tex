@@ -1,0 +1,339 @@
+\documentclass[../main]{subfiles}
+\begin{document}
+\setcounter{section}{2}
+\section{数式}
+%------------------------------------------------------------
+
+\subsection{STDBOX}
+\begin{STDBOX}{平方根の公式}
+    $a>0, b>0$のとき，
+
+    \begin{gather*}
+        (\sqrt{a})^2 = a, \qquad \sqrt{a^2} = a, \qquad \sqrt{a^2b} = a\sqrt{b} \\
+        \sqrt{a}\sqrt{b} = \sqrt{ab}, \qquad \frac{\sqrt{a}}{\sqrt{b}} = \sqrt{\frac{a}{b}} \\
+    \end{gather*}
+\end{STDBOX}
+\begin{code}[language=tex]
+\begin{STDBOX}{平方根の公式}
+    $a>0, b>0$のとき，
+
+    \begin{gather*}
+        (\sqrt{a})^2 = a, \qquad \sqrt{a^2} = a, \qquad \sqrt{a^2b} = a\sqrt{b} \\
+        \sqrt{a}\sqrt{b} = \sqrt{ab}, \qquad \frac{\sqrt{a}}{\sqrt{b}} = \sqrt{\frac{a}{b}} \\
+    \end{gather*}
+\end{STDBOX}
+\end{code}
+
+\leaderfill
+\subsection{EXPRULINE}
+
+\[
+    \EXPRULINE{(ax+b)(cx+d)}{因数分解} = \EXPRULINE{acx^2 + (ad+bc)x + bd}{展開}
+\]
+\begin{code}[language=tex]
+\[
+    \EXPRULINE{(ax+b)(cx+d)}{因数分解} = \EXPRULINE{acx^2 + (ad+bc)x + bd}{展開}
+\]
+\end{code}
+
+\leaderfill
+\subsection{BRACKETBOX}
+
+\begin{BRACKETBOX}
+
+    \EXAMPLE{$2x^3-3x^2-11x+6\cdots f(x)=0$を満たす$x$を求める．}
+
+    例えば$x$に-2を代入すると
+
+    \begin{align*}
+        f(-2) &= 2\cdot (-2)^3 - 3(-2)^2 - 11\cdot (-2)+6 \\
+              &= -16-12+22+6 = 0
+    \end{align*}
+
+    よって，$f(x)$は$x+2$で割り切れる．
+
+    \begin{equation*}
+        \polylongdiv{2x^3-3x^2-11x+6}{x+2}
+    \end{equation*}
+
+    \begin{equation*}
+        \therefore f(x) = (x+2)(\underline{2x^2-7x+3})
+    \end{equation*}
+
+    \begin{equation*}
+        2x^3-3x^2-11x+6 = (x+2)(2x-1)(x-3)
+    \end{equation*}
+        
+\end{BRACKETBOX}
+\begin{code}[language=tex]
+\begin{BRACKETBOX}
+
+    \EXAMPLE{$2x^3-3x^2-11x+6\cdots f(x)=0$を満たす$x$を求める．}
+
+    例えば$x$に-2を代入すると
+
+    \begin{align*}
+        f(-2) &= 2\cdot (-2)^3 - 3(-2)^2 - 11\cdot (-2)+6 \\
+                &= -16-12+22+6 = 0
+    \end{align*}
+
+    よって，$f(x)$は$x+2$で割り切れる．
+
+    \begin{equation*}
+        \polylongdiv{2x^3-3x^2-11x+6}{x+2}
+    \end{equation*}
+
+    \begin{equation*}
+        \therefore f(x) = (x+2)(\underline{2x^2-7x+3})
+    \end{equation*}
+
+    \begin{equation*}
+        2x^3-3x^2-11x+6 = (x+2)(2x-1)(x-3)
+    \end{equation*}
+        
+\end{BRACKETBOX}
+\end{code}
+
+\leaderfill
+\subsection{boxed}
+
+\[
+    i \ln i = i\cdot \boxed{i\frac{\pi}{2}} = i^2 \cdot \frac{\pi}{2} = -\frac{\pi}{2}
+\]
+\begin{code}[language=tex]
+i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}{2}
+\end{code}
+
+\leaderfill
+\subsection{EXPRBOXED}
+
+\begin{align*}
+    \EMM{\{f(x)g(x)\}'} &= \lim_{h\to 0}\frac{F(x+h)-F(x)}{h} \\
+                  &= \lim_{h\to 0}\frac{f(x+h)g(x+h)-f(x)g(x)}{h} \\
+                  & \text{\scriptsize $f(x)g(x+h)$を引いて足す} \\
+                  &= \lim_{h\to 0}\frac{\{f(x+h)-f(x)\}g(x+h)+f(x)\{g(x+h)-g(x)\}}{h} \\
+                  &= \lim_{h\to 0}\left\{
+                    \EXPRBOXED{\frac{f(x+h)-f(x)}{h}}{$=f'(x)$}\cdot
+                    \EXPRBOXED{g(x+h)}{$=g(x)$}
+                    +f(x)\cdot
+                    \EXPRBOXED{\frac{g(x+h)-g(x)}{h}}{$=g'(x)$}
+                    \right\} \\
+                  &= \EMM{f'(x)g(x) + f(x)g'(x)}
+\end{align*}
+\begin{align*}
+    \EMM{\left\{\frac{f(x)}{g(x)}\right\}'} &=
+        \lim_{h\to 0}\frac{F(x+h)-F(x)}{h} \\
+        &= \lim_{h\to 0}\frac{\frac{f(x+h)}{g(x+h)}-\frac{f(x)}{g(x)}}{h} \\
+        &= \lim_{h\to 0}\frac{
+            \frac{f(x+h)g(x)-f(x)g(x+h)}{g(x+h)g(x)}
+        }{h} \\
+        &= \lim_{h\to 0}\frac{1}{h}
+        \frac{\{f(x+h)-f(x)\}g(x)-f(x)\{g(x+h)-g(x)\}}{g(x+h)g(x)} \\
+        &= {\scriptsize \lim_{h\to 0}\frac{1}{g(x+h)g(x)}\cdot
+        \left\{\
+            \EXPRBOXED{\frac{f(x+h)-f(x)}{h}}{$=f'(x)$}\cdot
+            g(x)-f(x)\cdot
+            \EXPRBOXED{\frac{g(x+h)-g(x)}{h}}{$=g'(x)$}
+        \right\}} \\
+        &= \EMM{\frac{f'(x)g(x)-f(x)g'(x)}{\{g(x)\}^2}}
+\end{align*}
+\begin{code}[language=tex]
+\begin{align*}
+    \EMM{\{f(x)g(x)\}'} &= \lim_{h\to 0}\frac{F(x+h)-F(x)}{h} \\
+                  &= \lim_{h\to 0}\frac{f(x+h)g(x+h)-f(x)g(x)}{h} \\
+                  & \text{\scriptsize $f(x)g(x+h)$を引いて足す} \\
+                  &= \lim_{h\to 0}\frac{\{f(x+h)-f(x)\}g(x+h)+f(x)\{g(x+h)-g(x)\}}{h} \\
+                  &= \lim_{h\to 0}\left\{
+                    \EXPRBOXED{\frac{f(x+h)-f(x)}{h}}{$=f'(x)$}\cdot
+                    \EXPRBOXED{g(x+h)}{$=g(x)$}
+                    +f(x)\cdot
+                    \EXPRBOXED{\frac{g(x+h)-g(x)}{h}}{$=g'(x)$}
+                    \right\} \\
+                  &= \EMM{f'(x)g(x) + f(x)g'(x)}
+\end{align*}
+\begin{align*}
+    \EMM{\left\{\frac{f(x)}{g(x)}\right\}'} &=
+        \lim_{h\to 0}\frac{F(x+h)-F(x)}{h} \\
+        &= \lim_{h\to 0}\frac{\frac{f(x+h)}{g(x+h)}-\frac{f(x)}{g(x)}}{h} \\
+        &= \lim_{h\to 0}\frac{
+            \frac{f(x+h)g(x)-f(x)g(x+h)}{g(x+h)g(x)}
+        }{h} \\
+        &= \lim_{h\to 0}\frac{1}{h}
+        \frac{\{f(x+h)-f(x)\}g(x)-f(x)\{g(x+h)-g(x)\}}{g(x+h)g(x)} \\
+        &= {\scriptsize \lim_{h\to 0}\frac{1}{g(x+h)g(x)}\cdot
+        \left\{\
+            \EXPRBOXED{\frac{f(x+h)-f(x)}{h}}{$=f'(x)$}\cdot
+            g(x)-f(x)\cdot
+            \EXPRBOXED{\frac{g(x+h)-g(x)}{h}}{$=g'(x)$}
+        \right\}} \\
+        &= \EMM{\frac{f'(x)g(x)-f(x)g'(x)}{\{g(x)\}^2}}
+\end{align*}
+\end{code}
+
+\leaderfill
+\subsection{EXPRNOTE}
+
+\begin{align*}
+    \EMM{(\sin x)'} &= \lim_{h\to 0}\frac{\sin(x+h)-\sin x}{h}
+    \qquad \EXPRNOTE{f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}} \\
+    &= \lim_{h\to 0}\frac{2\cos\left(x+\frac{h}{2}\right)\cdot\sin\frac{h}{2}}{h}
+    \qquad \EXPRNOTE{\sin A\sin B = 2\cos\frac{A+B}{2}\sin\frac{A-B}{2}} \\
+    &= \lim_{h\to 0}\frac{\sin\frac{h}{2}}{\frac{h}{2}}\cos\left(x+\frac{h}{2}\right)
+    \qquad \EXPRNOTE{\lim_{x\to 0}\frac{\sin x}{x} = 1} \\
+    &= \EMM{\cos x} \\
+    \EMM{(\cos x)'} &= \lim_{h\to 0}\frac{\cos(x+h)-\cos x}{h} \\
+    &= \lim_{h\to 0}\frac{-2\sin\left(x+\frac{h}{2}\right)\cdot\sin\frac{h}{2}}{h} \\
+    &= \lim_{h\to 0}\frac{\sin\frac{h}{2}}{\frac{h}{2}}
+    \left\{-\sin\left(x+\frac{h}{2}\right)\right\} \\
+    &= \EMM{-sin x} \\
+    \EMM{(\tan x)'} &= \left(\frac{\sin x}{\cos x}\right)' \\
+    &= \frac{(\sin x)'\cos x - \sin x(\cos x)'}{\cos^2 x}
+    \qquad \EXPRNOTE{
+        \left\{
+            \frac{f(x)}{g(x)}
+        \right\}' = \frac{f'(x)g(x)-f(x)g'(x)}
+        {\left\{g(x)\right\}^2}
+    } \\
+    &= \frac{\cos^2 x + \sin^2 x}{\cos^2 x} \\
+    &= \EMM{\frac{1}{\cos^2 x}}
+\end{align*}
+\begin{code}[language=tex]
+    \begin{align*}
+        \EMM{(\sin x)'} &= \lim_{h\to 0}\frac{\sin(x+h)-\sin x}{h}
+        \qquad \EXPRNOTE{f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}} \\
+        &= \lim_{h\to 0}\frac{2\cos\left(x+\frac{h}{2}\right)\cdot\sin\frac{h}{2}}{h}
+        \qquad \EXPRNOTE{\sin A\sin B = 2\cos\frac{A+B}{2}\sin\frac{A-B}{2}} \\
+        &= \lim_{h\to 0}\frac{\sin\frac{h}{2}}{\frac{h}{2}}\cos\left(x+\frac{h}{2}\right)
+        \qquad \EXPRNOTE{\lim_{x\to 0}\frac{\sin x}{x} = 1} \\
+        &= \EMM{\cos x} \\
+        \EMM{(\cos x)'} &= \lim_{h\to 0}\frac{\cos(x+h)-\cos x}{h} \\
+        &= \lim_{h\to 0}\frac{-2\sin\left(x+\frac{h}{2}\right)\cdot\sin\frac{h}{2}}{h} \\
+        &= \lim_{h\to 0}\frac{\sin\frac{h}{2}}{\frac{h}{2}}
+        \left\{-\sin\left(x+\frac{h}{2}\right)\right\} \\
+        &= \EMM{-sin x} \\
+        \EMM{(\tan x)'} &= \left(\frac{\sin x}{\cos x}\right)' \\
+        &= \frac{(\sin x)'\cos x - \sin x(\cos x)'}{\cos^2 x}
+        \qquad \EXPRNOTE{
+            \left\{
+                \frac{f(x)}{g(x)}
+            \right\}' = \frac{f'(x)g(x)-f(x)g'(x)}
+            {\left\{g(x)\right\}^2}
+        } \\
+        &= \frac{\cos^2 x + \sin^2 x}{\cos^2 x} \\
+        &= \EMM{\frac{1}{\cos^2 x}}
+    \end{align*}
+\end{code}
+
+\leaderfill
+\subsection{PMAT, PVEC}
+
+\[
+    \PMAT{\PVEC{1\\2\\3}&\PVEC{4\\5\\6}} = 
+    \PMAT{1&4\\2&5\\3&6}
+\]
+\begin{code}[language=tex]
+\[
+    \PMAT{\PVEC{1\\2\\3}&\PVEC{4\\5\\6}} = 
+    \PMAT{1&4\\2&5\\3&6}
+\]
+\end{code}
+
+\leaderfill
+\subsection{PVECs}
+
+\[
+    \PMAT{\PVECs{1&2&3}\\\PVECs{4&5&6}} = 
+    \PMAT{1&2&3\\4&5&6}
+\]
+\begin{code}[language=tex]
+\[
+    \PMAT{\PVECs{1&2&3}\\\PVECs{4&5&6}} = 
+    \PMAT{1&2&3\\4&5&6}
+\]
+\end{code}
+
+\leaderfill
+
+ここで係数行列の各行を$r_1 = \PVECs{a&b}$, $r_2 = \PVECs{c&d}$と表します．右側に基本変形の内容を記載し，左側は変形後を表しています．
+
+\begin{align*}
+    \PMAT{ac&bc&\vdots&cp\\ac&ad&\vdots&aq} &
+    \quad \begin{matrix}
+        r_1\times c\\r_2\times a
+    \end{matrix} \\
+    \PMAT{ac&bc&\vdots&cp\\0&ad-bc&\vdots&aq-cp} &
+    \quad \begin{matrix}
+        r_2-r_1
+    \end{matrix} \\
+    \PMAT{1&\frac{bc}{ac}&\vdots&\frac{cp}{ac}\\0&ad-bc&\vdots&aq-cp} &
+    \quad \begin{matrix}
+        r_1\div ac
+    \end{matrix} \\
+    \PMAT{1&\frac{bc}{ac}&\vdots&\frac{cp}{ac}\\0&\frac{bc}{ac}&\vdots&\frac{aq-cp}{ad-bc}\cdot\frac{bc}{ac}} &
+    \quad \begin{matrix}
+        r_2\times \frac{bc}{ac(ad-bc)}
+    \end{matrix} \\
+    \PMAT{1&0&\vdots&\frac{cp}{ac}-\frac{aq-cp}{ad-bc}\cdot\frac{bc}{ac}\\0&\frac{bc}{ac}&\vdots&\frac{aq-cp}{ad-bc}\cdot\frac{bc}{ac}} &
+    \quad \begin{matrix}
+        r_1-r_2
+    \end{matrix} \\
+    \PMAT{1&0&\vdots&\frac{dp-bq}{ad-bc}\\0&\frac{bc}{ac}&\vdots&\frac{aq-cp}{ad-bc}\cdot\frac{bc}{ac}} &
+    \quad \begin{matrix}
+    \end{matrix} \\
+    \PMAT{1&0&\vdots&\frac{dp-bq}{ad-bc}\\0&1&\vdots&\frac{aq-cp}{ad-bc}} &
+    \quad \begin{matrix}
+        r_2\div \frac{bc}{ac}
+    \end{matrix}
+\end{align*}
+\begin{code}[language=tex]
+ここで係数行列の各行を$r_1 = \PVECs{a&b}$, $r_2 = \PVECs{c&d}$と表します．右側に基本変形の内容を記載し，左側は変形後を表しています．
+
+\begin{align*}
+    \PMAT{ac&bc&\vdots&cp\\ac&ad&\vdots&aq} &
+    \quad \begin{matrix}
+        r_1\times c\\r_2\times a
+    \end{matrix} \\
+    \PMAT{ac&bc&\vdots&cp\\0&ad-bc&\vdots&aq-cp} &
+    \quad \begin{matrix}
+        r_2-r_1
+    \end{matrix} \\
+    \PMAT{1&\frac{bc}{ac}&\vdots&\frac{cp}{ac}\\0&ad-bc&\vdots&aq-cp} &
+    \quad \begin{matrix}
+        r_1\div ac
+    \end{matrix} \\
+    \PMAT{1&\frac{bc}{ac}&\vdots&\frac{cp}{ac}\\0&\frac{bc}{ac}&\vdots&\frac{aq-cp}{ad-bc}\cdot\frac{bc}{ac}} &
+    \quad \begin{matrix}
+        r_2\times \frac{bc}{ac(ad-bc)}
+    \end{matrix} \\
+    \PMAT{1&0&\vdots&\frac{cp}{ac}-\frac{aq-cp}{ad-bc}\cdot\frac{bc}{ac}\\0&\frac{bc}{ac}&\vdots&\frac{aq-cp}{ad-bc}\cdot\frac{bc}{ac}} &
+    \quad \begin{matrix}
+        r_1-r_2
+    \end{matrix} \\
+    \PMAT{1&0&\vdots&\frac{dp-bq}{ad-bc}\\0&\frac{bc}{ac}&\vdots&\frac{aq-cp}{ad-bc}\cdot\frac{bc}{ac}} &
+    \quad \begin{matrix}
+    \end{matrix} \\
+    \PMAT{1&0&\vdots&\frac{dp-bq}{ad-bc}\\0&1&\vdots&\frac{aq-cp}{ad-bc}} &
+    \quad \begin{matrix}
+        r_2\div \frac{bc}{ac}
+    \end{matrix}
+\end{align*}
+\end{code}
+
+\leaderfill
+\subsection{DMAT}
+
+\[
+    \DMAT{a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}} \Rightarrow
+    \DMAT{\cdot&a_{12}&a_{13}\\a_{21}&\cdot&\cdot\\\cdot&a_{32}&a_{33}} \Rightarrow
+    \DMAT{\cdot&a_{12}&\cdot\\a_{21}&\cdot&\cdot\\\cdot&\cdot&a_{33}}
+\]
+\begin{code}[language=tex]
+\[
+    \DMAT{a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}} \Rightarrow
+    \DMAT{\cdot&a_{12}&a_{13}\\a_{21}&\cdot&\cdot\\\cdot&a_{32}&a_{33}} \Rightarrow
+    \DMAT{\cdot&a_{12}&\cdot\\a_{21}&\cdot&\cdot\\\cdot&\cdot&a_{33}}
+\]
+\end{code}
+
+%------------------------------------------------------------
+\end{document}

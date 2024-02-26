@@ -1,0 +1,1 @@
+$latex = 'lualatex --cmdx -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error --fmt=lualatex.fmt %S'
