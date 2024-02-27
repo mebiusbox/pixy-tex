@@ -21,5 +21,6 @@
             "env": {}
         }
     ],
-    "latex-workshop.latex.autoClean.run": "never"
+    "latex-workshop.latex.autoClean.run": "never",
+    "latex-workshop.latex.rootFile.indicator": "\\begin{document}"
 }
