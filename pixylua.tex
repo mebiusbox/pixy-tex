@@ -22,21 +22,16 @@
 \def\dashfill{\cleaders\hbox\ to 2em{-}\hfill}
 \def\Tasuki#1#2#3#4#5#6#7{% chktex 15
 \setbox0\hbox{
-\unitlength\ 0.1in
-\begin{picture}( 3.5000, 1.0000)( 0.0000, -1.0000)
-\special{pn 8}%
-\special{pa 0 0}%
-\special{pa 350 100}%
-\special{fp}%
-\special{pa 0 100}%
-\special{pa 350 0}%
-\special{fp}%
+\setlength\unitlength{0.1in}
+\begin{picture}( 3.0000, 1.0000)( 0.0000, 0.0000)
+    \put(0,0){\line(3,1){3}}
+    \put(0,1){\line(3,-1){3}}
 \end{picture}%
 }
 \begin{array}{cccccl}
-#1 & &#3 & \longrightarrow & #5 & \\[-1ex]
-#2 & \raise1ex\box0 &#4 & \longrightarrow & #6 & (+ \\ \cline{1-5}
-& & & & #7
+#1 & &#3 & \longrightarrow & #5 & \\[-0.5ex]
+#2 & \raise1ex\box0 &#4 & \longrightarrow & #6 & (+ \\[0.5ex] \cline{1-5}
+& & & & #7 &
 \end{array}
 }% chktex 9
 %
