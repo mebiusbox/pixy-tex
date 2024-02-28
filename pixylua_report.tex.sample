@@ -1,19 +1,20 @@
-\input{texpixy/pixylua_report_a4_10}
-% \input{texpixy/pixylua_report_a4_11}
-% \input{texpixy/pixylua_report_a5_10}
-% \input{texpixy/pixylua_report_a5_11}
+\input{pixy-tex/pixylua_report_a4_10}
+% \input{pixy-tex/pixylua_report_a4_11}
+% \input{pixy-tex/pixylua_report_a5_10}
+% \input{pixy-tex/pixylua_report_a5_11}
 % \def\pixymainfont{Merriweather}
 % \def\pixyjafont{DigiKyouka}
 % \def\pixymathfont{STIX}
 % \def\pixycodefont{IosevkaSS16}
 % \def\pixysectionstyle{block}
 % \def\pixypagestyle{plain}
-\input{texpixy/pixylua_style}
-\input{texpixy/pixylua}
+\input{pixy-tex/pixylua_style}
+\input{pixy-tex/pixylua}
 %--------------------------------------------------------
 \title{\TeX\ 文書テンプレート}
 \author{mebiusbox software}
 \begin{document}
+\input{pixy-tex/pixylua_document_config}
     \pagestyle{empty} \addtocontents{toc}{\protect\thispagestyle{empty}}
     \maketitle
     \setcounter{tocdepth}{2}

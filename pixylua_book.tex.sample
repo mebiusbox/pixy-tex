@@ -1,8 +1,8 @@
-\input{texpixy/pixylua_book_a4_10}
-% \input{texpixy/pixylua_book_a4_11}
+\input{pixy-tex/pixylua_book_a4_10}
+% \input{pixy-tex/pixylua_book_a4_11}
 % \def\pixybooktype{double}
-\input{texpixy/pixylua_style}
-\input{texpixy/pixylua}
+\input{pixy-tex/pixylua_style}
+\input{pixy-tex/pixylua}
 %--------------------------------------------------------
 \title{\TeX\ 文書テンプレート}
 \author{mebiusbox software}

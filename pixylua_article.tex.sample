@@ -1,9 +1,9 @@
-\input{texpixy/pixylua_article_a4_10}
-% \input{texpixy/pixylua_article_a4_10_two}
-% \input{texpixy/pixylua_article_a4_11}
-% \input{texpixy/pixylua_article_a4_11_two}
-\input{texpixy/pixylua_style}
-\input{texpixy/pixylua}
+\input{pixy-tex/pixylua_article_a4_10}
+% \input{pixy-tex/pixylua_article_a4_10_two}
+% \input{pixy-tex/pixylua_article_a4_11}
+% \input{pixy-tex/pixylua_article_a4_11_two}
+\input{pixy-tex/pixylua_style}
+\input{pixy-tex/pixylua}
 %--------------------------------------------------------
 \title{\TeX\ 文書テンプレート}
 \author{mebiusbox software}
