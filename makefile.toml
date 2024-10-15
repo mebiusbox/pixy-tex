@@ -1,0 +1,131 @@
+[config]
+skip_core_tasks = true
+
+[tasks.default]
+alias = "build"
+
+[tasks.test]
+description = "Build document (empty or 'all' or '{class}_{size}_{fontsize}')"
+script_runner = "pwsh"
+script_runner_args = ["-nop"]
+script_extension = "ps1"
+script = '''
+Set-Location -LiteralPath "${env:CARGO_MAKE_CURRENT_TASK_INITIAL_MAKEFILE_DIRECTORY}\test"
+$list = @(
+    ("\input{../pixylua_article_a4_9_2col}", "main_article.tex", "article_a4_9_2col.pdf"),
+    ("\input{../pixylua_article_a4_10}", "main_article.tex", "article_a4_10.pdf"),
+    ("\input{../pixylua_article_a4_11}", "main_article.tex", "article_a4_11.pdf"),
+    ("\input{../pixylua_report_a4_10}", "main_report.tex", ""),
+    ("\input{../pixylua_report_a4_10}", "main_report.tex", "report_a4_10.pdf"),
+    ("\input{../pixylua_report_a4_11}", "main_report.tex", "report_a4_11.pdf"),
+    ("\input{../pixylua_report_a5_10}", "main_report.tex", "report_a5_10.pdf"),
+    ("\input{../pixylua_report_a5_11}", "main_report.tex", "report_a5_11.pdf"),
+    ("\input{../pixylua_book_a4_10}", "main_book.tex", "book_a4_10.pdf"),
+    ("\input{../pixylua_book_a4_11}", "main_book.tex", "book_a4_11.pdf"),
+    ("\input{../pixylua_book_a4_10}`n\def\pixybooktype{double}", "main_book.tex", "book_a4_10_double.pdf"),
+    ("\input{../pixylua_book_a4_11}`n\def\pixybooktype{double}", "main_book.tex", "book_a4_11_double.pdf")
+)
+
+if ($args.Length -gt 0 -and $args[0] -ne "all") {
+  $class,$papersize,$fontsize,$option = $args[0] -Split "_"
+  Write-Host "${class},${papersize},${fontsize},${option}"
+
+  if ($option) {
+    $list = ,@(
+        ("\input{../pixylua_${class}_${papersize}_${fontsize}_${option}}", "main_${class}.tex", "${class}_${papersize}_${fontsize}_${option}.pdf")
+    )
+  } else {
+    $list = ,@(
+        ("\input{../pixylua_${class}_${papersize}_${fontsize}}", "main_${class}.tex", "${class}_${papersize}_${fontsize}.pdf")
+    )
+  }
+}
+
+$tempfile = "temp.tex"
+$defines = @"
+`n\def\pixycodefont{IosevkaSS16}
+\def\pixymathfont{STIX}
+\def\pixysectionstyle{block}
+\def\pixyjafont{DigiKyouka}
+"@
+
+if (Test-Path $tempfile) {
+    latexmk -C $tempfile
+    Remove-Item $tempfile
+}
+$list | ForEach-Object {
+    Write-Host $_
+    Write-Output $_[0] > $tempfile
+    Write-Output $defines >> $tempfile
+    Get-Content $_[1] >> $tempfile
+    if ($_[2] -ne "") {
+        latexmk -g $tempfile
+        if (Test-Path $_[2]) {
+            Remove-Item $_[2]
+        }
+        Rename-Item temp.pdf $_[2]
+    } else {
+        latexmk -gg $tempfile
+    }
+}
+latexmk -C $tempfile
+Remove-Item $tempfile
+'''
+
+[tasks.test-samples]
+description = "Build samples"
+script_runner = "pwsh"
+script_extension = "ps1"
+script = '''
+Set-Location -LiteralPath "${env:CARGO_MAKE_CURRENT_TASK_INITIAL_MAKEFILE_DIRECTORY}\test"
+$targets = @(
+    "sample_lualatex.tex",
+    "sample_font.tex",
+    "sample_info.tex",
+    "sample_twocolumn.tex",
+    "sample_tikz.tex"
+)
+foreach ($_ in $targets) {
+    latexmk -C $_
+    latexmk $_
+    latexmk -c $_
+}
+'''
+
+[tasks.uplatex]
+command = "latexmk"
+args = [
+  "-latex=uplatex",
+  "-g",
+  "-e",
+  "`$latex=q/uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 -interaction=nonstopmode -file-line-error %S/",
+  "-e",
+  "`$bibtex=q/uplatex %O %B/",
+  "-e",
+  "`$biber=q/biber %O --bblencoding=utf8 u -U --output_safechars %B/",
+  "-e",
+  "`$makeindex=q/upmendex %O -o %D %S/",
+  "-e",
+  "`$dvipdf=q/dvipdfmx -v %O -o %D %S/",
+  "-norc",
+  "-pdfdvi",
+  "${@}"
+]
+
+[tasks.clean]
+description = "Clean book"
+category = "Common"
+command = "latexmk"
+args = [
+    "-c",
+    "${@}"
+]
+
+[tasks.clear]
+description = "Clean book"
+category = "Common"
+command = "latexmk"
+args = [
+    "-C",
+    "${@}"
+]
