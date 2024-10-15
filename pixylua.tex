@@ -611,36 +611,49 @@
 	width/.default={},
 	frame/.store in=\pixy@image@frame,
 	frame/.default=yes,
-	eval/caption/.code={\ifstrempty{#1}{}{\caption{#1}}},
-	eval/label/.code={\ifstrempty{#1}{}{\label{#1}}},
-	eval/image/.code n args={2}{
+    center/.store in=\pixy@image@center,
+    center/.default=yes,
+    caption/.store in=\pixy@image@caption,
+    caption/.default={},
+    label/.store in=\pixy@image@label,
+    label/.default={},
+    eval/center/.is choice,
+    eval/center/no/.code={},
+    eval/center/yes/.code={\centering},
+	eval/caption/.code={
+        \ifthenelse{\equal{#1}{}}{}{\caption{#1}}
+    },
+	eval/label/.code={
+        \ifthenelse{\equal{#1}{}}{}{\label{#1}}
+    },
+	eval/image/.code n args={3}{
 		\ifthenelse{\equal{#1}{}}{
-			\includegraphics[]{#2}
+			\includegraphics[#2]{#3}
 		}{
-			\includegraphics[width=#1]{#2}
+			\includegraphics[width=#1,#2]{#3}
 		}
 	}
 }
-\NewDocumentCommand \Image{o m m m m}{%
-	\pgfkeys{/pixy/image/.cd, size, frame=no}%
+\NewDocumentCommand \Image{o m m m}{%
+	\pgfkeys{/pixy/image/.cd, size, frame=no, center=yes, caption, label}%
 	\IfValueT{#1}{\pgfkeys{/pixy/image/.cd, #1}}%
 	\begin{figure}[#2]%
-		\centering%
+        \pgfkeys{/pixy/image/eval/center=\pixy@image@center}%
 		\ifthenelse{\equal{\pixy@image@frame}{yes}}{%
 			\fb@xsep=\fboxsep%
     		\fb@xrule=\fboxrule%
     		\fboxsep=0pt%
     		\fboxrule=0.5pt%
 			\fbox{%
-				\pgfkeys{/pixy/image/eval/image={\pixy@image@width}{#3}}
+				\pgfkeys{/pixy/image/eval/image={\pixy@image@width}{#3}{#4}}
 			}%
 			\fboxsep=\fb@xsep%
     		\fboxrule=\fb@xrule%
 		}{
-			\pgfkeys{/pixy/image/eval/image={\pixy@image@width}{#3}}
+			\pgfkeys{/pixy/image/eval/image={\pixy@image@width}{#3}{#4}}
 		}
-		\pgfkeys{/pixy/image/eval/caption={#4}}%
-		\pgfkeys{/pixy/image/eval/label={#5}}%
+		\pgfkeys{/pixy/image/eval/caption={\pixy@image@caption}}%
+		\pgfkeys{/pixy/image/eval/label={\pixy@image@label}}%
 	\end{figure}%
 }
 \makeatother

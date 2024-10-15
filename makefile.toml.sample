@@ -76,5 +76,5 @@ command = "pwsh"
 args = [
     "-nop",
     "-C",
-    "Move-Item -LP '${FILENAME}.pdf' -Destination '${PUBLISHNAME}.pdf' -Force"
+    "Copy-Item -LP '${FILENAME}.pdf' -Destination '${PUBLISHNAME}.pdf' -Force"
 ]
