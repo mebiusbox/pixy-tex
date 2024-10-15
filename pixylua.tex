@@ -180,13 +180,13 @@
 	eval/type/.is choice,
 	eval/type/normal/.style={},
 	eval/type/left/.style={%
-		coltitle=black, colbacktitle=white,%
+		coltitle=black, colbacktitle=white, top=4mm,%
 		attach boxed title to top left={yshift=-3mm,xshift=3mm},%
 		boxed title style={colframe=white, sharp corners}%
 	},
 	eval/type/invleft/.style={%
-		breakable, frame empty, interior empty,%
-		coltitle=white, colbacktitle=ColorThemeBlack,%
+		frame empty, interior empty,%
+		coltitle=white, colbacktitle=ColorThemeBlack, top=4mm,%
 		extras broken={frame empty, interior empty},%
 		borderline={0.5mm}{0mm}{ColorThemeBlack},%
 		attach boxed title to top left={yshift=-3mm,xshift=3mm},%
@@ -198,9 +198,9 @@
 	\pgfkeys{/pixy/note/.cd, colback, type, sharp=no, trans=no, thin=no}
 	\IfValueT{#1}{\pgfkeys{/pixy/note/.cd,#1}}
 	\begin{tcolorbox}[%
-		enhanced,%
+		breakable, enhanced,%
 		fonttitle=\bfseries,%
-		top=4mm, before skip=3.5mm,%
+		top=2mm, bottom=2mm, before skip=3.5mm,%
 		/pixy/note/eval/title={#2},%
 		/pixy/note/eval/sharp={\pixy@note@sharp},%
 		/pixy/note/eval/thin={\pixy@note@thin},%
@@ -278,8 +278,8 @@
 	\IfValueT{#1}{\pgfkeys{/pixy/adm/.cd, #1}}
 	\begin{tcolorbox}[%
 		breakable,%
-		before skip=20pt plus 2pt minus 2pt,%
-		after skip=20pt plus 2pt minus 2pt,%
+		before skip=10pt plus 2pt minus 2pt,%
+		after skip=10pt plus 2pt minus 2pt,%
 		boxrule=0.4pt,%
 		fonttitle=\gtfamily\bfseries,%
 		/pixy/adm/eval/title=#2,%
