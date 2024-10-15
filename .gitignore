@@ -1,10 +1,43 @@
-*.pdf
+# for visual studio code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+*.code-workspace
+!default.code-workspace
+.devcontainer/devcontainer.json
+.devcontainer/docker-compose.override.yml
+
+# local
+.local/
+*.local.*
+
+# backup / temp / log
+*.bak
+*.old
 *.log
+*.tmp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# TeX
+*.pdf
+*.dvi
 *.aux
-*.synctex.gz
+*.fls
 *.toc
 *.out
-*.fls
-*.fdb_latexmk
-*.dvi
-temp.listing
+*.synctex*
+*.*latexmk*
+*.gnuplot
+*.map
+*.listing
+
+# project
+navi.yaml
+/**/*.pdf
+tex/cheatsheet/images
