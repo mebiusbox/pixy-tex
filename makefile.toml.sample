@@ -3,7 +3,7 @@ skip_core_tasks = true
 
 [env]
 FILENAME = "main"
-PUBLISHNAE = "output"
+PUBLISHNAME = "output"
 
 [tasks.latex]
 command = "lualatex"
@@ -55,9 +55,19 @@ alias = "build"
 [tasks.build]
 run_task = { name = ["make", "rename"] }
 
+[tasks.rebuild]
+run_task = { name = ["remake", "rename"] }
+
 [tasks.make]
 command = "latexmk"
 args = [
+  "${FILENAME}.tex"
+]
+
+[tasks.remake]
+command = "latexmk"
+args = [
+  "-gg",
   "${FILENAME}.tex"
 ]
 
