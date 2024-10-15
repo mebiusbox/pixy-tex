@@ -1,13 +1,13 @@
-\input{texpixy/pixylua_article_a4_10}
-% \input{texpixy/pixylua_article_a4_10_two}
-% \input{texpixy/pixylua_article_a4_11}
-% \input{texpixy/pixylua_article_a4_11_two}
-% \input{texpixy/pixylua_report_a4_10}
-% \input{texpixy/pixylua_report_a4_11}
-% \input{texpixy/pixylua_report_a5_10}
-% \input{texpixy/pixylua_report_a5_11}
-% \input{texpixy/pixylua_book_a4_10}
-% \input{texpixy/pixylua_book_a4_11}
+\input{../pixylua_article_a4_10}
+% \input{../pixylua_article_a4_10_two}
+% \input{../pixylua_article_a4_11}
+% \input{../pixylua_article_a4_11_two}
+% \input{../pixylua_report_a4_10}
+% \input{../pixylua_report_a4_11}
+% \input{../pixylua_report_a5_10}
+% \input{../pixylua_report_a5_11}
+% \input{../pixylua_book_a4_10}
+% \input{../pixylua_book_a4_11}
 % \def\pixybooktype{double}
 \def\pixymainfont{Merriweather}
 \def\pixycodefont{IosevkaSS16}
@@ -15,26 +15,21 @@
 \def\pixymathfont{STIX}
 \def\pixysectionstyle{block}
 \def\pixyjafont{DigiKyouka}
-\input{texpixy/pixylua_style}
-\input{texpixy/pixylua}
-%--------------------------------------------------------
-% Special commands for this document.
-% Name conventions: 'sp' + PascalCase
-%
-\newcommand{\spColumnColor}{cyan!10}
+\input{../pixylua_style}
+\input{../pixylua}
 %--------------------------------------------------------
 \title{\TeX\ 文書テンプレート}
 \author{mebiusbox software}
 %--------------------------------------------------------
 % Article
-% 
+%
 \begin{document}
     \maketitle
 
     \begin{abstract}
     文章の概要はこちら...
     \end{abstract}
-    
+
     \subfile{sections/usage}
     \subfile{sections/base}
     \subfile{sections/math}
@@ -44,7 +39,7 @@
 \end{document}
 %--------------------------------------------------------
 % Report
-% 
+%
 % \begin{document}
 %     \pagestyle{empty} \addtocontents{toc}{\protect\thispagestyle{empty}}
 %     \maketitle
@@ -63,7 +58,7 @@
 % \end{document}
 %--------------------------------------------------------
 % Book
-% 
+%
 % \begin{document}
 %     \pagestyle{empty} \addtocontents{toc}{\protect\thispagestyle{empty}}
 %     \maketitle

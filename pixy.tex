@@ -105,10 +105,6 @@
 % \newcommand{\Dmatrix}[2][]{\left|\begin{array}{#1}#2\end{array}\right|}
 \newcommand{\Inversion}[2][]{#1^{\!\mbox{\sf\tiny T}}}
 \newcommand{\Vecbm}[1]{\mbox{\boldmath $#1$}}
-\newcommand{\Beq}{\begin{equation}}
-\newcommand{\Eeq}{\end{equation}}
-\newcommand{\Beqn}{\begin{equation*}}
-\newcommand{\Eeqn}{\end{equation*}}
 \newcommand{\Va}{\Vecbm{a}}
 %------------------------------------------------------------
 % Color
@@ -234,28 +230,28 @@
   colframe=white,
   overlay unbroken and first={
   \draw[\bracketcolor,line width=\bracketwidth]
-    ([xshift=5pt]frame.north west) -- 
-    (frame.north west) -- 
+    ([xshift=5pt]frame.north west) --
+    (frame.north west) --
     (frame.south west);
   \draw[\bracketcolor,line width=\bracketwidth]
-    ([xshift=-5pt]frame.north east) -- 
-    (frame.north east) -- 
+    ([xshift=-5pt]frame.north east) --
+    (frame.north east) --
     (frame.south east);
   },
   overlay unbroken app={
   \draw[\bracketcolor,line width=\bracketwidth,line cap=rect]
-    (frame.south west) -- 
+    (frame.south west) --
     ([xshift=5pt]frame.south west);
   \draw[\bracketcolor,line width=\bracketwidth,line cap=rect]
-    (frame.south east) -- 
+    (frame.south east) --
     ([xshift=-5pt]frame.south east);
   },
   overlay middle and last={
   \draw[\bracketcolor,line width=\bracketwidth]
-    (frame.north west) -- 
+    (frame.north west) --
     (frame.south west);
   \draw[\bracketcolor,line width=\bracketwidth]
-    (frame.north east) -- 
+    (frame.north east) --
     (frame.south east);
   },
   overlay last app={
@@ -313,43 +309,43 @@
     fonttitle=\gtfamily\bfseries, title=#1
 }
 \newtcbox{\colorthemebox}{
-    boxrule=0.4pt, colframe=colorthemefore, colback=colorthemeback, 
+    boxrule=0.4pt, colframe=colorthemefore, colback=colorthemeback,
     top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
 }
 \newtcbox{\colorthemebox@main}{
-    boxrule=0.4pt, colframe=colorthememain1, colback=colorthemeback, 
+    boxrule=0.4pt, colframe=colorthememain1, colback=colorthemeback,
     top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
 }
 \newtcbox{\colorthemebox@accent}{
-    boxrule=0.4pt, colframe=colorthememain2, colback=colorthemeback, 
+    boxrule=0.4pt, colframe=colorthememain2, colback=colorthemeback,
     top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
 }
 \newtcbox{\colorthemeboxinvert}{
-    boxrule=0.4pt, colframe=colorthemeback, colback=colorthemefore, 
+    boxrule=0.4pt, colframe=colorthemeback, colback=colorthemefore,
     top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
 }
 \newtcbox{\colorthemeboxinvert@main}{
-    boxrule=0.4pt, colframe=colorthememain1, colback=colorthememain1, 
+    boxrule=0.4pt, colframe=colorthememain1, colback=colorthememain1,
     top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
 }
 \newtcbox{\colorthemeboxinvert@accent}{
-    boxrule=0.4pt, colframe=colorthememain2, colback=colorthememain2, 
+    boxrule=0.4pt, colframe=colorthememain2, colback=colorthememain2,
     top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
 }
 \newtcbox{\colorthemebox@subgray}{
-    boxrule=0.4pt, colframe=colorthemefore, colback=colorthemesub1, 
+    boxrule=0.4pt, colframe=colorthemefore, colback=colorthemesub1,
     top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
 }
 \newtcbox{\colorthemebox@subblue}{
-    boxrule=0.4pt, colframe=colorthememain1, colback=colorthemesub2, 
+    boxrule=0.4pt, colframe=colorthememain1, colback=colorthemesub2,
     top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
 }
 \newtcbox{\colorthemebox@subred}{
-    boxrule=0.4pt, colframe=colorthememain2, colback=colorthemesub3, 
+    boxrule=0.4pt, colframe=colorthememain2, colback=colorthemesub3,
     top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
 }
 \newtcbox{\colorthemebox@transparent}{
-    boxrule=0.4pt, colframe=colorthemeback, colback=colorthemeback, 
+    boxrule=0.4pt, colframe=colorthemeback, colback=colorthemeback,
     top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
 }
 \newcommand{\COLORTHEMEBOX}[2]{
@@ -442,7 +438,7 @@
 % \newcommand{\HL}[1]{\hl{\mbox{#1}}}
 \newcommand{\HL}[1]{\hlbox{\mbox{\small\rmfamily#1}}}
 \newcommand{\EM}[1]{\color{red!80!black}\textbf{#1}\color{black}}
-\newcommand{\EMM}[1]{\color{red!80!black}#1\color{black}}
+\newcommand{\EMLIGHT}[1]{\color{red!80!black}#1\color{black}}
 \definecolor{MSBlue}{rgb}{.204,.353,.541}
 \definecolor{MSLightBlue}{rgb}{.31,.506,.741}
 \newcommand{\EMSUB}[1]{\mbox{\hspace{.3zw}\color{MSLightBlue}\textbf{#1}\color{black}\hspace{.3zw}}}
@@ -456,16 +452,24 @@
 }
 \newcommand{\EMBOX}[1]{\embox{\small\color{white} #1\color{black}}}
 
-\newtcbox{\emcbox}{%
+\newtcbox{\emsubbox}{%
     boxrule=0.4pt,%
     colframe=colorthemesub1,%
     colback=colorthemesub1,%
     top=0mm, bottom=0mm, left=0mm, right=0mm,%
     on line, arc=0.5mm%
 }
-\newcommand{\EMCBOX}[1]{\mbox{\hspace{.3zw}\emcbox{\small\bfseries\color{black} #1}\hspace{.3zw}}}
-\newcommand{\EMMCBOX}[1]{\mbox{\hspace{.3zw}\emcbox{\small\ttfamily\color{black} #1}\hspace{.3zw}}}
-
+\newcommand{\EMSUBBOX}[1]{\mbox{\hspace{.3zw}\emsubbox{\small\bfseries\color{black} #1}\hspace{.3zw}}}
+\newcommand{\EMCODE}[1]{\mbox{\hspace{.3zw}\emsubbox{\small\ttfamily\color{black} #1}\hspace{.3zw}}}
+\newtcbox{\INLINE}{
+    size=fbox, on line,
+    colframe=black!60,
+    colback=gray!10,
+    boxrule=1pt,
+    top=0.5mm,bottom=0.5mm,left=0.5mm,right=0.5mm,
+    fontupper=\ttfamily\small
+}
+%------------------------------------------------------------
 \newtcolorbox{REDBOX}{
     colback=red!5!white,
     colframe=red!75!black
@@ -475,14 +479,7 @@
     colframe=red!75!black,
     fonttitle=\bfseries,title=#1
 }
-\newtcbox{\INLINE}{
-    size=fbox, on line,
-    colframe=black!60,
-    colback=gray!10,
-    boxrule=1pt,
-    top=0.5mm,bottom=0.5mm,left=0.5mm,right=0.5mm,
-    fontupper=\ttfamily\small
-}
+
 \definecolor{MathColor}{rgb}{0.0,0.56,0.0}
 \newtcolorbox{MATHBOX}[1][]{%
     % on line,
@@ -779,13 +776,9 @@
     {\begin{theo}[#1]{定理}}
     {\end{theo}}
 %------------------------------------------------------------
-\makeatletter
-\newenvironment{LBARBOX}[1][black]{%
-    \def\FrameCommand{\textcolor{#1}{\vrule width 1pt} \hspace{10pt}}% 
-    \MakeFramed {\advance\hsize-\width \FrameRestore}}%
-    {\endMakeFramed}
-\newenvironment{LBARBOX2}[2][black]{%
-    \def\FrameCommand{\textcolor{#1}{\vrule width #2} \hspace{10pt}}% 
+\makeatletterEMM
+\newenvironment{LBARBOX}[2][black]{%
+    \def\FrameCommand{\textcolor{#1}{\vrule width #2} \hspace{10pt}}%
     \MakeFramed {\advance\hsize-\width \FrameRestore}}%
     {\endMakeFramed}
 \makeatother

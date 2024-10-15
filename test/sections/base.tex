@@ -3,130 +3,171 @@
 \setcounter{section}{1}
 \section{基本的なマクロ}
 %------------------------------------------------------------
-\subsection{EXAMPLEJ}
-\EXAMPLEJ
+\subsection{ExampleSentence}
+\ExampleSentence
     {The man \textbf{spoke to} me. $\Rightarrow$ I \textbf{was spoken to} by the man.}
     {その男の人は私に話しかけた $\Rightarrow$ 私はその男の人に話しかけられた}
-\begin{code}[language=tex]
-\EXAMPLEJ
+\begin{Code}{language=tex}
+\ExampleSentence
     {The man \textbf{spoke to} me. $\Rightarrow$ I \textbf{was spoken to} by the man.}
     {その男の人は私に話しかけた $\Rightarrow$ 私はその男の人に話しかけられた}
-\end{code}
+\end{Code}
 
-\leaderfill
+\subsection{Theorem, Rule}
+\begin{Theorem}{命題と条件}
+    2つの条件 $p,q$について，命題「$p \Rightarrow q$」が真であるとき，
+    $p$は$q$であるための\Em{十分条件}である．
+    $q$は$p$であるための\Em{必要条件}である． \\
+    このとき，$p$は仮定，$q$は結論．
+\end{Theorem}
+\begin{Code}{language=tex}
+\begin{Theorem}{命題と条件}
+    2つの条件 $p,q$について，命題「$p \Rightarrow q$」が真であるとき，
+    $p$は$q$であるための\Em{十分条件}である．
+    $q$は$p$であるための\Em{必要条件}である． \\
+    このとき，$p$は仮定，$q$は結論．
+\end{Theorem}
+\end{Code}
 
-\subsection{RULE}
-\begin{RULE}
-    主節の動詞の後ろが不完全に見える場合，必要な要素は主語よりも前にある．その場合，\EMCBOX{原則39}は適用されない
-\end{RULE}
-\begin{code}[language=tex]
-\begin{RULE}
-    主節の動詞の後ろが不完全に見える場合，必要な要素は主語よりも前にある．その場合，\EMCBOX{原則39}は適用されない
-\end{RULE}
-\end{code}
+\begin{Rule}
+    主節の動詞の後ろが不完全に見える場合，必要な要素は主語よりも前にある．その場合，\EmSubBox{原則39}は適用されない
+\end{Rule}
+\begin{Code}{language=tex}
+\begin{Rule}
+    主節の動詞の後ろが不完全に見える場合，必要な要素は主語よりも前にある．その場合，\EmSubBox{原則39}は適用されない
+\end{Rule}
+\end{Code}
 
-\leaderfill
-
-\subsection{NOTE, CTNOTEBLUE, CTNOTERED}
-\begin{NOTE}
+\subsection{Admonition}
+\begin{Admonition}{}
     人間の眼は光の波長に応じて感度が異なり、波長の違いは色として知覚されます。人間の眼を通した光の量を測光量といい、測光学（Photometry）の扱いになります。
-\end{NOTE}
-\begin{code}[language=tex]
-\begin{NOTE}
+\end{Admonition}
+\begin{Code}{language=tex}
+\begin{Admonition}{}
     人間の眼は光の波長に応じて感度が異なり、波長の違いは色として知覚されます。人間の眼を通した光の量を測光量といい、測光学（Photometry）の扱いになります。
-\end{NOTE}
-\end{code}
+\end{Admonition}
+\end{Code}
 
-\leaderfill
+\HRuleLeader
 
-\begin{NOTE}[拡散反射光]
+\begin{Admonition}{拡散反射光}
     光線はある媒体から別の媒体に入ってくることがあります．このとき媒体と別の媒体の境界で屈折します．屈折して別の媒体に入った光はその媒体の内部で何度も散乱されたり，吸収されてしまいます．このとき吸収されずに散乱された光がまた元の媒体に出射されることがあります（媒体の境界でまた屈折します）。これを拡散反射と呼びます。つまり、拡散反射光とは屈折した光のことになります。
-\end{NOTE}
-\begin{code}[language=tex]
-\begin{NOTE}[拡散反射光]
+\end{Admonition}
+\begin{Code}{language=tex}
+\begin{Admonition}{拡散反射光}
     光線はある媒体から別の媒体に入ってくることがあります．このとき媒体と別の媒体の境界で屈折します．屈折して別の媒体に入った光はその媒体の内部で何度も散乱されたり，吸収されてしまいます．このとき吸収されずに散乱された光がまた元の媒体に出射されることがあります（媒体の境界でまた屈折します）。これを拡散反射と呼びます。つまり、拡散反射光とは屈折した光のことになります。
-\end{NOTE}
-\end{code}
+\end{Admonition}
+\end{Code}
 
-\begin{CTNOTEBLUE}{測光学}
+\begin{Admonition}[type=info]{測光学}
     人間の眼は光の波長に応じて感度が異なり、波長の違いは色として知覚されます。人間の眼を通した光の量を測光量といい、測光学（Photometry）の扱いになります。
-\end{CTNOTEBLUE}
-\begin{code}[language=tex]
-\begin{CTNOTEBLUE}{測光学}
+\end{Admonition}
+\begin{Code}{language=tex}
+\begin{Admonition}[type=info]{測光学}
     人間の眼は光の波長に応じて感度が異なり、波長の違いは色として知覚されます。人間の眼を通した光の量を測光量といい、測光学（Photometry）の扱いになります。
-\end{CTNOTEBLUE}
-\end{code}
+\end{Admonition}
+\end{Code}
 
-\begin{CTNOTERED}{測光学}
+\begin{Admonition}[type=warn]{測光学}
     人間の眼は光の波長に応じて感度が異なり、波長の違いは色として知覚されます。人間の眼を通した光の量を測光量といい、測光学（Photometry）の扱いになります。
-\end{CTNOTERED}
-\begin{code}[language=tex]
-\begin{CTNOTERED}{測光学}
+\end{Admonition}
+\begin{Code}{language=tex}
+\begin{Admonition}[type=warn]{測光学}
     人間の眼は光の波長に応じて感度が異なり、波長の違いは色として知覚されます。人間の眼を通した光の量を測光量といい、測光学（Photometry）の扱いになります。
-\end{CTNOTERED}
-\end{code}
+\end{Admonition}
+\end{Code}
 
-\leaderfill
-
-\subsection{LBARBOX, LBARBOX2}
-\begin{LBARBOX}
-    散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
-    吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
-\end{LBARBOX}
-\begin{code}[language=tex]
-\begin{LBARBOX}
-    散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
-    吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
-\end{LBARBOX}
-\end{code}
-
-\leaderfill
-
-\begin{LBARBOX}[blue]
-    散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
-    吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
-\end{LBARBOX}
-\begin{code}[language=tex]
-\begin{LBARBOX}[blue]
-    散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
-    吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
-\end{LBARBOX}
-\end{code}
-
-\leaderfill
-
-\begin{LBARBOX2}[red]{5pt}
+\begin{Admonition}[type=error]{}
 散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
 吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
-\end{LBARBOX2}
-\begin{code}[language=tex]
-\begin{LBARBOX2}[red]{5pt}
+\end{Admonition}
+\begin{Code}{language=tex}
+\begin{Admonition}[type=error]{}
     散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
     吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
-\end{LBARBOX2}
-\end{code}
+\end{Admonition}
+\end{Code}
 
-\leaderfill
+\begin{Admonition}[type=error]{直進性}
+光は電磁波の一種なので、障害物がなく均一な物体の中を通る限りは直進します。光の速度は1秒間に30万kmという速さです。
+\end{Admonition}
+\begin{Code}{language=tex}
+\begin{Admonition}[type=error]{直進性}
+    光は電磁波の一種なので、障害物がなく均一な物体の中を通る限りは直進します。光の速度は1秒間に30万kmという速さです。
+\end{Admonition}
+\end{Code}
 
-\subsection{STDBOX}
-\begin{STDBOX}{}
-    ２つの条件 $p,q$について，命題「$p \Rightarrow q$」が真であるとき，
-    $p$は$q$であるための\EM{十分条件}である．
-    $q$は$p$であるための\EM{必要条件}である． \\
+\subsection{Memo}
+\begin{Memo}[width=1pt]{}
+    散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
+    吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
+\end{Memo}
+\begin{Code}{language=tex}
+\begin{Memo}[width=1pt]{}
+    散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
+    吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
+\end{Memo}
+\end{Code}
+
+\HRuleLeader
+
+\begin{Memo}[width=1pt,color=blue]{}
+    散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
+    吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
+\end{Memo}
+\begin{Code}{language=tex}
+\begin{Memo}[width=1pt,color=blue]{}
+    散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
+    吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
+\end{Memo}
+\end{Code}
+
+\HRuleLeader
+
+\begin{Memo}[width=5pt,color=red]{left=4mm}
+散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
+吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
+\end{Memo}
+\begin{Code}{language=tex}
+\begin{Memo}[width=5pt,color=red]{}
+    散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
+    吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
+\end{Memo}
+\end{Code}
+
+\subsection{Note}
+\begin{Note}{}
+    2つの条件 $p,q$について，命題「$p \Rightarrow q$」が真であるとき，
+    $p$は$q$であるための\Em{十分条件}である．
+    $q$は$p$であるための\Em{必要条件}である． \\
     このとき，$p$は仮定，$q$は結論．
-\end{STDBOX}
-\begin{code}[language=tex]
-\begin{STDBOX}{}
-    ２つの条件 $p,q$について，命題「$p \Rightarrow q$」が真であるとき，
-    $p$は$q$であるための\EM{十分条件}である．
-    $q$は$p$であるための\EM{必要条件}である． \\
+\end{Note}
+\begin{Code}{language=tex}
+\begin{Note}{}
+    2つの条件 $p,q$について，命題「$p \Rightarrow q$」が真であるとき，
+    $p$は$q$であるための\Em{十分条件}である．
+    $q$は$p$であるための\Em{必要条件}である． \\
     このとき，$p$は仮定，$q$は結論．
-\end{STDBOX}
-\end{code}
+\end{Note}
+\end{Code}
 
-\leaderfill
+\begin{Note}[type=left,colback=cyan]{あいうえおえHOGE}
+    2つの条件 $p,q$について，命題「$p \Rightarrow q$」が真であるとき，
+    $p$は$q$であるための\Em{十分条件}である．
+    $q$は$p$であるための\Em{必要条件}である． \\
+    このとき，$p$は仮定，$q$は結論．
+\end{Note}
 
-\begin{STDBOX}{部分分数分解}
+\begin{Note}[type=invleft]{命題、仮定、結論}
+    2つの条件 $p,q$について，命題「$p \Rightarrow q$」が真であるとき，
+    $p$は$q$であるための\Em{十分条件}である．
+    $q$は$p$であるための\Em{必要条件}である． \\
+    このとき，$p$は仮定，$q$は結論．
+\end{Note}
+
+\HRuleLeader
+
+\begin{Note}{部分分数分解}
 
 $P(x)$を$n-1$次以下の整式，$\alpha_1,\alpha_2,\ldots,\alpha_n$を相異なる定数とするとき
 
@@ -135,44 +176,24 @@ $P(x)$を$n-1$次以下の整式，$\alpha_1,\alpha_2,\ldots,\alpha_n$を相異�
     = \frac{A_1}{x-\alpha_1} + \frac{A_2}{x-\alpha_2} + \cdots + \frac{A_n}{x-\alpha_n}
 \end{equation*}
 
-\end{STDBOX}
-\begin{code}[language=tex]
-\begin{STDBOX}{部分分数分解}
+\end{Note}
+\begin{Code}{language=tex}
+\begin{Note}{部分分数分解}
 
     $P(x)$を$n-1$次以下の整式，$\alpha_1,\alpha_2,\ldots,\alpha_n$を相異なる定数とするとき
-    
+
     \begin{equation*}
         \frac{P(x)}{(x-\alpha_1)(x-\alpha_2)\cdots(x-\alpha_n)}
         = \frac{A_1}{x-\alpha_1} + \frac{A_2}{x-\alpha_2} + \cdots + \frac{A_n}{x-\alpha_n}
     \end{equation*}
-    
-\end{STDBOX}
-\end{code}
 
-\leaderfill
+\end{Note}
+\end{Code}
 
-\subsection{THEOREMBOX}
-\begin{THEOREMBOX}[命題と条件]
-    ２つの条件 $p,q$について，命題「$p \Rightarrow q$」が真であるとき，
-    $p$は$q$であるための\EM{十分条件}である．
-    $q$は$p$であるための\EM{必要条件}である． \\
-    このとき，$p$は仮定，$q$は結論．
-\end{THEOREMBOX}
-\begin{code}[language=tex]
-\begin{THEOREMBOX}[命題と条件]
-    ２つの条件 $p,q$について，命題「$p \Rightarrow q$」が真であるとき，
-    $p$は$q$であるための\EM{十分条件}である．
-    $q$は$p$であるための\EM{必要条件}である． \\
-    このとき，$p$は仮定，$q$は結論．
-\end{THEOREMBOX}
-\end{code}
+\subsection{BracketBox}
+\begin{BracketBox}
+    \ExampleLabelText{$12x^2+7x-12=0$}
 
-\leaderfill
-
-\subsection{BRACKETBOX}
-\begin{BRACKETBOX}
-    \EXAMPLE{$12x^2+7x-12=0$}
-    
     解の公式を用いると
 
     \begin{equation*}
@@ -190,11 +211,11 @@ $P(x)$を$n-1$次以下の整式，$\alpha_1,\alpha_2,\ldots,\alpha_n$を相異�
         \end{aligned}
     \end{gather*}
 
-\end{BRACKETBOX}
-\begin{code}[language=tex]
-\begin{BRACKETBOX}
-    \EXAMPLE{$12x^2+7x-12=0$}
-    
+\end{BracketBox}
+\begin{Code}{language=tex}
+\begin{BracketBox}
+    \ExampleLabelText{$12x^2+7x-12=0$}
+
     解の公式を用いると
 
     \begin{equation*}
@@ -211,101 +232,99 @@ $P(x)$を$n-1$次以下の整式，$\alpha_1,\alpha_2,\ldots,\alpha_n$を相異�
                     &= (4x-3)(3x+4)
         \end{aligned}
     \end{gather*}
-\end{BRACKETBOX}
-\end{code}
+\end{BracketBox}
+\end{Code}
 
-\leaderfill
-\subsection{EM, EMM, EMSUB, HL, EMBOX, EMCBOX, EMMCBOX}
+\subsection{Em, EmLight, EmSub, Hl, EmBox, EmSubBox}
 
-光は\EM{電磁波}の一種です．電磁波は\EMM{電場}と\EMM{磁場}の変化によって作られる波のことで，光のエネルギーを放出または伝達します．この現象を\HL{放射}といいます．太陽や電球などの光源から電磁波が発生し，大気中で散乱や吸収されながら直進し，物体表面にぶつかって反射が起こり，私たちの目に届きます．
+光は\Em{電磁波}の一種です．電磁波は\EmLight{電場}と\EmLight{磁場}の変化によって作られる波のことで，光のエネルギーを放出または伝達します．この現象を\Hl{放射}といいます．太陽や電球などの光源から電磁波が発生し，大気中で散乱や吸収されながら直進し，物体表面にぶつかって反射が起こり，私たちの目に届きます．
 
-\begin{code}[language=tex]
-光は\EM{電磁波}の一種です．電磁波は\EMM{電場}と\EMM{磁場}の変化によって作られる波のことで，光のエネルギーを放出または伝達します．この現象を\HL{放射}といいます．太陽や電球などの光源から電磁波が発生し，大気中で散乱や吸収されながら直進し，物体表面にぶつかって反射が起こり，私たちの目に届きます．
-\end{code}
+\begin{Code}{language=tex}
+光は\Em{電磁波}の一種です．電磁波は\EmLight{電場}と\EmLight{磁場}の変化によって作られる波のことで，光のエネルギーを放出または伝達します．この現象を\Hl{放射}といいます．太陽や電球などの光源から電磁波が発生し，大気中で散乱や吸収されながら直進し，物体表面にぶつかって反射が起こり，私たちの目に届きます．
+\end{Code}
 
-\leaderfill
+\HRuleLeader
 
-光は媒質によって伝播されます．媒質となる物体を\EMSUB{媒体}といいます．
+光は媒質によって伝播されます．媒質となる物体を\EmSub{媒体}といいます．
 
-\begin{code}[language=tex]
-光は媒質によって伝播されます．媒質となる物体を\EMSUB{媒体}といいます．
-\end{code}
+\begin{Code}{language=tex}
+光は媒質によって伝播されます．媒質となる物体を\EmSub{媒体}といいます．
+\end{Code}
 
-\leaderfill
+\HRuleLeader
 
-物体表面に当たる光線は\EMBOX{入射光}（Incident light）、その当たる角度は\EMBOX{入射角}（Angle of Incidence）といいます。また，光線がある表面に当たって反射された光線は\EMCBOX{反射光}（Reflected Light）、その角度は\EMCBOX{反射角}（Angle of Reflection）といいます。
+物体表面に当たる光線は\EmBox{入射光}（Incident light）、その当たる角度は\EmBox{入射角}（Angle of Incidence）といいます。また，光線がある表面に当たって反射された光線は\EmSubBox{反射光}（Reflected Light）、その角度は\EmSubBox{反射角}（Angle of Reflection）といいます。
 
-\begin{code}[language=tex]
-物体表面に当たる光線は\EMBOX{入射光} （ Incident light ）、その当たる角度は\EMBOX{入射角}（ Angle of Incidence ）といいます。また，光線がある表面に当たって反射された光線は\EMCBOX{反射光}（ Reflected Light ）、その角度は\EMCBOX{反射角}（ Angle of Reflection ）といいます。
-\end{code}
+\begin{Code}{language=tex}
+物体表面に当たる光線は\EmBox{入射光} （ Incident light ）、その当たる角度は\EmBox{入射角}（ Angle of Incidence ）といいます。また，光線がある表面に当たって反射された光線は\EmSubBox{反射光}（ Reflected Light ）、その角度は\EmSubBox{反射角}（ Angle of Reflection ）といいます。
+\end{Code}
 
-\leaderfill
-\subsection{INLINE}
+\subsection{EmCode, Inline}
 
-実行ファイルは\EMMCBOX{\$HOME/.local/bin}になりますので、シェルからも実行出来るように\EMM{.chsrc}ファイルを編集して、\EMMCBOX{path}に\EMMCBOX{\$HOME/.local/bin}を追加します。その後、設定を反映させるために\INLINE{source \$HOME/.chsrc}を実行しておきます。
+実行ファイルは\EmCode{\$HOME/.local/bin}になりますので、シェルからも実行できるように\EmLight{.chsrc}ファイルを編集して、\EmCode{path}に\EmCode{\$HOME/.local/bin}を追加します。その後、設定を反映させるために\Inline{source \$HOME/.chsrc}を実行しておきます。
 
-\begin{code}[language=tex]
-実行ファイルは\EMMCBOX{\$HOME/.local/bin}になりますので、シェルからも実行出来るように\EMM{.chsrc}ファイルを編集して、\EMMCBOX{path}に\EMMCBOX{\$HOME/.local/bin}を追加します。その後、設定を反映させるために\INLINE{source \$HOME/.chsrc}を実行しておきます。
-\end{code}
+\begin{Code}{language=tex}
+実行ファイルは\EmCode{\$HOME/.local/bin}になりますので、シェルからも実行できるように\EmLight{.chsrc}ファイルを編集して、\EmCode{path}に\EmCode{\$HOME/.local/bin}を追加します。その後、設定を反映させるために\Inline{source \$HOME/.chsrc}を実行しておきます。
+\end{Code}
 
-\leaderfill
-\subsection{REF, CTBOX*}
+\subsection{RefLabel, Label}
 
-\REF{あいうえお}
-\CTBOX{例文}{あいうえお}
-\CTBOXBLUE{例文}{あいうえお}
-\CTBOXRED{例文}{あいうえお}
-\CTBOXINV{例文}{あいうえお}
-\CTBOXINVBLUE{例文}{あいうえお}
-\CTBOXINVRED{例文}{あいうえお}
-\CTBOXSUBGRAY{例文}{あいうえお}
-\CTBOXSUBBLUE{例文}{あいうえお}
-\CTBOXSUBRED{例文}{あいうえお}
-\CTBOXTRANS{例文}{あいうえお}
-\begin{code}[language=tex]
-\REF{あいうえお}
-\CTBOX{例文}{あいうえお}
-\CTBOXBLUE{例文}{あいうえお}
-\CTBOXRED{例文}{あいうえお}
-\CTBOXINV{例文}{あいうえお}
-\CTBOXINVBLUE{例文}{あいうえお}
-\CTBOXINVRED{例文}{あいうえお}
-\CTBOXSUBGRAY{例文}{あいうえお}
-\CTBOXSUBBLUE{例文}{あいうえお}
-\CTBOXSUBRED{例文}{あいうえお}
-\CTBOXTRANS{例文}{あいうえお}
-\end{code}
+\begin{table}[h]
+	\begin{minipage}[b]{0.48\columnwidth}
+		\centering
+		\caption{REF, LABEL}
+		\begin{tblr}{colspec={ll},vline{2}={solid},hline{1,Z}={1.5pt},hlines={solid}}
+			$f(x)=x$ & 奇関数 \\
+			$f(x)=\sin x$ & 奇関数 \\
+			$f(x)=\cos x$ & 偶関数 \\
+			奇関数$\times$偶関数 & 奇関数 \\
+			奇関数$\times$奇関数 & 偶関数 \\
+		\end{tblr}
+	\end{minipage}
+	\hspace{0.04\columnwidth}
+	\begin{minipage}[b]{0.48\columnwidth}
+		\centering
+		\caption{REF, LABEL}
+		\begin{Table}[colhdr=yes]{ll}
+			$f(x)=x$ & 奇関数 \\
+			$f(x)=\sin x$ & 奇関数 \\
+			$f(x)=\cos x$ & 偶関数 \\
+			奇関数$\times$偶関数 & 奇関数 \\
+			奇関数$\times$奇関数 & 偶関数 \\
+		\end{Table}
+	\end{minipage}
+	\label{tb:REFLABEL}
+\end{table}
 
-\leaderfill
+\RefLabelText{あいうえお}
+\LabelText{例文}{あいうえお}
+\LabelText[type=main]{例文}{あいうえお}
+\LabelText[type=accent]{例文}{あいうえお}
+\LabelText[type=inv]{例文}{あいうえお}
+\LabelText[type=invmain]{例文}{あいうえお}
+\LabelText[type=invaccent]{例文}{あいうえお}
+\LabelText[type=gray]{例文}{あいうえお}
+\LabelText[type=blue]{例文}{あいうえお}
+\LabelText[type=red]{例文}{あいうえお}
+\LabelText[type=trans]{例文}{あいうえお}
 
-\subsection{REDBOX, REDBOXT}
-\begin{REDBOX}
-散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
-吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
-\end{REDBOX}
-\begin{code}[language=tex]
-\begin{REDBOX}
-    散乱とは光が微小の粒子にぶつかったときに，直進する方向を変えることです．方向は媒体の材質に応じて変化します．
-    吸収とは光のエネルギーが物質との相互作用によって，他の形のエネルギー（主に熱エネルギー）に変わることです．
-\end{REDBOX}
-\end{code}
+\begin{Code}{language=tex}
+\RefLabelText{あいうえお}
+\LabelText{例文}{あいうえお}
+\LabelText[type=main]{例文}{あいうえお}
+\LabelText[type=accent]{例文}{あいうえお}
+\LabelText[type=inv]{例文}{あいうえお}
+\LabelText[type=invmain]{例文}{あいうえお}
+\LabelText[type=invaccent]{例文}{あいうえお}
+\LabelText[type=gray]{例文}{あいうえお}
+\LabelText[type=blue]{例文}{あいうえお}
+\LabelText[type=red]{例文}{あいうえお}
+\LabelText[type=trans]{例文}{あいうえお}
+\end{Code}
 
-\leaderfill
-
-\begin{REDBOXT}{直進性}
-光は電磁波の一種なので、障害物がなく均一な物体の中を通る限りは直進します。光の速度は１秒間に30万kmという速さです。
-\end{REDBOXT}
-\begin{code}[language=tex]
-\begin{REDBOXT}{直進性}
-    光は電磁波の一種なので、障害物がなく均一な物体の中を通る限りは直進します。光の速度は１秒間に30万kmという速さです。
-\end{REDBOXT}
-\end{code}
-
-\leaderfill
-
-\subsection{MATHBOX}
-\begin{MATHBOX}
-    \vec{\omega}_{r} = 
+\subsection{RoundBox}
+\begin{RoundBox}
+    \vec{\omega}_{r} =
     -\frac{\eta_{1}}{\eta_{2}} \left(
         \vec{\omega} - (\vec{\omega} \cdot \vec{n}) \vec{n}
     \right)
@@ -314,10 +333,10 @@ $P(x)$を$n-1$次以下の整式，$\alpha_1,\alpha_2,\ldots,\alpha_n$を相異�
         \frac{\eta_{1}}{\eta_{2}}
         \right)^2 (1-(\vec{\omega} \cdot \vec{n})^2)
     }
-\end{MATHBOX}
-\begin{code}[language=tex]
-\begin{MATHBOX}
-    \vec{\omega}_{r} = 
+\end{RoundBox}
+\begin{Code}{language=tex}
+\begin{RoundBox}
+    \vec{\omega}_{r} =
     -\frac{\eta_{1}}{\eta_{2}} \left(
         \vec{\omega} - (\vec{\omega} \cdot \vec{n}) \vec{n}
     \right)
@@ -326,43 +345,41 @@ $P(x)$を$n-1$次以下の整式，$\alpha_1,\alpha_2,\ldots,\alpha_n$を相異�
         \frac{\eta_{1}}{\eta_{2}}
         \right)^2 (1-(\vec{\omega} \cdot \vec{n})^2)
     }
-\end{MATHBOX}
-\end{code}
+\end{RoundBox}
+\end{Code}
 
-\leaderfill
+\begin{RoundBox}[ColorThemePrimary]
+    \vec{\omega}_{r} =
+    -\frac{\eta_{1}}{\eta_{2}} \left(
+        \vec{\omega} - (\vec{\omega} \cdot \vec{n}) \vec{n}
+    \right)
+    -\vec{n} \sqrt{
+        1-\left(
+        \frac{\eta_{1}}{\eta_{2}}
+        \right)^2 (1-(\vec{\omega} \cdot \vec{n})^2)
+    }
+\end{RoundBox}
+\begin{Code}{language=tex}
+\begin{RoundBox}[ColorThemePrimary]
+    \vec{\omega}_{r} =
+    -\frac{\eta_{1}}{\eta_{2}} \left(
+        \vec{\omega} - (\vec{\omega} \cdot \vec{n}) \vec{n}
+    \right)
+    -\vec{n} \sqrt{
+        1-\left(
+        \frac{\eta_{1}}{\eta_{2}}
+        \right)^2 (1-(\vec{\omega} \cdot \vec{n})^2)
+    }
+\end{RoundBox}
+\end{Code}
 
-\subsection{EXAMPLEBOX}
-\begin{EXAMPLEBOX}[鏡面反射光]
-    物体表面に当たって反射された光は鏡面反射光と呼びます。鏡面反射する光の方向は物体表面の凹凸によって変化します．もし完全に平坦で凸凹のない表面にぶつかると，反射した光線の角度と入射角は同じになります．これを反射の法則といいます．通常，物体表面には多少凹凸があるため，反射する光の方向は鏡面反射方向に拡散し，反射した光はぼやけて見えます．一方，物体表面がなめらかなときは収束して，反射した光は鮮明になります
-\end{EXAMPLEBOX}
-\begin{code}[language=tex]
-\begin{EXAMPLEBOX}[鏡面反射光]
-    物体表面に当たって反射された光は鏡面反射光と呼びます。鏡面反射する光の方向は物体表面の凹凸によって変化します．もし完全に平坦で凸凹のない表面にぶつかると，反射した光線の角度と入射角は同じになります．これを反射の法則といいます．通常，物体表面には多少凹凸があるため，反射する光の方向は鏡面反射方向に拡散し，反射した光はぼやけて見えます．一方，物体表面がなめらかなときは収束して，反射した光は鮮明になります
-\end{EXAMPLEBOX}
-\end{code}
+\subsection{HRuleDots, HRuleLeader}
+\HRuleDots{~✂~キリトリセン~✂~}
+\HRuleLeader
+\begin{Code}{language=tex}
+\HRuleDots{~✂~キリトリセン~✂~}
+\HRuleLeader
+\end{Code}
 
-\leaderfill
-
-\subsection{EXERCISEBOX}
-\begin{EXERCISEBOX}[鏡面反射光]
-    物体表面に当たって反射された光は鏡面反射光と呼びます。鏡面反射する光の方向は物体表面の凹凸によって変化します．もし完全に平坦で凸凹のない表面にぶつかると，反射した光線の角度と入射角は同じになります．これを反射の法則といいます．通常，物体表面には多少凹凸があるため，反射する光の方向は鏡面反射方向に拡散し，反射した光はぼやけて見えます．一方，物体表面がなめらかなときは収束して，反射した光は鮮明になります
-\end{EXERCISEBOX}
-\begin{code}[language=tex]
-\begin{EXERCISEBOX}[鏡面反射光]
-    物体表面に当たって反射された光は鏡面反射光と呼びます。鏡面反射する光の方向は物体表面の凹凸によって変化します．もし完全に平坦で凸凹のない表面にぶつかると，反射した光線の角度と入射角は同じになります．これを反射の法則といいます．通常，物体表面には多少凹凸があるため，反射する光の方向は鏡面反射方向に拡散し，反射した光はぼやけて見えます．一方，物体表面がなめらかなときは収束して，反射した光は鮮明になります
-\end{EXERCISEBOX}
-\end{code}
-
-\leaderfill
-
-\subsection{cdotsfill, leaderfill}
-\cdotsfill{~✂~キリトリセン~✂~}
-\leaderfill
-\begin{code}[language=tex]
-\cdotsfill{~✂~キリトリセン~✂~}
-\leaderfill
-\end{code}
-
-\leaderfill
 %------------------------------------------------------------
 \end{document}

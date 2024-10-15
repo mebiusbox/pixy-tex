@@ -1,0 +1,40 @@
+\documentclass[a4paper,10pt]{ltjsarticle}
+% \documentclass[a4paper,10pt]{ltjsreport}
+% \documentclass[a4paper,10pt]{ltjsbook}
+% \usepackage[noto-otf,no-math,deluxe]{luatexja-preset}
+\title{\TeX\ 文書テンプレート}
+\author{mebiusbox software}
+\begin{document}
+	\maketitle
+    % \chapter{\TeX\ テンプレート概要}
+    \section{Register}
+
+	\count0=42
+	The value is now '\the\count0'
+	\def\macro{-123456}
+	\count0=\macro
+	The value is now '\the\count0'
+
+
+	1. \count0=42 % a white space after the number aborts the reading process. It is discarded.
+	The value is now `\the\count0'.
+	2. The following code will absorb the `3' of '3.':
+	\def\macro{1234}
+	\count0=\macro % a white space after a macro will be absorbed by TeX, so this is wrong.
+	3. The value is now `\the\count0'.
+	4. Use \textbackslash relax after an assignment to end scanning:
+	\count0=\macro\relax
+	5. The value is now `\the\count0'.
+
+	\section{edef}
+
+	\def\a{3}
+	\def\b{2\a}
+	\def\c{1\b}
+	\def\d{value=\c}
+	\message{Macro `d' is defined to be `\meaning\d'}
+	\edef\d{value=\c}
+	\message{Macro `d' is e-defined to be `\meaning\d'}
+	\expandafter\def\expandafter\d\expandafter{\c}
+	\message{Macro `d' is defined to be `\meaning\d' using expandafter}
+\end{document}

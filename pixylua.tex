@@ -13,13 +13,21 @@
 \usepackage[bookmarks=true,bookmarksnumbered=true,colorlinks=true,linkcolor={blue},urlcolor={blue},hyperfootnotes=false,pdfborder={0,0,0},pdfpagemode=UseNone,unicode=true]{hyperref}
 \usepackage{bm}
 \usepackage{stmaryrd}
-\makeatletter
+%------------------------------------------------------------
+% MARK: Common
 % #1: 点同士の間隔
-\newcommand{\cdotsfillsub}[1][.25\zw]{\leavevmode\cleaders\hb@xt@#1{\hss\(\cdot\m@th\)\hss}\hfill\kern\z@\ignorespaces}
-\newcommand{\cdotsfill}[1]{\noindent\cdotsfillsub\ #1 \cdotsfillsub\par}
-\newcommand{\leaderfill}[1][0pt]{\noindent\hspace{#1}\cleaders\hbox{…………}\hfill \hspace{#1}\par}
+\makeatletter
+\NewDocumentCommand \pixy@hruledots{O{.25\zw}}{%
+	\leavevmode\cleaders\hb@xt@#1{\hss\(\cdot\m@th\)\hss}\hfill\kern\z@\ignorespaces
+}
+\NewDocumentCommand \HRuleDots{m}{%
+	\noindent\pixy@hruledots\ #1 \pixy@hruledots\par%
+}
+\NewDocumentCommand \HRuleLeader{O{0pt}}{%
+	\noindent\hspace{#1}\cleaders\hbox{…………}\hfill \hspace{#1}\par%
+}
 \makeatother
-\def\dashfill{\cleaders\hbox\ to 2em{-}\hfill}
+\def\HRuleDash{\cleaders\hbox\ to 2em{-}\hfill}
 \def\Tasuki#1#2#3#4#5#6#7{% chktex 15
 \setbox0\hbox{
 \setlength\unitlength{0.1in}
@@ -35,49 +43,43 @@
 \end{array}
 }% chktex 9
 %
-\newcommand{\Rev}[1]{\frac{1}{#1}}
-\newcommand{\Pdrv}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\Drv}[2]{\frac{d#1}{d#2}}
-\newcommand{\Ddrv}[2]{\frac{\delta #1}{\delta #2}}
-\newcommand{\PVEC}[1]{{\small\begin{pmatrix}#1\end{pmatrix}}}
-\newcommand{\BVEC}[1]{{\small\begin{bmatrix}#1\end{bmatrix}}}
-\newcommand{\PVECs}[1]{{\scriptsize\begin{pmatrix}#1\end{pmatrix}}}
-\newcommand{\BVECs}[1]{{\scriptsize\begin{bmatrix}#1\end{bmatrix}}}
-\newcommand{\PMAT}[2][]{{\small\begin{pmatrix}{#1}#2\end{pmatrix}}}
-\newcommand{\BMAT}[2][]{{\small\begin{bmatrix}{#1}#2\end{bmatrix}}}
-\newcommand{\DMAT}[2][]{{\small\left|\begin{matrix}{#1}#2\end{matrix}\right|}}
-% \newcommand{\Vvec}[1]{\left(\begin{array}{c}#1\end{array}\right)}
-% \newcommand{\Vmatrix}[2][]{\left(\begin{array}{#1}#2\end{array}\right)}
-% \newcommand{\Dmatrix}[2][]{\left|\begin{array}{#1}#2\end{array}\right|}
-\newcommand{\Inversion}[2][]{#1^{\!\mbox{\sf\tiny T}}}
-\newcommand{\Vecbm}[1]{\mbox{\boldmath \(#1\)}}
-\newcommand{\Beq}{\begin{equation}}
-\newcommand{\Eeq}{\end{equation}}
-\newcommand{\Beqn}{\begin{equation*}}
-\newcommand{\Eeqn}{\end{equation*}}
-\newcommand{\Va}{\Vecbm{a}}
+\NewDocumentCommand \Rev{m}{\frac{1}{#1}}
+\NewDocumentCommand \Drv{m m}{\frac{d#1}{d#2}}
+\NewDocumentCommand \PDrv{m m}{\frac{\partial #1}{\partial #2}}
+\NewDocumentCommand \DDrv{m m}{\frac{\delta #1}{\delta #2}}
+\NewDocumentCommand \PVec{m}{{\small\begin{pmatrix}#1\end{pmatrix}}}
+\NewDocumentCommand \BVec{m}{{\small\begin{bmatrix}#1\end{bmatrix}}}
+\NewDocumentCommand \PVecs{m}{{\scriptsize\begin{pmatrix}#1\end{pmatrix}}}
+\NewDocumentCommand \BVecs{m}{{\scriptsize\begin{bmatrix}#1\end{bmatrix}}}
+\NewDocumentCommand \PMat{O{} m}{{\small\begin{pmatrix}{#1}#2\end{pmatrix}}}
+\NewDocumentCommand \BMat{O{} m}{{\small\begin{bmatrix}{#1}#2\end{bmatrix}}}
+\NewDocumentCommand \DMat{O{} m}{{\small\left|\begin{matrix}{#1}#2\end{matrix}\right|}}
+%\NewDocumentCommand \Vvec{m}{\left(\begin{array}{c}#1\end{array}\right)}
+%\NewDocumentCommand \Vmatrix{O{} m}{\left(\begin{array}{#1}#2\end{array}\right)}
+%\NewDocumentCommand \Dmatrix{O{} m}{\left|\begin{array}{#1}#2\end{array}\right|}
+\NewDocumentCommand \Inversion{m m}{#1^{\!\mbox{\sf\tiny #2}}}
+\NewDocumentCommand \Vecbm{m}{\mbox{\boldmath \(#1\)}}
 %------------------------------------------------------------
-% Color
-%
+% MARK: Color
 \usepackage{color}
 \usepackage[x11names]{xcolor}
-\definecolor{colorthemeback}{RGB}{255,255,255}
-\definecolor{colorthemefore}{RGB}{77,77,77}
-\definecolor{colorthememain1}{RGB}{0,113,188}
-\definecolor{colorthememain2}{RGB}{255,80,80}
-\definecolor{colorthemesub1}{RGB}{242,242,242}
-\definecolor{colorthemesub2}{RGB}{226,241,250}
-\definecolor{colorthemesub3}{RGB}{255,234,234}
-\definecolor{graphcolor}{RGB}{204,0,0}
-\definecolor{graphsubcolor}{RGB}{0,80,255}
+\definecolor{ColorThemeBack}{RGB}{255,255,255}
+\definecolor{ColorThemeFore}{RGB}{77,77,77}
+\definecolor{ColorThemePrimary}{RGB}{0,113,188}
+\definecolor{ColorThemeSecondary}{RGB}{255,80,80}
+\definecolor{ColorThemeSub1}{RGB}{242,242,242}
+\definecolor{ColorThemeSub2}{RGB}{226,241,250}
+\definecolor{ColorThemeSub3}{RGB}{255,234,234}
+\definecolor{ColorThemeBlack}{RGB}{49,44,44}
+\definecolor{ColorThemeGraph}{RGB}{204,0,0}
+\definecolor{ColorThemeGraphSub}{RGB}{0,80,255}
 %------------------------------------------------------------
-% Figure, Table, Graph
-%
+% MARK: Figure, Table, Graph
 \usepackage{tikz}
 \usetikzlibrary{calc,intersections,quotes,angles,shapes.misc,patterns,decorations.markings}
 \usepackage{tkz-euclide}
-\usepackage{booktabs}
-\usepackage{colortbl}
+% \usepackage{booktabs}
+% \usepackage{colortbl}
 \usepackage{here}
 \graphicspath{{images/}{../images/}}
 \usepackage{pgfplots}
@@ -101,109 +103,154 @@
 \usepackage[hang,small,bf]{caption}
 \usepackage[subrefformat=parens]{subcaption}
 \captionsetup{compatibility=false}
+\usepackage{tabularray}
+% Common Table
+\makeatletter
+\pgfkeys{%
+	/pixy/table/.cd,
+	rowhdr/.store in=\pixy@table@rowhdr,
+	rowhdr/.default=yes,
+	rowhdr/.is choice,
+	rowhdr/no/.style={rowbg=white,rowfg=black},
+	rowhdr/yes/.style={rowbg=azure3,rowfg=white},
+	rowbg/.store in=\pixy@table@rowbg,
+	rowfg/.store in=\pixy@table@rowfg,
+	colhdr/.store in=\pixy@table@colhdr,
+	colhdr/.default=yes,
+	colhdr/.is choice,
+	colhdr/no/.style={colbg=white,colfg=black,col=no},
+	colhdr/yes/.style={colbg=azure8,colfg=black,col=yes},
+	colbg/.store in=\pixy@table@colbg,
+	colfg/.store in=\pixy@table@colfg,
+	col/.store in=\pixy@table@col,
+	even/.store in=\pixy@table@even,
+	even/.default=yes,
+	even/.is choice,
+	even/no/.style={evenbg=white},
+	even/yes/.style={evenbg=azure9},
+	evenbg/.store in=\pixy@table@evenbg
+}
+\NewDocumentEnvironment{Table}{o m +b}{%
+	\pgfkeys{/pixy/table/.cd, rowhdr=no, colhdr=no, even=no}
+	\IfValueT{#1}{\pgfkeys{/pixy/table/.cd, #1}}{}
+	\ifthenelse{\equal{\pixy@table@col}{yes}}{
+		\begin{tblr}{colspec={#2},vline{2}={solid},hlines={0.05em,solid,azure2},hline{1,Z}={1.5pt},%
+			row{even}={bg={\pixy@table@evenbg}},%
+			row{1}={bg={\pixy@table@rowbg},fg={\pixy@table@rowfg}},%
+			column{1}={bg={\pixy@table@colbg},fg={\pixy@table@colfg}}}%
+			#3
+	}{
+		\begin{tblr}{colspec={#2},vline{2}={solid},hlines={0.05em,solid,azure2},hline{1,Z}={1.5pt},%
+			row{even}={bg={\pixy@table@evenbg}},%
+			row{1}={bg={\pixy@table@rowbg},fg={\pixy@table@rowfg}}}%
+			#3
+	}
+	\end{tblr}
+}{}
+\makeatother
 %------------------------------------------------------------
-% Frame, Box
-%
-\usepackage{framed}
-\usepackage[framemethod=TikZ]{mdframed}
+% MARK: Frame, Box
 \usepackage[many]{tcolorbox}
+\tcbuselibrary{listings}
 \usepackage{varwidth}
 % 囲み（中央タイトル）
-\newenvironment{STDBOX}[2][]{
-    \ifthenelse{\equal{#2}{}}{
-        \mdfsetup{
-            frametitle={\colorbox{white}{\space#2\space}},
-            innertopmargin=10pt,
-            innerbottommargin=10pt,
-            % frametitleaboveskip=-\ht\strutbox,
-            frametitleaboveskip=-8pt,
-            frametitlealignment=\center,
-            #1
-            }
-    }{
-        \mdfsetup{
-        frametitle={\colorbox{white}{\space#2\space}},
-        innertopmargin=0pt,
-        innerbottommargin=10pt,
-        % frametitleaboveskip=-\ht\strutbox,
-        frametitleaboveskip=-8pt,
-        frametitlealignment=\center,
-        #1
-        }
-    }
-    \begin{mdframed}%
-    }
-    {\end{mdframed}}
-
-% \mdfdefinestyle{guidelinestyle}{%
-%     linecolor=black,
-%     linewidth=1pt,
-%     frametitlerule=true,
-%     frametitlefont=\sffamily\bfseries,
-%     frametitlebackgroundcolor=gray!20,
-%     innertopmargin=\topskip
-% }
-% \makeatletter
-% \define@key{thmdef}{mdthm}[{}]{%
-% \thmt@trytwice{\def\thmt@theoremdefiner{\mdtheorem[#1]}}{}}
-% \makeatother
-% \declaretheorem[mdthm={style=guidelinestyle},numberwithin=section]{theorem}
-
-\mdfdefinestyle{DUALSIDELINEBOX}{%
-    rightline=true,
-    innerleftmargin=10,
-    innerrightmargin=10,
-    outerlinewidth=3pt,
-    linewidth=3pt,
-    topline=false,
-    rightline=true,
-    bottomline=false,
-    skipabove=\topsep,
-    skipbelow=\topsep
+\makeatletter
+\pgfkeys{
+	/pixy/note/.cd,
+	colback/.store in=\pixy@note@colback,
+	colback/.default=black!5!white,
+	trans/.store in=\pixy@note@trans,
+	trans/.default=yes,
+	type/.store in=\pixy@note@type,
+	type/.default=normal,
+	sharp/.store in=\pixy@note@sharp,
+	sharp/.default=yes,
+	thin/.store in=\pixy@note@thin,
+	thin/.default=yes,
+	eval/sharp/.is choice,
+	eval/sharp/no/.style={},
+	eval/sharp/yes/.style={sharp corners},
+	eval/trans/.is choice,
+	eval/trans/no/.style={},
+	eval/trans/yes/.style={colback=white},
+	eval/thin/.is choice,
+	eval/thin/no/.style={},
+	eval/thin/yes/.style={boxrule=0.05em},% default=0.5mm
+	eval/colback/.style={colback=#1},
+	eval/type/.is choice,
+	eval/type/normal/.style={},
+	eval/type/left/.style={%
+		coltitle=black, colbacktitle=white,%
+		attach boxed title to top left={yshift=-3mm,xshift=3mm},%
+		boxed title style={colframe=white, sharp corners}%
+	},
+	eval/type/invleft/.style={%
+		breakable, frame empty, interior empty,%
+		coltitle=white, colbacktitle=ColorThemeBlack,%
+		extras broken={frame empty, interior empty},%
+		borderline={0.5mm}{0mm}{ColorThemeBlack},%
+		attach boxed title to top left={yshift=-3mm,xshift=3mm},%
+		boxed title style={boxrule=0pt,sharp corners=all}, varwidth boxed title%
+	},
+	eval/title/.estyle={\ifstrempty{#1}{}{title=#1}}
 }
-
+\NewDocumentEnvironment{Note}{o m}{
+	\pgfkeys{/pixy/note/.cd, colback, type, sharp=no, trans=no, thin=no}
+	\IfValueT{#1}{\pgfkeys{/pixy/note/.cd,#1}}
+	\begin{tcolorbox}[%
+		enhanced,%
+		fonttitle=\bfseries,%
+		top=4mm, before skip=3.5mm,%
+		/pixy/note/eval/title={#2},%
+		/pixy/note/eval/sharp={\pixy@note@sharp},%
+		/pixy/note/eval/thin={\pixy@note@thin},%
+		/pixy/note/eval/type={\pixy@note@type},%
+		/pixy/note/eval/colback={\pixy@note@colback},%
+		/pixy/note/eval/trans={\pixy@note@trans}%
+	]
+}{\end{tcolorbox}}
 % http://tex.bootmath.com/how-to-create-highlight-boxes-in-latex.html
 % \def\bracketcolor{red!75!black}
 % \def\bracketwidth{3pt}
 \def\bracketcolor{black}
 \def\bracketwidth{.5pt}
-\newtcolorbox{BRACKETBOX}[1][]{
-    breakable,
-    freelance,
-    title=#1,
-    colback=white,
-    colbacktitle=white,
-    coltitle=black,
-    fonttitle=\bfseries,
-    before skip=20pt plus 2pt minus 2pt,
-    after skip=20pt plus 2pt minus 2pt,
-    bottomrule=0pt,
-    boxrule=0pt,
-    colframe=white,
+\newtcolorbox{BracketBox}[1][]{%
+    breakable,%
+    freelance,%
+    title=#1,%
+    colback=white,%
+    colbacktitle=white,%
+    coltitle=black,%
+    fonttitle=\bfseries,%
+    before skip=20pt plus 2pt minus 2pt,%
+    after skip=20pt plus 2pt minus 2pt,%
+    bottomrule=0pt,%
+    boxrule=0pt,%
+    colframe=white,%
     overlay unbroken and first={
     \draw[\bracketcolor,line width=\bracketwidth]
-        ([xshift=5pt]frame.north west) -- 
-        (frame.north west) -- 
+        ([xshift=5pt]frame.north west) --
+        (frame.north west) --
         (frame.south west);
     \draw[\bracketcolor,line width=\bracketwidth]
-        ([xshift=-5pt]frame.north east) -- 
-        (frame.north east) -- 
+        ([xshift=-5pt]frame.north east) --
+        (frame.north east) --
         (frame.south east);
     },
     overlay unbroken app={
     \draw[\bracketcolor,line width=\bracketwidth,line cap=rect]
-        (frame.south west) -- 
+        (frame.south west) --
         ([xshift=5pt]frame.south west);
     \draw[\bracketcolor,line width=\bracketwidth,line cap=rect]
-        (frame.south east) -- 
+        (frame.south east) --
         ([xshift=-5pt]frame.south east);
     },
     overlay middle and last={
     \draw[\bracketcolor,line width=\bracketwidth]
-        (frame.north west) -- 
+        (frame.north west) --
         (frame.south west);
     \draw[\bracketcolor,line width=\bracketwidth]
-        (frame.north east) -- 
+        (frame.north east) --
         (frame.south east);
     },
     overlay last app={
@@ -215,149 +262,76 @@
         ([xshift=-5pt]frame.south east);
     },
 }
-
-\newcommand{\SIMPLEBOX}[2]{%
-    \newcounter{#1}
-    \newenvironment{#1}[1][]{%
-        \stepcounter{#1}%
-        \mdfsetup{%
-            innertopmargin=0pt,%
-            % innertopmargin=-5pt,%
-            frametitleaboveskip=-8pt,%
-            % frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
-            frametitle={%
-                \tikz[baseline=(current bounding box.east),outer sep=0pt]
-                \node[anchor=east,rectangle,fill=white]
-                {\strut \MakeUppercase#1~\csname the#1\endcsname\ifstrempty{##1}{}{:~##1}};},% chktex 41
-            innerbottommargin=1em,linecolor=#2,%
-            linewidth=0.5pt,topline=true,%
-        }%
-        \begin{mdframed}[]\relax%
-        }{\end{mdframed}}%
+\pgfkeys{
+	/pixy/adm/.cd,
+	type/.store in=\pixy@adm@type,
+	type/.default=note,
+	eval/type/.is choice,
+	eval/type/note/.style={colframe=ColorThemeFore, colback=ColorThemeBack},
+	eval/type/info/.style={colframe=ColorThemePrimary, colback=ColorThemeBack},
+	eval/type/warn/.style={colframe=ColorThemeSecondary, colback=ColorThemeBack},
+	eval/type/error/.style={colframe=red!75!black, colback=red!5!white},
+	eval/title/.estyle={\ifstrempty{#1}{}{title=#1}}
 }
-% \SIMPLEBOX{definition}{red!60}
-% \SIMPLEBOX{theorem}{black}
-\SIMPLEBOX{EXERCISEBOX}{black!50}
-\SIMPLEBOX{EXAMPLEBOX}{black!50}
-\makeatletter
-\newtcolorbox{CTNOTE}[1]{
-    breakable,
-    before skip=20pt plus 2pt minus 2pt,
-    after skip=20pt plus 2pt minus 2pt,
-    boxrule=0.4pt,
-    colframe=colorthemefore, colback=colorthemeback,
-    fonttitle=\gtfamily\bfseries, title=#1
+\NewDocumentEnvironment{Admonition}{o m}{%
+	\pgfkeys{/pixy/adm/.cd, type}
+	\IfValueT{#1}{\pgfkeys{/pixy/adm/.cd, #1}}
+	\begin{tcolorbox}[%
+		breakable,%
+		before skip=20pt plus 2pt minus 2pt,%
+		after skip=20pt plus 2pt minus 2pt,%
+		boxrule=0.4pt,%
+		fonttitle=\gtfamily\bfseries,%
+		/pixy/adm/eval/title=#2,%
+		/pixy/adm/eval/type={\pixy@adm@type}%
+	]
+}{\end{tcolorbox}}
+\pgfkeys{
+	/pixy/label/.cd,
+	type/.store in=\pixy@label@type,
+	type/.default=normal,
+	eval/type/.is choice,
+	eval/type/normal/.style={colframe=ColorThemeFore, colback=ColorThemeBack},
+	eval/type/main/.style={colframe=ColorThemePrimary, colback=ColorThemeBack},
+	eval/type/accent/.style={colframe=ColorThemeSecondary, colback=ColorThemeBack},
+	eval/type/inv/.style={colframe=ColorThemeBack, colback=ColorThemeFore},
+	eval/type/invmain/.style={colframe=ColorThemePrimary, colback=ColorThemePrimary},
+	eval/type/invaccent/.style={colframe=ColorThemeSecondary, colback=ColorThemeSecondary},
+	eval/type/gray/.style={colframe=ColorThemeFore, colback=ColorThemeSub1},
+	eval/type/blue/.style={colframe=ColorThemePrimary, colback=ColorThemeSub2},
+	eval/type/red/.style={colframe=ColorThemeSecondary, colback=ColorThemeSub3},
+	eval/type/trans/.style={colframe=ColorThemeBack, colback=ColorThemeBack},
+	eval/color/.is choice,
+	eval/color/normal/.code={},
+	eval/color/main/.code={\color{ColorThemePrimary}},
+	eval/color/accent/.code={\color{ColorThemeSecondary}},
+	eval/color/inv/.code={\color{ColorThemeBack}},
+	eval/color/invmain/.code={\color{ColorThemeBack}},
+	eval/color/invaccent/.code={\color{ColorThemeBack}},
+	eval/color/gray/.code={\color{ColorThemeFore}},
+	eval/color/blue/.code={\color{ColorThemePrimary}},
+	eval/color/red/.code={\color{ColorThemeSecondary}},
+	eval/color/trans/.code={}
 }
-\newtcolorbox{CTNOTEBLUE}[1]{
-    breakable,
-    before skip=20pt plus 2pt minus 2pt,
-    after skip=20pt plus 2pt minus 2pt,
-    boxrule=0.4pt,
-    colframe=colorthememain1, colback=colorthemeback,
-    fonttitle=\gtfamily\bfseries, title=#1
+\NewDocumentCommand \pixy@labelcbox{m m}{
+	\pgfkeys{/pixy/label/.cd, type}
+	\IfValueT{#1}{\pgfkeys{/pixy/label/.cd, #1}}
+	\tcbox[%
+		boxrule=0.4pt, top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm,%
+		/pixy/label/eval/type={\pixy@label@type}%
+	]{\pgfkeys{/pixy/label/eval/color={\pixy@label@type}}\small #2}
 }
-\newtcolorbox{CTNOTERED}[1]{
-    breakable,
-    before skip=20pt plus 2pt minus 2pt,
-    after skip=20pt plus 2pt minus 2pt,
-    boxrule=0.4pt,
-    colframe=colorthememain2, colback=colorthemeback,
-    fonttitle=\gtfamily\bfseries, title=#1
+\NewDocumentCommand \LabelItem{o m m}{
+	\item[\pixy@labelcbox{#1}{#2}] #3
 }
-\newtcbox{\ctb}{
-    boxrule=0.4pt, colframe=colorthemefore, colback=colorthemeback, 
-    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
-}
-\newtcbox{\ctb@main}{
-    boxrule=0.4pt, colframe=colorthememain1, colback=colorthemeback, 
-    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
-}
-\newtcbox{\ctb@accent}{
-    boxrule=0.4pt, colframe=colorthememain2, colback=colorthemeback, 
-    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
-}
-\newtcbox{\ctbinv}{
-    boxrule=0.4pt, colframe=colorthemeback, colback=colorthemefore, 
-    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
-}
-\newtcbox{\ctbinv@main}{
-    boxrule=0.4pt, colframe=colorthememain1, colback=colorthememain1, 
-    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
-}
-\newtcbox{\ctbinv@accent}{
-    boxrule=0.4pt, colframe=colorthememain2, colback=colorthememain2, 
-    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
-}
-\newtcbox{\ctb@subgray}{
-    boxrule=0.4pt, colframe=colorthemefore, colback=colorthemesub1, 
-    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
-}
-\newtcbox{\ctb@subblue}{
-    boxrule=0.4pt, colframe=colorthememain1, colback=colorthemesub2, 
-    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
-}
-\newtcbox{\ctb@subred}{
-    boxrule=0.4pt, colframe=colorthememain2, colback=colorthemesub3, 
-    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
-}
-\newtcbox{\ctb@transparent}{
-    boxrule=0.4pt, colframe=colorthemeback, colback=colorthemeback, 
-    top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm
-}
-\newcommand{\CTBOX}[2]{
-    \begin{itemize}
-        \item[\ctb{\small #1}] #2
-    \end{itemize}
-}
-\newcommand{\CTBOXBLUE}[2]{
-    \begin{itemize}
-        \item[\ctb@main{\color{colorthememain1}\small #1}] #2
-    \end{itemize}
-}
-\newcommand{\CTBOXRED}[2]{
-    \begin{itemize}
-        \item[\ctb@accent{\color{colorthememain2}\small #1}] #2
-    \end{itemize}
-}
-\newcommand{\CTBOXINV}[2]{
-    \begin{itemize}
-        \item[\ctbinv{\color{colorthemeback}\small #1}] #2
-    \end{itemize}
-}
-\newcommand{\CTBOXINVBLUE}[2]{
-    \begin{itemize}
-        \item[\ctbinv@main{\color{colorthemeback}\small #1}] #2
-    \end{itemize}
-}
-\newcommand{\CTBOXINVRED}[2]{
-    \begin{itemize}
-        \item[\ctbinv@accent{\color{colorthemeback}\small #1}] #2
-    \end{itemize}
-}
-\newcommand{\CTBOXSUBGRAY}[2]{
-    \begin{itemize}
-        \item[\ctb@subgray{\color{colorthemefore}\small #1}] #2
-    \end{itemize}
-}
-\newcommand{\CTBOXSUBBLUE}[2]{
-    \begin{itemize}
-        \item[\ctb@subblue{\color{colorthememain1}\small #1}] #2
-    \end{itemize}
-}
-\newcommand{\CTBOXSUBRED}[2]{
-    \begin{itemize}
-        \item[\ctb@subred{\color{colorthememain2}\small #1}] #2
-    \end{itemize}
-}
-\newcommand{\CTBOXTRANS}[2]{
-    \begin{itemize}
-        \item[\ctb@transparent{\small #1}] #2
+\NewDocumentCommand \LabelText{o m m}{
+	\begin{itemize}
+		\LabelItem[#1]{#2}{#3}
     \end{itemize}
 }
 \makeatother
 %------------------------------------------------------------
-% Code
-%
+% MARK: Code
 \usepackage{listings}
 \usepackage{verbatim}
 %------------------------------------------------------------
@@ -376,27 +350,12 @@
     on line,
     #1
 }
-% \newtcbox{\HLBOX}[1][]{
-%     equal height group=dashedbox,
-%     nobeforeafter,
-%     colback=yellow,
-%     boxrule=0pt,
-%     boxsep=0pt,
-%     top=2pt,
-%     bottom=2pt,
-%     left=2pt,
-%     right=2pt,
-%     enhanced jigsaw,
-%     borderline horizontal={1pt}{0pt}{dashed},
-%     borderline vertical={1pt}{0pt}{dashed},
-%     #1
-% }
-\newcommand{\HL}[1]{\hlbox{\mbox{\small\rmfamily#1}}}
-\newcommand{\EM}[1]{\color{red!80!black}\textbf{#1}\color{black}}
-\newcommand{\EMM}[1]{\color{red!80!black}#1\color{black}}
+\NewDocumentCommand \Hl{m}{\hlbox{\mbox{\small\rmfamily#1}}}
+\NewDocumentCommand \Em{m}{\color{red!80!black}\textbf{#1}\color{black}}
+\NewDocumentCommand \EmLight{m}{\color{red!80!black}#1\color{black}}
 \definecolor{MSBlue}{rgb}{.204,.353,.541}
 \definecolor{MSLightBlue}{rgb}{.31,.506,.741}
-\newcommand{\EMSUB}[1]{\mbox{\hspace{.3\zw}\color{MSLightBlue}\textbf{#1}\color{black}\hspace{.3\zw}}}
+\NewDocumentCommand \EmSub{m}{\mbox{\hspace{.3\zw}\color{MSLightBlue}\textbf{#1}\color{black}\hspace{.3\zw}}}
 
 \newtcbox{\embox}{%
     boxrule=0.4pt,%
@@ -405,28 +364,18 @@
     top=0mm, bottom=0mm, left=0mm, right=0mm,%
     on line, arc=0.5mm%
 }
-\newcommand{\EMBOX}[1]{\mbox{\hspace{.3\zw}\embox{\small\color{white} #1\color{black}}\hspace{.3\zw}}}
+\NewDocumentCommand \EmBox{m}{\mbox{\hspace{.3\zw}\embox{\small\color{white} #1\color{black}}\hspace{.3\zw}}}
 
 \newtcbox{\emcbox}{%
     boxrule=0.4pt,%
-    colframe=colorthemesub1,%
-    colback=colorthemesub1,%
+    colframe=ColorThemeSub1,%
+    colback=ColorThemeSub1,%
     top=0mm, bottom=0mm, left=0mm, right=0mm,%
     on line, arc=0.5mm%
 }
-\newcommand{\EMCBOX}[1]{\mbox{\hspace{.3\zw}\emcbox{\small\bfseries\color{black} #1}\hspace{.3\zw}}}
-\newcommand{\EMMCBOX}[1]{\mbox{\hspace{.3\zw}\emcbox{\small\ttfamily\color{black} #1}\hspace{.3\zw}}}
-
-\newtcolorbox{REDBOX}{
-    colback=red!5!white,
-    colframe=red!75!black
-}
-\newtcolorbox{REDBOXT}[1]{
-    colback=red!5!white,
-    colframe=red!75!black,
-    fonttitle=\bfseries,title=#1
-}
-\newtcbox{\INLINE}{
+\NewDocumentCommand \EmSubBox{m}{\mbox{\hspace{.3\zw}\emcbox{\small\bfseries\color{black} #1}\hspace{.3\zw}}}
+\NewDocumentCommand \EmCode{m}{\mbox{\hspace{.3\zw}\emcbox{\small\ttfamily\color{black} #1}\hspace{.3\zw}}}
+\newtcbox{\Inline}{
     size=fbox, on line,
     colframe=black!60,
     colback=gray!10,
@@ -434,17 +383,18 @@
     top=0.5mm,bottom=0.5mm,left=0.5mm,right=0.5mm,
     fontupper=\ttfamily\small
 }
-\definecolor{MathColor}{rgb}{0.0,0.56,0.0}
-\newtcolorbox{MATHBOX}[1][]{%
+\definecolor{ColorThemeRound}{rgb}{0.0,0.56,0.0}
+\newtcolorbox{RoundBox}[1][ColorThemeRound]{%
     % on line,
     nobeforeafter, math upper, tcbox raise base, enhanced,
-    colframe=MathColor,
+    colframe=#1,
     colback=white,
     arc=4pt,
     boxrule=2pt,
     drop fuzzy shadow
 }
 %------------------------------------------------------------
+% MARK: Listing
 \renewcommand{\lstlistingname}{リスト}
 \lstset{
     tabsize=4,
@@ -481,130 +431,228 @@
     columns=fixed,
     basewidth=\codebasewidth,
 }
-\lstnewenvironment{pre}[1][]
-    {\vspace{1\zw}\lstset{
-        frame=lrtb,
-        framerule=0.5pt,
-        xleftmargin=6pt,
-        framexleftmargin=6pt,
-        framesep=0pt,
-        framextopmargin=6pt,
-        framexbottommargin=6pt,
-        #1}}
-    {}
-\lstnewenvironment{code}[1][]{
-    \mdframed[%
-        backgroundcolor=black!5!white,%
-        innertopmargin=0pt,%
-        innerbottommargin=0pt,%
-        ]
-    \lstset{#1}
-    }{\endmdframed}
-\lstnewenvironment{code2}[1][]{
-    \mdframed[backgroundcolor=black!5!white]
-    \renewcommand{\thelstnumber}{\arabic{lstnumber}:}
-    \lstset{
-        numbers=left,
-        numberstyle=\codefont\pixycodesize,
-        xleftmargin=16pt,
-        framexleftmargin=6pt,
-        #1}
-    }{\endmdframed}
-\lstnewenvironment{source}[1][]
-    {\vspace{1\zw}
-     \lstset{
-        frame=lines,
-        framerule=0.5pt,
-        xleftmargin=6pt,
-        framexleftmargin=6pt,
-        framesep=0pt,
-        framextopmargin=6pt,
-        framexbottommargin=6pt,
-        rulecolor=\color{cyan},
-        backgroundcolor=\color{cyan!5!white},
-        #1}}
-    {}
-\lstnewenvironment{source2}[1][]
-    {\vspace{1\zw}
-     \renewcommand{\thelstnumber}{\arabic{lstnumber}:}
-     \lstset{
-        numbers=left,
-        numberstyle=\codefont\pixycodesize,
-        numbersep=4pt,
-        frame=lines,
-        framerule=0.5pt,
-        xleftmargin=16pt,
-        framexleftmargin=16pt,
-        framesep=0pt,
-        framextopmargin=6pt,
-        framexbottommargin=6pt,
-        rulecolor=\color{cyan},
-        backgroundcolor=\color{cyan!5!white},
-        #1}}
-    {}
-% \makeatletter
-% \def\lst@lettertrue{\let\lst@ifletter\iffalse}
-% \makeatother
+\lstdefinestyle{PixyCodeStyle}{
+    tabsize=4,
+    breaklines=true,
+    breakindent=0pt,
+    showspaces=false,
+    showstringspaces=false,
+    % showlines=false,
+    basicstyle=\codefont\pixycodesize,
+    % keywordstyle=\bfseries\color{green},
+    keywordstyle=\bfseries\color{blue},
+    keywordstyle={[2]\color{red!90!black}},
+    keywordstyle={[3]\color{red}},
+    commentstyle=\itshape\color{purple!40!black},
+    % identifierstyle=\color{blue},
+    stringstyle=\color{magenta},
+    % xleftmargin=0mm,
+    % framexleftmargin=0mm,
+    % framesep=0pt,
+    % framextopmargin=6pt,
+    % framexbottommargin=6pt,
+    % framerule=0.5pt,%
+    commentstyle=\color{green!50!black},
+    comment=[l]\%\ ,% chktex 26
+    % otherkeywords={String,async,await,Task,var},
+    % keywords=[2]{DatabaseField,DatabaseTable},
+    % keywords=[3]{@},
+    % escapeinside={(*@}{@*)},%
+    % escapeinside={\%*}{*)},
+    % lineskip=-1.ex,%
+    % lineskip=-1pt,
+    belowcaptionskip=1\baselineskip,
+    captionpos=b,
+    % columns=fixed,
+    basewidth=\codebasewidth,
+}
+\renewcommand{\thelstnumber}{\arabic{lstnumber}\,:}
+\NewTCBListing{Code}{O{} m}{
+    breakable,
+	enhanced,
+	% colframe=gray!20,
+	% title=#3,
+	boxrule=0.4pt,
+	% before skip=10mm,%
+	top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
+	% borderline={0.5mm}{0mm}{ColorThemeBlack},%
+	% leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
+	colframe=black, colback=black!3!white,%
+	% colframe=red!50!black, colback=yellow!10!white,
+	sharp corners,%
+	listing only,
+	listing options={
+		% numbers=left,
+		% numberstyle={\codefont\pixycodesize},
+		% numbersep=1.5\zw,
+		% xleftmargin=3\zw,
+		% lineskip=-0.5ex,
+		style=PixyCodeStyle,
+		#2},
+	#1
+}
+\NewTCBListing{NCode}{O{} m}{
+    breakable,
+	enhanced,
+	% colframe=gray!20,
+	% title=#3,
+	boxrule=0.4pt,
+	% before skip=10mm,%
+	top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
+	% borderline={0.5mm}{0mm}{ColorThemeBlack},%
+	% leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
+	colframe=black, colback=black!3!white,%
+	% colframe=red!50!black, colback=yellow!10!white,
+	sharp corners,%
+	listing only,
+	listing options={
+		numbers=left,
+		numberstyle={\codefont\pixycodesize},
+		numbersep=1.5\zw,
+		xleftmargin=3\zw,
+		% lineskip=-0.5ex,
+		style=PixyCodeStyle,
+		#2},
+	#1
+}
+\NewTCBListing{Source}{O{} m}{
+    breakable,
+	enhanced,
+	% colframe=gray!20,
+	% title=#3,
+	boxrule=0.4pt,
+	% before skip=10mm,%
+	top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
+	% borderline={0.5mm}{0mm}{ColorThemeBlack},%
+	% leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
+	colframe=azure3, colback=cyan!3!white,%
+	% colframe=red!50!black, colback=yellow!10!white,
+	sharp corners,%
+	listing only,
+	listing options={
+		% numbers=left,
+		% numberstyle={\codefont\pixycodesize},
+		% numbersep=1.5\zw,
+		% xleftmargin=3\zw,
+		% lineskip=-0.5ex,
+		style=PixyCodeStyle,
+		#2},
+	#1
+}
+\NewTCBListing{NSource}{O{} m}{
+    breakable,
+	enhanced,
+	% colframe=gray!20,
+	% title=#3,
+	boxrule=0.4pt,
+	% before skip=10mm,%
+	top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
+	% borderline={0.5mm}{0mm}{ColorThemeBlack},%
+	% leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
+	colframe=azure3, colback=cyan!3!white,%
+	% colframe=red!50!black, colback=yellow!10!white,
+	sharp corners,%
+	listing only,
+	listing options={
+		numbers=left,
+		numberstyle={\codefont\pixycodesize},
+		numbersep=1.5\zw,
+		xleftmargin=3\zw,
+		% lineskip=-0.5ex,
+		style=PixyCodeStyle,
+		#2},
+	#1
+}
+\NewTCBListing{Pre}{O{} m}{
+    breakable,
+	enhanced,
+	% colframe=gray!20,
+	% title=#3,
+	boxrule=0.4pt,
+	% before skip=10mm,%
+	top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
+	% borderline={0.5mm}{0mm}{ColorThemeBlack},%
+	% leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
+	colframe=black, colback=white,%
+	% colframe=red!50!black, colback=yellow!10!white,
+	sharp corners,%
+	listing only,
+	listing options={
+		% numbers=left,
+		% numberstyle={\codefont\pixycodesize},
+		% numbersep=1.5\zw,
+		% xleftmargin=3\zw,
+		% lineskip=-0.5ex,
+		style=PixyCodeStyle,
+		#2},
+	#1
+}
 %------------------------------------------------------------
+% MARK: Images
 \makeatletter
 \newdimen\fb@xsep%
 \newdimen\fb@xrule%
-\newcommand{\image}[5][H]{%
-    \ifthenelse{\equal{#4}{}}{%
-        \begin{figure}[#1]%
-            \centering%
-            \includegraphics[#2]{#3}%
-        \end{figure}%
-    }{%
-        \begin{figure}[#1]%
-            \centering%
-            \includegraphics[#2]{#3}%
-            \caption{#4}%
-            \label{#5}%
-        \end{figure}%
-    }%
+\pgfkeys{%
+	/pixy/image/.cd,
+	size/.is choice,
+	size/wf/.style={width},
+	size/w0/.style={width=1.0\textwidth},
+	size/w9/.style={width=0.9\textwidth},
+	size/w8/.style={width=0.8\textwidth},
+	size/w7/.style={width=0.7\textwidth},
+	size/w6/.style={width=0.6\textwidth},
+	size/w5/.style={width=0.5\textwidth},
+	size/w4/.style={width=0.4\textwidth},
+	size/w3/.style={width=0.3\textwidth},
+	size/w2/.style={width=0.2\textwidth},
+	size/w1/.style={width=0.1\textwidth},
+	size/.default=wf,
+	width/.store in=\pixy@image@width,
+	width/.default={},
+	frame/.store in=\pixy@image@frame,
+	frame/.default=yes,
+	eval/caption/.code={\ifstrempty{#1}{}{\caption{#1}}},
+	eval/label/.code={\ifstrempty{#1}{}{\label{#1}}},
+	eval/image/.code n args={2}{
+		\ifthenelse{\equal{#1}{}}{
+			\includegraphics[]{#2}
+		}{
+			\includegraphics[width=#1]{#2}
+		}
+	}
 }
-\newcommand{\imageF}[4][H]{\image[#1]{width=16cm}{#2}{#3}{#4}}
-\newcommand{\imageH}[4][H]{\image[#1]{width=10cm}{#2}{#3}{#4}}
-\newcommand{\imageL}[4][H]{\image[#1]{width=8cm}{#2}{#3}{#4}}
-\newcommand{\imageM}[4][H]{\image[#1]{width=6cm}{#2}{#3}{#4}}
-\newcommand{\imageS}[4][H]{\image[#1]{width=4cm}{#2}{#3}{#4}}
-\newcommand{\frameimage}[5][H]{%
-    \fb@xsep=\fboxsep%
-    \fb@xrule=\fboxrule%
-    \fboxsep=0pt%
-    \fboxrule=0.5pt%
-    \ifthenelse{\equal{#4}{}}{%
-        \begin{figure}[#1]%
-            \centering%
-            \fbox{\includegraphics[#2]{#3}}%
-        \end{figure}%
-    }{%
-        \begin{figure}[#1]%
-            \centering%
-            \fbox{\includegraphics[#2]{#3}}%
-            \caption{#4}%
-            \label{#5}%
-        \end{figure}%
-    }%
-    \fboxsep=\fb@xsep%
-    \fboxrule=\fb@xrule%
+\NewDocumentCommand \Image{o m m m m}{%
+	\pgfkeys{/pixy/image/.cd, size, frame=no}%
+	\IfValueT{#1}{\pgfkeys{/pixy/image/.cd, #1}}%
+	\begin{figure}[#2]%
+		\centering%
+		\ifthenelse{\equal{\pixy@image@frame}{yes}}{%
+			\fb@xsep=\fboxsep%
+    		\fb@xrule=\fboxrule%
+    		\fboxsep=0pt%
+    		\fboxrule=0.5pt%
+			\fbox{%
+				\pgfkeys{/pixy/image/eval/image={\pixy@image@width}{#3}}
+			}%
+			\fboxsep=\fb@xsep%
+    		\fboxrule=\fb@xrule%
+		}{
+			\pgfkeys{/pixy/image/eval/image={\pixy@image@width}{#3}}
+		}
+		\pgfkeys{/pixy/image/eval/caption={#4}}%
+		\pgfkeys{/pixy/image/eval/label={#5}}%
+	\end{figure}%
 }
-\newcommand{\frameimageF}[4][H]{\frameimage[#1]{width=16cm}{#2}{#3}{#4}}
-\newcommand{\frameimageH}[4][H]{\frameimage[#1]{width=10cm}{#2}{#3}{#4}}
-\newcommand{\frameimageL}[4][H]{\frameimage[#1]{width=8cm}{#2}{#3}{#4}}
-\newcommand{\frameimageM}[4][H]{\frameimage[#1]{width=6cm}{#2}{#3}{#4}}
-\newcommand{\frameimageS}[4][H]{\frameimage[#1]{width=4cm}{#2}{#3}{#4}}
 \makeatother
 %------------------------------------------------------------
-\definecolor{frameinnercolor}{RGB}{49,44,44}
+\definecolor{ColorThemeFrameInner}{RGB}{49,44,44}
 \newcounter{theorem}
 \numberwithin{theorem}{section}
-\newtcolorbox{theobox}[1]{%
+\newtcolorbox{theoremcbox}[1]{%
     enhanced, frame empty, interior empty,
-    coltitle=white, fonttitle=\bfseries, colbacktitle=frameinnercolor,
+    coltitle=white, fonttitle=\bfseries, colbacktitle=ColorThemeFrameInner,
     extras broken={frame empty, interior empty},
-    borderline={0.5mm}{0mm}{frameinnercolor},
+    borderline={0.5mm}{0mm}{ColorThemeFrameInner},
     % sharp corners=downhill,
     sharp corners,
     breakable=true,
@@ -612,34 +660,49 @@
     before skip=3.5mm,
     attach boxed title to top left={yshift=-3mm,xshift=3mm},
     boxed title style={boxrule=0pt,sharp corners=all}, varwidth boxed title, title=#1}
-\newenvironment{theo}[2][]
+\NewDocumentEnvironment{Theorem}{O{定理} m}
     {\refstepcounter{theorem}
-     \ifstrempty{#1}{\begin{theobox}{#2~\thetheorem.}}
-     {\begin{theobox}{#2~\thetheorem:~{#1}}}}
-    {\end{theobox}}
-\newenvironment{THEOREMBOX}[1][]
-    {\begin{theo}[#1]{定理}}
-    {\end{theo}}
+     \ifstrempty{#2}{\begin{theoremcbox}{#1~\thetheorem.}}
+     {\begin{theoremcbox}{#1~\thetheorem:~{#2}}}}
+    {\end{theoremcbox}}
 %------------------------------------------------------------
 \makeatletter
-\newenvironment{LBARBOX}[1][black]{%
-    \def\FrameCommand{\textcolor{#1}{\vrule width 1pt} \hspace{10pt}}% 
-    \MakeFramed {\advance\hsize-\width \FrameRestore}}% chktex 41
-    {\endMakeFramed}
-\newenvironment{LBARBOX2}[2][black]{%
-    \def\FrameCommand{\textcolor{#1}{\vrule width #2} \hspace{10pt}}% 
-    \MakeFramed {\advance\hsize-\width \FrameRestore}}% chktex 41
-    {\endMakeFramed}
+\pgfkeys{%
+	/pixy/memo/.cd,%
+	width/.store in=\pixy@memo@width,
+	width/.default=1mm,
+	offset/.store in=\pixy@memo@offset,
+	offset/.default=0pt,
+	color/.store in=\pixy@memo@color,
+	color/.default=black
+}
+\NewDocumentEnvironment{Memo}{o m}{%
+	\pgfkeys{/pixy/memo/.cd, width, offset, color}
+	\IfValueT{#1}{\pgfkeys{/pixy/memo/.cd, #1}}{}
+	\begin{tcolorbox}[
+		blanker,
+		colback=white,%
+		colbacktitle=white,%
+		coltitle=black,%
+		fonttitle=\bfseries,%
+		left=2mm,
+		before skip=6pt, after skip=6pt,
+		bottomrule=0pt,%
+		boxrule=0pt,%
+		borderline west={\pixy@memo@width}{\pixy@memo@offset}{\pixy@memo@color},
+		#2
+	]
+}{\end{tcolorbox}}
 \makeatother
 %------------------------------------------------------------
 % 数式を下線または囲みで表示してその下に文字を表示
-\newcommand{\EXPRULINE}[2]{%
-    \mathop{\mathrm{\underline{#1}}}_{\text{\scriptsize#2}}%
+\NewDocumentCommand \ExprLine{m m}{%
+    \mathop{\underline{#1}}_{\text{\scriptsize#2}}%
 }
-\newcommand{\EXPRBOXED}[2]{%
-    \mathop{\mathrm{\boxed{#1}}}_{\text{\scriptsize#2}}%
+\NewDocumentCommand \ExprBoxed{m m}{%
+    \mathop{\boxed{#1}}_{\text{\scriptsize#2}}%
 }
-\newcommand{\EXPRNOTE}[2][blue]{%
+\NewDocumentCommand \ExprNote{O{blue} m}{%
     {\color{#1}\leftarrow\scalebox{0.65}{\(\displaystyle #2\)}}%
 }
 %------------------------------------------------------------
@@ -648,36 +711,30 @@
 \renewcommand{\figurename}{Fig.}
 \renewcommand{\tablename}{表}
 %------------------------------------------------------------
-% User definitions
-%
-\newcommand{\REF}[1]{\CTBOXSUBGRAY{参考}{#1}}
-\newcommand{\EXAMPLE}[1]{\CTBOX{例題}{#1}}
-\makeatletter
-\newcommand{\EXAMPLEJ}[3][.5]{
+% MARK: User definitions
+\NewDocumentCommand \RefLabelText{m}{\LabelText[type=gray]{参考}{#1}}
+\NewDocumentCommand \ExampleLabelText{m}{\LabelText{例題}{#1}}
+\NewDocumentCommand \ExampleSentence{O{.5} m m}{
     \vspace{#1\Cvs}
     \begin{minipage}{\textwidth}
     \begin{itemize}
-        \item[\ctb{\small 例文}] #2
-        \item[\ctb@transparent{}] \scriptsize #3
+		\LabelItem[type=gray]{例文}{#2}
+		\LabelItem[type=trans]{}{\scriptsize #3}
     \end{itemize}
     \end{minipage}
     \vspace{.5\Cvs}
 }
-\newcommand{\EXAMPLEJITEM}[2]{
+\NewDocumentCommand \ExampleSentenceItem{m m}{
     \begin{itemize}
-        \item[\ctb{\small 例文}] #1
-        \item[\ctb@transparent{}] \scriptsize #2
+		\LabelItem[type=gray]{例文}{#1}
+		\LabelItem[type=trans]{}{\scriptsize #2}
     \end{itemize}
 }
-\makeatother
-\newenvironment{NOTE}[1][]
-    {\begin{CTNOTE}{#1}}
-    {\end{CTNOTE}}
-\newenvironment{RULE}[1][]
-    {\begin{theo}[#1]{原則}}
-    {\end{theo}}
+\NewDocumentEnvironment{Rule}{O{}}
+    {\begin{Theorem}[原則]{#1}}
+    {\end{Theorem}}
 \makeatletter
-\newcommand{\nobreaklist}{\par\nobreak\@afterheading}% chktex 21
-\newcommand{\nobreaklistend}{\vspace{-.5\Cvs}}
+\NewDocumentCommand \nobreaklist{}{\par\nobreak\@afterheading}% chktex 21
+\NewDocumentCommand \nobreaklistend{}{\vspace{-.5\Cvs}}
 \makeatother
 \renewcommand{\labelenumi}{\textcircled{\scriptsize \theenumi}}

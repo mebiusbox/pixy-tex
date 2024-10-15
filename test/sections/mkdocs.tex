@@ -6,28 +6,28 @@
 
 サイトに必要なファイルを生成するにはビルドを行います。ビルドは以下のコマンドを実行します。
 
-\begin{code}
+\begin{Pre}{}
 mkdocs build
-\end{code}
+\end{Pre}
 
-正常に生成されると \HL{site} フォルダに作成されます。インターネット上に公開する場合はこのフォルダ内をアップロードします。
+正常に生成されると \Hl{site} フォルダに作成されます。インターネット上に公開する場合はこのフォルダ内をアップロードします。
 
-ビルドした内容を公開する前に、ローカルで確認したい場合は \EMSUB{serve} \INLINE{serve} \tcbox{serve} コマンドを実行し、サーバーを起動します。
+ビルドした内容を公開する前に、ローカルで確認したい場合は \EmSub{serve} \Inline{serve} \tcbox{serve} コマンドを実行し、サーバーを起動します。
 
 
-\begin{REDBOXT}{Title}
+\begin{Admonition}[type=error]{Title}
     mkdocs serve
-\end{REDBOXT}
+\end{Admonition}
 
-\begin{MATHBOX}
+\begin{RoundBox}
     mkdocs serve
-\end{MATHBOX}
+\end{RoundBox}
 
-\begin{code}
+\begin{Pre}{}
 mkdocs serve
-\end{code}
+\end{Pre}
 
-コマンドの出力に `Serving on http://127.0.0.1:8000` のようにアドレスとポート番号が表示されますので、そのアドレスをブラウザに入力して確認することが出来ます。
+コマンドの出力に `Serving on http://127.0.0.1:8000` のようにアドレスとポート番号が表示されますので、そのアドレスをブラウザに入力して確認できます。
 
 `serve` を実行している間はファイルの追加や変更が検知されて自動的にビルドされます。
 %------------------------------------------------------------

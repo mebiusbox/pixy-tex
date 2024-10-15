@@ -1,8 +1,5 @@
 \documentclass[../main]{subfiles}
 \begin{document}
-\renewcommand{\arraystretch}{1.2}
-\setlength{\arrayrulewidth}{0.3pt}
-\arrayrulecolor{cyan!50}
 \setcounter{section}{0}
 \section{使い方}
 %------------------------------------------------------------
@@ -10,24 +7,24 @@
 
 このテンプレートは\TeX の勉強もかねてゼロから作ったもので，完全に私好みのデザインにしたものです．PDF形式で一般に公開することと，最終的には出版できるレベルぐらいまでにしたいと思いながら作成しています．
 
-\TeX の環境はTeXLive2022とVisual Studio Codeです．(u)p-\LaTeX から lua\LaTeX に移行しました．Visual Studio Code では拡張機能\EMMCBOX{LaTeX Workshop}を使っています．
+\TeX の環境はTeXLive2022とVisual Studio Codeです．(u)p-\LaTeX から lua\LaTeX に移行しました．Visual Studio Code では拡張機能\EmCode{LaTeX Workshop}を使っています．
 
-新規に文書を作成する場合は\EMMCBOX{pixy-tex/pixylua\_***.tex.sample}からコピーします．基本的に以下の構成になります．
+新規に文書を作成する場合は\EmCode{pixy-tex/pixylua\_***.tex.sample}からコピーします．基本的に以下の構成になります．
 
-\begin{pre}
+\begin{Pre}{}
 /main.tex
 /.gitignore
 /.chktexrc
 /sections/
 /images/
-\end{pre}
+\end{Pre}
 
 \subsection{セクション}
 
-\EMMCBOX{sections}フォルダ以下にセクションごとのファイルを作成し，\EMMCBOX{main.tex}に追記します．\EMMCBOX{sections}にあるファイルのテンプレートは次のコードです．
+\EmCode{sections}フォルダ以下にセクションごとのファイルを作成し，\EmCode{main.tex}に追記します．\EmCode{sections}にあるファイルのテンプレートは次のコードです．
 
-\begin{pre}
-../main]{subfiles}
+\begin{Pre}{}
+\documentclass[../main]{subfiles}
 \begin{document}
 \setcounter{section}{0}
 \section{}
@@ -35,19 +32,19 @@
 \subsection{}
 ...
 \end{document}
-\end{pre}
+\end{Pre}
 
-セクションごとに分けて出力して，更新されたものだけ印刷というやり方をしていたため，\EMMCBOX{setcounter}でセクション番号を指定しています．特に必要がなければ削除したほうがよいです．
+セクションごとに分けて出力して，更新されたものだけ印刷というやり方をしていたため，\EmCode{setcounter}でセクション番号を指定しています．とくに必要がなければ削除したほうがよいです．
 
 \subsection{画像}
 
-\EMMCBOX{images}フォルダに入れます．\EMMCBOX{graphicspath}で設定していますので\EMMCBOX{includegraphics}等ではファイル名だけで十分です．
+\EmCode{images}フォルダに入れます．\EmCode{graphicspath}で設定していますので\EmCode{includegraphics}等ではファイル名だけで十分です．
 
 \subsection{レイアウト設定}
 
-\EMMCBOX{main.tex}には，A4とA5の用紙サイズ，10ptと11ptのフォントサイズに合わせた設定が含まれています．まず，ドキュメントクラスを設定します．以下から適切なものを1つ選びます．
+\EmCode{main.tex}には，A4とA5の用紙サイズ，10ptと11ptのフォントサイズに合わせた設定が含まれています．まず，ドキュメントクラスを設定します．以下から適切なものを1つ選びます．
 
-\begin{pre}
+\begin{Pre}{}
 \input{pixy-tex/pixylua_article_a4_10}
 \input{pixy-tex/pixylua_article_a4_10_two}
 \input{pixy-tex/pixylua_article_a4_11}
@@ -58,13 +55,13 @@
 \input{pixy-tex/pixylua_report_a5_11}
 \input{pixy-tex/pixylua_book_a4_10}
 \input{pixy-tex/pixylua_book_a4_11}
-\end{pre}
+\end{Pre}
 
-各ページレイアウトは\EMMCBOX{pixy-tex/pixylua\_style.tex}を取り込むことで定義されます．
+各ページレイアウトは\EmCode{pixy-tex/pixylua\_style.tex}を取り込むことで定義されます．
 
-\begin{pre}
+\begin{Pre}{}
 \input{pixy-tex/pixylua_style}
-\end{pre}
+\end{Pre}
 
 このページレイアウトを調整できるように、いつかの変数で指定できます．
 
@@ -72,207 +69,127 @@
 
 ページスタイルです．
 
-% \begin{table}[H]
-%     \begin{tabular}{ll} \toprule
-%         値 & 説明 \\ \midrule
-%         plain & pagestyle\{plain\}と同じ \\
-%         empty & pagestyle\{empty\}と同じ \\
-%         headings & pagestyle\{headings\}と同じ \\
-%         myheadings & pagestyle\{myheadings\}と同じ \\
-%         pixypagestyle1 & ヘッダの左側に章，右側に節，フッタの中央にページ番号 \\
-%         pixypagestyle2 & ヘッダの右側に節，フッタの中央にページ番号 \\
-%         pixypagestyle3 & ヘッダの左側に章，右側に節とページ番号 \\
-%         pixypagestyle4 & ヘッダの右側に節とページ番号 \\
-%         pixypagestyle5 & 偶数ページのヘッダの左側にページ番号，右側に節，奇数ページの左側に小節，右側にページ番号 \\
-%         pixypagestyle6 & 偶数ページのヘッダの左側にページ番号と章，奇数ページの右側に節とページ番号 \\ \bottomrule
-%     \end{tabular}
-% \end{table}
-
 \begin{table}[H]
-    \begin{tabular}{|>{\columncolor{\spColumnColor}}l|l|} \hline
-        plain & pagestyle\{plain\}と同じ \\ \hline
-        empty & pagestyle\{empty\}と同じ \\ \hline
-        headings & pagestyle\{headings\}と同じ \\ \hline
-        myheadings & pagestyle\{myheadings\}と同じ \\ \hline
-        pixypagestyle1 & ヘッダの左側に章，右側に節，フッタの中央にページ番号 \\ \hline
-        pixypagestyle2 & ヘッダの右側に節，フッタの中央にページ番号 \\ \hline
-        pixypagestyle3 & ヘッダの左側に章，右側に節とページ番号 \\ \hline
-        pixypagestyle4 & ヘッダの右側に節とページ番号 \\ \hline
-        pixypagestyle5 & 偶数ページのヘッダの左側にページ番号，右側に節，奇数ページの左側に小節，右側にページ番号 \\ \hline
-        pixypagestyle6 & 偶数ページのヘッダの左側にページ番号と章，奇数ページの右側に節とページ番号 \\ \hline
-    \end{tabular}
+	\begin{Table}[even=yes]{ll}
+        plain & pagestyle\{plain\}と同じ \\
+        empty & pagestyle\{empty\}と同じ \\
+        headings & pagestyle\{headings\}と同じ \\
+        myheadings & pagestyle\{myheadings\}と同じ \\
+        pixypagestyle1 & ヘッダの左側に章，右側に節，フッタの中央にページ番号 \\
+        pixypagestyle2 & ヘッダの右側に節，フッタの中央にページ番号 \\
+        pixypagestyle3 & ヘッダの左側に章，右側に節とページ番号 \\
+        pixypagestyle4 & ヘッダの右側に節とページ番号 \\
+        pixypagestyle5 & 偶数ページのヘッダの左側にページ番号，右側に節，奇数ページの左側に小節，右側にページ番号 \\
+        pixypagestyle6 & 偶数ページのヘッダの左側にページ番号と章，奇数ページの右側に節とページ番号 \\
+    \end{Table}
 \end{table}
 
 \subsubsection{pixyheadrule}
 
 ヘッダー部の下線の太さを調整できます．
 
-\begin{pre}
+\begin{Pre}{}
 \def\pixyheadrule{.4pt}
-\end{pre}
+\end{Pre}
 
 \subsubsection{pixysectionstyle}
 
 セクションの装飾を指定します．
 
-% \begin{table}[H]
-%     \begin{tabular}{ll} \toprule
-%         値 & 説明 \\ \midrule
-%         default & 標準のまま \\
-%         block & 章に下線、節は黒背景の白文字で囲まれた矩形 \\ \bottomrule
-%     \end{tabular}
-% \end{table}
-
 \begin{table}[H]
-    \begin{tabular}{|>{\columncolor{\spColumnColor}}l|l|} \hline
-        default & 標準のまま \\ \hline
-        block & 章に下線、節は黒背景の白文字で囲まれた矩形 \\ \hline
-    \end{tabular}
+	\begin{Table}{ll}
+        default & 標準のまま \\
+        block & 章に下線、節は黒背景の白文字で囲まれた矩形 \\
+    \end{Table}
 \end{table}
 
 \subsubsection{pixybooktype}
 
 奇数･偶数ページの余白タイプを調整します．bookタイプのときのみ有効です．
 
-% \begin{table}[H]
-%     \begin{tabular}{ll} \toprule
-%         値 & 説明 \\ \midrule
-%         single & 単1ページ \\
-%         double & 奇数･偶数ページに余白を入れる \\ \bottomrule
-%     \end{tabular}
-% \end{table}
-
 \begin{table}[H]
-    \begin{tabular}{|>{\columncolor{\spColumnColor}}l|l|} \hline
-        single & 単1ページ \\ \hline
-        double & 奇数･偶数ページに余白を入れる \\ \hline
-    \end{tabular}
+    \begin{Table}{ll}
+        single & 単1ページ \\
+        double & 奇数･偶数ページに余白を入れる \\
+    \end{Table}
 \end{table}
 
 \subsubsection{pixymainfont}
 
 英文フォントを指定します．
 
-% \begin{table}[H]
-%     \begin{tabular}{ll} \toprule
-%         値 & 説明 \\ \midrule
-%         default & 標準のまま (Noto) \\
-%         Merriweather & Merriweather + Merriweather Sans \\
-%         Libertine & Libertine + Biolinum \\ \bottomrule
-%     \end{tabular}
-% \end{table}
-
 \begin{table}[H]
-    \begin{tabular}{|>{\columncolor{\spColumnColor}}l|l|} \hline
-        default & 標準のまま (Noto) \\ \hline
-        Merriweather & Merriweather + Merriweather Sans \\ \hline
-        Libertine & Libertine + Biolinum \\ \hline
-    \end{tabular}
+    \begin{Table}{ll}
+        default & 標準のまま (Noto) \\
+        Merriweather & Merriweather + Merriweather Sans \\
+        Libertine & Libertine + Biolinum \\
+    \end{Table}
 \end{table}
 
 \subsubsection{pixyjafont}
 
 和文フォントを指定します．
 
-% \begin{table}[H]
-%     \begin{tabular}{ll} \toprule
-%         値 & 説明 \\ \midrule
-%         default & 標準のまま (Noto) \\
-%         BIZ & BIZ UDP明朝 (中字) \\
-%         DigiKyouka & UD デジタル 教科書 NK-R \\
-%         Yu & 游明朝 \\ \bottomrule
-%     \end{tabular}
-% \end{table}
-
 \begin{table}[H]
-    \begin{tabular}{|>{\columncolor{\spColumnColor}}l|l|} \hline
-        default & 標準のまま (Noto) \\ \hline
-        BIZ & BIZ UDP明朝 (中字) \\ \hline
-        DigiKyouka & UD デジタル 教科書 NK-R \\ \hline
-        Yu & 游明朝 \\ \hline
-    \end{tabular}
+    \begin{Table}{ll}
+        default & 標準のまま (Noto) \\
+        BIZ & BIZ UDP明朝 (中字) \\
+        DigiKyouka & UD デジタル 教科書 NK-R \\
+        Yu & 游明朝 \\
+    \end{Table}
 \end{table}
 
 \subsubsection{pixymathfont}
 
 数式用フォントを指定します．
 
-% \begin{table}[H]
-%     \begin{tabular}{ll} \toprule
-%         値 & 説明 \\ \midrule
-%         default & TeX Gyre Pagella \\
-%         STIX & STIX2 \\
-%         XITS & XITS \\ \bottomrule
-%     \end{tabular}
-% \end{table}
-
 \begin{table}[H]
-    \begin{tabular}{|>{\columncolor{\spColumnColor}}l|l|} \hline
-        default & TeX Gyre Pagella \\ \hline
-        STIX & STIX2 \\ \hline
-        XITS & XITS \\ \hline
-    \end{tabular}
+    \begin{Table}{ll}
+        default & TeX Gyre Pagella \\
+        STIX & STIX2 \\
+        XITS & XITS \\
+    \end{Table}
 \end{table}
 
 \subsubsection{pixycodefont}
 
 コード用フォントを指定します．
 
-% \begin{table}[H]
-%     \begin{tabular}{ll} \toprule
-%         値 & 説明 \\ \midrule
-%         default & 標準のまま \\
-%         Iosevka & Ioseva Fixed Medium \\
-%         IosevkaSS16 & Iosevka Fixed SS16 Medium \\
-%         Sarasa & Sarasa Fixed J Semibold \\
-%         Fira & Fira Mono Medium \\
-%         Inconsolata & Inconsolata Condensed Medium \\ \bottomrule
-%     \end{tabular}
-% \end{table}
-
 \begin{table}[H]
-    \begin{tabular}{|>{\columncolor{\spColumnColor}}l|l|} \hline
-        default & 標準のまま \\ \hline
-        Iosevka & Ioseva Fixed Medium \\ \hline
-        IosevkaSS16 & Iosevka Fixed SS16 Medium \\ \hline
-        Sarasa & Sarasa Fixed J Semibold \\ \hline
-        Fira & Fira Mono Medium \\ \hline
-        Inconsolata & Inconsolata Condensed Medium \\ \hline
-    \end{tabular}
+    \begin{Table}{ll}
+        default & 標準のまま \\
+        Iosevka & Ioseva Fixed Medium \\
+        IosevkaSS16 & Iosevka Fixed SS16 Medium \\
+        Sarasa & Sarasa Fixed J Semibold \\
+        Fira & Fira Mono Medium \\
+        Inconsolata & Inconsolata Condensed Medium \\
+    \end{Table}
 \end{table}
 
 \subsubsection{pixynonbrefont}
 
 ノンブレ(ページ番号)用フォントを指定します．
 
-% \begin{table}[H]
-%     \begin{tabular}{ll} \toprule
-%         値 & 説明 \\ \midrule
-%         default & 標準のまま \\
-%         genei & 源瑛ノンブレ \\ \bottomrule
-%     \end{tabular}
-% \end{table}
-
 \begin{table}[H]
-    \begin{tabular}{|>{\columncolor{\spColumnColor}}l|l|} \hline
-        default & 標準のまま \\ \hline
-        genei & 源瑛ノンブレ \\ \hline
-    \end{tabular}
+    \begin{Table}{ll}
+        default & 標準のまま \\
+        genei & 源瑛ノンブレ \\
+    \end{Table}
 \end{table}
 
 \subsection{スタイル以外のコマンド}
 
-スタイル以外のコマンドは\EMMCBOX{pixy-tex/pixylua.tex}に含まれています．
+スタイル以外のコマンドは\EmCode{pixy-tex/pixylua.tex}に含まれています．
 
-\begin{pre}
+\begin{Pre}{}
     \input{pixy-tex/pixylua}
-\end{pre}
+\end{Pre}
 
 \subsection{この文書のレイアウト構成}
 
 この文書では、次のようなレイアウトになっています
 
-\begin{pre}
+\begin{Pre}{}
 \input{pixy-tex/pixylua_report_a4_10}
 \def\pixycodefont{IosevkaSS16}
 \def\pixymathfont{STIX}
@@ -280,7 +197,7 @@
 \def\pixyjafont{DigiKyouka}
 \input{pixy-tex/pixylua_style}
 \input{pixy-tex/pixylua}
-\end{pre}
+\end{Pre}
 
 
 \subsection{使用パッケージ}
@@ -288,11 +205,11 @@
 \subsubsection{luatexja-preset}
 
 フォントのプリセット．pixy-texでは「Noto Serif CJK, Noto Sans CJK」をデフォルトに設定．lua\LaTeX\ の本来の標準フォントは「原の味フォント」(haranoaji)．
-オプションの\EMMCBOX{deluxe}は明朝体3ウェイト，ゴシック体3ウェイト，丸ゴシック体が使用可能になります．また，\EMMCBOX{no-math}は数式フォントに影響しません．
+オプションの\EmCode{deluxe}は明朝体3ウェイト，ゴシック体3ウェイト，丸ゴシック体が使用可能になります．また，\EmCode{no-math}は数式フォントに影響しません．
 
-\begin{pre}
+\begin{Pre}{}
 \usepackage[noto-otf,no-math,deluxe]{luatexja-preset}
-\end{pre}
+\end{Pre}
 
 \subsubsection{ifthen}
 
@@ -305,11 +222,11 @@
 \subsubsection{amsmath, amssymb}
 
 アメリカ数学会 (American Mathematical Society) によって開発された拡張パッケージです．数式の記述が容易になり，数式出力の品質が向上します．
-\EMMCBOX{amssymb}は使用できる数学記号が増えます．
+\EmCode{amssymb}は使用できる数学記号が増えます．
 
 \subsubsection{mathtools}
 
-amsmathの拡張パッケージ\footnote{\url{https://qiita.com/Yarakashi_Kikohshi/items/6362bf26828bfcfdb289}}．
+amsmathの拡張パッケージ\footnote{\url{https://qiita.com/Yarakashi_Kikohshi/items/6362bf26828bfcfdb289}}．数式を文書中で参照したものだけ、式番号を割り当ててくれる．
 
 \subsubsection{polynom}
 
@@ -317,7 +234,7 @@ amsmathの拡張パッケージ\footnote{\url{https://qiita.com/Yarakashi_Kikohs
 
 \subsubsection{unicode-math}
 
-Lua\LaTeX\ で，Unicodeの数学記号を利用して数式を組むパッケージ．たとえば，数式の \(x\)は，このパッケージを使わない場合は\EMMCBOX{U+0078}の文字，このパッケージを使った場合は\EMMCBOX{U+1D465}の文字が使われる。\EMMCBOX{U+0078}はテキスト文字である\(x\)のコード，\EMMCBOX{U+1D465}は数式文字（斜体）である\(x\)のコードになる。
+Lua\LaTeX\ で，Unicodeの数学記号を利用して数式を組むパッケージ．たとえば，数式の \(x\)は，このパッケージを使わない場合は\EmCode{U+0078}の文字，このパッケージを使った場合は\EmCode{U+1D465}の文字が使われる。\EmCode{U+0078}はテキスト文字である\(x\)のコード，\EmCode{U+1D465}は数式文字（斜体）である\(x\)のコードになる。
 
 \subsubsection{titlesec}
 
@@ -341,11 +258,11 @@ Lua\LaTeX\ で，Unicodeの数学記号を利用して数式を組むパッケ�
 
 \subsubsection{color}
 
-色を指定できるcolorやtextcolorコマンド．指定できる文字の色は「red」「blue」「green」「yellow」「magenta」「white」「black」の7色です．また，色を追加する\EMMCBOX{definecolor}コマンドも使えます．
+色を指定できるcolorやtextcolorコマンド．指定できる文字の色は「red」「blue」「green」「yellow」「magenta」「white」「black」の7色です．また，色を追加する\EmCode{definecolor}コマンドも使えます．
 
 \subsubsection{xcolor}
 
-colorパッケージを拡張します．オプション\EMMCBOX{x11names}を有効にしているので，指定できる色が追加されます\footnote{\url{https://www.sciencetronics.com/greenphotons/wp-content/uploads/2016/10/xcolor_names.pdf}}．
+colorパッケージを拡張します．オプション\EmCode{x11names}を有効にしているので，指定できる色が追加されます\footnote{\url{https://www.sciencetronics.com/greenphotons/wp-content/uploads/2016/10/xcolor_names.pdf}}．
 
 \subsubsection{multicol}
 
@@ -359,23 +276,19 @@ colorパッケージを拡張します．オプション\EMMCBOX{x11names}を有
 
 tikzの拡張パッケージ．
 
-\subsubsection{booktabs}
+\subsubsection{tabularray}
 
-表に横罫線を引きます．
-
-\subsubsection{colortbl}
-
-表の行や列に色をつける拡張パッケージ．
+表作成の拡張パッケージ．booktabsやcolortblなどをまとめて使いやすくしたもの．
 
 \subsubsection{here}
 
 図を好きな位置に強制的に配置できる拡張パッケージ．
 
-\begin{pre}
+\begin{Pre}{}
 \begin{figure}[H]
 ...
 \end{figure}
-\end{pre}
+\end{Pre}
 
 \subsubsection{pgtplots}
 
@@ -385,6 +298,11 @@ tikzの拡張パッケージ．
 
 図と文章を並列に表示させる拡張パッケージ．
 
+\begin{Admonition}{\text{wrapfig2, wrapstuff}}
+wrapfigパッケージは更新されておらず、後継のwrapfig2パッケージに引き継がれている．
+しかし、wrapfig2でもリスト環境や定理環境に利用できないので、その場合、wrapstuffパッケージが候補になる．
+\end{Admonition}
+
 \subsubsection{caption}
 
 キャプションの表示を調整する拡張パッケージ．
@@ -392,14 +310,6 @@ tikzの拡張パッケージ．
 \subsubsection{subcaption}
 
 複数の図がある場合に，それぞれのキャプションを追加する拡張パッケージ．
-
-\subsubsection{framed}
-
-途中で改ページを可能にするフレームを作成する拡張パッケージ．
-
-\subsubsection{mdframed}
-
-framedの拡張パッケージ．細かいカスタマイズが可能です．
 
 \subsubsection{tcolorbox}
 
@@ -418,7 +328,6 @@ framedの拡張パッケージ．細かいカスタマイズが可能です．
 入力したとおりの文字を出力する拡張パッケージ．
 
 %------------------------------------------------------------
-\renewcommand{\arraystretch}{1}
-\setlength{\arrayrulewidth}{1pt}
-\arrayrulecolor{black}
 \end{document}
+
+

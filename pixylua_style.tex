@@ -70,8 +70,11 @@
 \ifthenelse{\isundefined{\pixynombrefont}}{
     \def\pixynombrefont{default}
 }{}
+\ifthenelse{\isundefined{\pixymathlength}}{
+    \def\pixymathlength{default}
+}{}
 %------------------------------------------------------------
-% Layout
+% MARK: Layout
 %
 % \usepackage{geometry}
 % \geometry{left=20mm,right=10mm,top=10mm,bottom=15mm}
@@ -267,12 +270,15 @@
         Kerning=On,
     ]{BIZ UDPMincho Medium}
 }{}
+% OpenType feature 'Kerning=On' (kern) not available
+% for font 'UDDIgiKyokashoNK-R' with script 'Default' and language 'Default'
 \ifthenelse{\equal{\pixyjafont}{DigiKyouka}}{
     \setmainjfont[
         Script=Default,
         YokoFeatures={JFM=prop},
         CharacterWidth=Proportional,
-        Kerning=On,
+        % Kerning=On,
+		BoldFont=UD Digi Kyokasho NK-B
     ]{UD Digi Kyokasho NK-R}
 }{}
 \ifthenelse{\equal{\pixyjafont}{Yu}}{
@@ -287,7 +293,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{mathtools}
 \usepackage{polynom}
-\usepackage{unicode-math}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 \ifthenelse{\equal{\pixymathfont}{default}}{
     \setmathfont{TeXGyrePagella-Math}
 }{}
@@ -301,9 +307,7 @@
     \setmathfont{XITS-Math}
 }{}
 %--------------------------------------------------------
-%--------------------------------------------------------
-% Section, Subsection
-%
+% MARK: Section, Subsection
 \usepackage[explicit]{titlesec}
 \usepackage{titleps}
 \ifthenelse{\equal{\pixysectionstyle}{block}}{
@@ -311,23 +315,20 @@
 % \titleformat*{\section}{\Large\bfseries}
 % \titleformat*{\subsection}{\normalize\bfseries}
 %------------------------------
+%\titleformat{command}[shape]{format}{label}{sep}{before-code}[after-code]
 \titleformat{\section}[block]{}{}{0pt}{%
     \normalfont\Large\bfseries \thesection.\hspace{0.5\zw} #1%
 }[\normalsize\vspace*{-.15\baselineskip}\titlerule]
 \titleformat{\subsection}%
     {\large\bfseries}%
     {\colorbox{black}{\color{white}\thesubsection}}%
-    {0.1cm}%
+    {0.2cm}%
     {\gdef\currentsectiontitle{#1}#1}
 \titleformat{\subsubsection}%
-    {}%
-    {\rlap{\color{MSLightBlue}\rule[-6pt]{\textwidth}{0.8pt}}\colorbox{MSLightBlue}{%
-        \raisebox{0pt}[10pt][3pt]{\makebox[30pt]{%
-        \normalfont\normalsize\bfseries\color{white}{\thesubsubsection}%
-        }}}%
-    }
-    {0pt}%
-    {\normalfont\normalsize\bfseries\color{MSLightBlue}\hspace{1\zw}#1}%
+    {\normalsize\bfseries}%
+    {\colorbox{MSLightBlue}{\color{white}\thesubsubsection}}
+    {0.2cm}%
+    {\color{MSLightBlue}#1}%
     [\normalsize\vspace*{.3\baselineskip}]
 \setcounter{secnumdepth}{3}
 }{}
@@ -370,3 +371,19 @@
 \ifthenelse{\equal{\pixypagestyle}{default}}{}{
     \pagestyle{\pixypagestyle}
 }
+%--------------------------------------------------------
+% MARK: Length
+\ifthenelse{\equal{\pixymathlength}{default}}{
+	\AtBeginDocument{
+		\setlength\floatsep{1\zw} % 図と図の間のスペース
+		\setlength\textfloatsep{1\zw} % 本文と図の間のスペース
+		\setlength\intextsep{0.5\zw} % 本文中の図のスペース
+		\setlength\abovecaptionskip{0truemm} % 図とキャプションの間のスペース
+		\setlength{\abovedisplayskip}{-1\zw} % 数式の上部余白
+		\setlength{\belowdisplayskip}{1\zw} % 数式の下部余白
+		\setlength{\abovedisplayshortskip}{-1\zw} % 数式の上部余白
+		\setlength{\belowdisplayshortskip}{1\zw} % 数式の下部余白
+		\allowdisplaybreaks % 途中で改ページ
+		\jot=5pt % 数式の空きの変更
+	}
+}{}

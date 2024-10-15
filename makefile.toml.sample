@@ -1,0 +1,70 @@
+[config]
+skip_core_tasks = true
+
+[env]
+FILENAME = "main"
+PUBLISHNAE = "output"
+
+[tasks.latex]
+command = "lualatex"
+args = [
+  "--cmdx",
+  "-file-line-error",
+  "-synctex=1",
+  "-interaction=nonstopmode",
+  "-halt-on-error",
+  "--fmt=lualatex.fmt",
+  "${FILENAME}.tex"
+]
+
+[tasks.pdf-crop]
+command = "pdfcrop"
+args = [
+  "--margins",
+  "10 5",
+  "${FILENAME}.pdf",
+  "${FILENAME}.pdf"
+]
+
+[tasks.pdf-png]
+command = "pdftocairo"
+args = [
+  "-png",
+  "-r", "300",
+  "-singlefile",
+  "${FILENAME}.pdf"
+]
+
+[tasks.clean]
+command = "latexmk"
+args = [
+  "-c",
+  "${FILENAME}.tex"
+]
+
+[tasks.clear]
+command = "latexmk"
+args = [
+  "-C",
+  "${FILENAME}.tex"
+]
+
+[tasks.default]
+alias = "build"
+
+[tasks.build]
+run_task = { name = ["make", "rename"] }
+
+[tasks.make]
+command = "latexmk"
+args = [
+  "${FILENAME}.tex"
+]
+
+[tasks.rename]
+command = "pwsh"
+args = [
+    "-nop",
+    "-C",
+    "Move-Item -LP '${FILENAME}.pdf' -Destination '${PUBLISHNAME}.pdf' -Force"
+]
