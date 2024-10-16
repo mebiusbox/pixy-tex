@@ -754,7 +754,11 @@
 \makeatother
 \renewcommand{\labelenumi}{\textcircled{\scriptsize \theenumi}}
 \renewcommand{\theequation}{\thesection.\arabic{equation}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
 \numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
 \crefname{equation}{式}{式}
 \crefname{figure}{図}{図}
 \crefname{table}{表}{表}
