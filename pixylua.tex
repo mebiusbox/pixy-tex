@@ -11,6 +11,8 @@
     \def\pixycodesize{\small}
 }{}
 \usepackage[bookmarks=true,bookmarksnumbered=true,colorlinks=true,linkcolor={blue},urlcolor={blue},citecolor=magenta,hyperfootnotes=false,pdfborder={0,0,0},pdfpagemode=UseNone,unicode=true]{hyperref}
+\usepackage{cleveref}
+\usepackage{autonum}
 \usepackage{bm}
 \usepackage{stmaryrd}
 %------------------------------------------------------------
@@ -720,8 +722,8 @@
 }
 %------------------------------------------------------------
 \renewcommand{\contentsname}{目次}
-% \renewcommand{\figurename}{図}
-\renewcommand{\figurename}{Fig.}
+\renewcommand{\figurename}{図}
+% \renewcommand{\figurename}{Fig.}
 \renewcommand{\tablename}{表}
 %------------------------------------------------------------
 % MARK: User definitions
@@ -751,3 +753,9 @@
 \NewDocumentCommand \nobreaklistend{}{\vspace{-.5\Cvs}}
 \makeatother
 \renewcommand{\labelenumi}{\textcircled{\scriptsize \theenumi}}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\numberwithin{equation}{section}
+\crefname{equation}{式}{式}
+\crefname{figure}{図}{図}
+\crefname{table}{表}{表}
+% \crefname{algorithm}{Algorithm}{Algorithm}
