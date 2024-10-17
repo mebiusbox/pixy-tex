@@ -8,19 +8,19 @@
 \begin{Note}{平方根の公式}
     $a>0, b>0$のとき，
 
-    \begin{gather*}
+    \begin{gather}
         (\sqrt{a})^2 = a, \qquad \sqrt{a^2} = a, \qquad \sqrt{a^2b} = a\sqrt{b} \\
         \sqrt{a}\sqrt{b} = \sqrt{ab}, \qquad \frac{\sqrt{a}}{\sqrt{b}} = \sqrt{\frac{a}{b}} \\
-    \end{gather*}
+    \end{gather}
 \end{Note}
 \begin{Code}{language=tex}
 \begin{Note}{平方根の公式}
     $a>0, b>0$のとき，
 
-    \begin{gather*}
+    \begin{gather}
         (\sqrt{a})^2 = a, \qquad \sqrt{a^2} = a, \qquad \sqrt{a^2b} = a\sqrt{b} \\
         \sqrt{a}\sqrt{b} = \sqrt{ab}, \qquad \frac{\sqrt{a}}{\sqrt{b}} = \sqrt{\frac{a}{b}} \\
-    \end{gather*}
+    \end{gather}
 \end{Note}
 \end{Code}
 
@@ -44,24 +44,24 @@
 
 	たとえば$x$に$-2$を代入すると
 
-    \begin{align*}
+    \begin{align}
         f(-2) &= 2\cdot (-2)^3 - 3(-2)^2 - 11\cdot (-2)+6 \\
               &= -16-12+22+6 = 0
-    \end{align*}
+    \end{align}
 
     よって，$f(x)$は$x+2$で割り切れる．
 
-    \begin{equation*}
+    \begin{equation}
         \polylongdiv{2x^3-3x^2-11x+6}{x+2}
-    \end{equation*}
+    \end{equation}
 
-    \begin{equation*}
+    \begin{equation}
         \therefore f(x) = (x+2)(\underline{2x^2-7x+3})
-    \end{equation*}
+    \end{equation}
 
-    \begin{equation*}
+    \begin{equation}
         2x^3-3x^2-11x+6 = (x+2)(2x-1)(x-3)
-    \end{equation*}
+    \end{equation}
 
 \end{BracketBox}
 \begin{Code}{language=tex}
@@ -71,24 +71,24 @@
 
 	たとえば$x$に$-2$を代入すると
 
-    \begin{align*}
+    \begin{align}
         f(-2) &= 2\cdot (-2)^3 - 3(-2)^2 - 11\cdot (-2)+6 \\
                 &= -16-12+22+6 = 0
-    \end{align*}
+    \end{align}
 
     よって，$f(x)$は$x+2$で割り切れる．
 
-    \begin{equation*}
+    \begin{equation}
         \polylongdiv{2x^3-3x^2-11x+6}{x+2}
-    \end{equation*}
+    \end{equation}
 
-    \begin{equation*}
+    \begin{equation}
         \therefore f(x) = (x+2)(\underline{2x^2-7x+3})
-    \end{equation*}
+    \end{equation}
 
-    \begin{equation*}
+    \begin{equation}
         2x^3-3x^2-11x+6 = (x+2)(2x-1)(x-3)
-    \end{equation*}
+    \end{equation}
 
 \end{BracketBox}
 \end{Code}
@@ -104,7 +104,7 @@ i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}
 
 \subsection{ExprBoxed}
 
-\begin{align*}
+\begin{align}
     \EmLight{\{f(x)g(x)\}'} &= \lim_{h\to 0}\frac{F(x+h)-F(x)}{h} \\
                   &= \lim_{h\to 0}\frac{f(x+h)g(x+h)-f(x)g(x)}{h} \\
                   & \text{\scriptsize $f(x)g(x+h)$を引いて足す} \\
@@ -116,8 +116,8 @@ i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}
                     \ExprBoxed{\frac{g(x+h)-g(x)}{h}}{$=g'(x)$}
                     \right\} \\
                   &= \EmLight{f'(x)g(x) + f(x)g'(x)}
-\end{align*}
-\begin{align*}
+\end{align}
+\begin{align}
     \EmLight{\left\{\frac{f(x)}{g(x)}\right\}'} &=
         \lim_{h\to 0}\frac{F(x+h)-F(x)}{h} \\
         &= \lim_{h\to 0}\frac{\frac{f(x+h)}{g(x+h)}-\frac{f(x)}{g(x)}}{h} \\
@@ -133,9 +133,9 @@ i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}
             \ExprBoxed{\frac{g(x+h)-g(x)}{h}}{$=g'(x)$}
         \right\}} \\
         &= \EmLight{\frac{f'(x)g(x)-f(x)g'(x)}{\{g(x)\}^2}}
-\end{align*}
+\end{align}
 \begin{Code}{language=tex}
-\begin{align*}
+\begin{align}
     \EmLight{\{f(x)g(x)\}'} &= \lim_{h\to 0}\frac{F(x+h)-F(x)}{h} \\
                   &= \lim_{h\to 0}\frac{f(x+h)g(x+h)-f(x)g(x)}{h} \\
                   & \text{\scriptsize $f(x)g(x+h)$を引いて足す} \\
@@ -147,8 +147,8 @@ i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}
                     \ExprBoxed{\frac{g(x+h)-g(x)}{h}}{$=g'(x)$}
                     \right\} \\
                   &= \EmLight{f'(x)g(x) + f(x)g'(x)}
-\end{align*}
-\begin{align*}
+\end{align}
+\begin{align}
     \EmLight{\left\{\frac{f(x)}{g(x)}\right\}'} &=
         \lim_{h\to 0}\frac{F(x+h)-F(x)}{h} \\
         &= \lim_{h\to 0}\frac{\frac{f(x+h)}{g(x+h)}-\frac{f(x)}{g(x)}}{h} \\
@@ -164,13 +164,13 @@ i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}
             \ExprBoxed{\frac{g(x+h)-g(x)}{h}}{$=g'(x)$}
         \right\}} \\
         &= \EmLight{\frac{f'(x)g(x)-f(x)g'(x)}{\{g(x)\}^2}}
-\end{align*}
+\end{align}
 \end{Code}
 
 \HRuleLeader
 \subsection{ExprNote}
 
-\begin{align*}
+\begin{align}
     \EmLight{(\sin x)'} &= \lim_{h\to 0}\frac{\sin(x+h)-\sin x}{h}
     \qquad \ExprNote{f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}} \\
     &= \lim_{h\to 0}\frac{2\cos\left(x+\frac{h}{2}\right)\cdot\sin\frac{h}{2}}{h}
@@ -193,9 +193,9 @@ i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}
     } \\
     &= \frac{\cos^2 x + \sin^2 x}{\cos^2 x} \\
     &= \EmLight{\frac{1}{\cos^2 x}}
-\end{align*}
+\end{align}
 \begin{Code}{language=tex}
-    \begin{align*}
+    \begin{align}
         \EmLight{(\sin x)'} &= \lim_{h\to 0}\frac{\sin(x+h)-\sin x}{h}
         \qquad \ExprNote{f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}} \\
         &= \lim_{h\to 0}\frac{2\cos\left(x+\frac{h}{2}\right)\cdot\sin\frac{h}{2}}{h}
@@ -218,7 +218,7 @@ i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}
         } \\
         &= \frac{\cos^2 x + \sin^2 x}{\cos^2 x} \\
         &= \EmLight{\frac{1}{\cos^2 x}}
-    \end{align*}
+    \end{align}
 \end{Code}
 
 \subsection{PMat, PVec}
@@ -251,7 +251,7 @@ i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}
 
 ここで係数行列の各行を$r_1 = \PVecs{a&b}$, $r_2 = \PVecs{c&d}$と表します．右側に基本変形の内容を記載し，左側は変形後を表しています．
 
-\begin{align*}
+\begin{align}
     \PMat{ac&bc&\vdots&cp\\ac&ad&\vdots&aq} &
     \quad \begin{matrix}
         r_1\times c\\r_2\times a
@@ -279,11 +279,11 @@ i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}
     \quad \begin{matrix}
         r_2\div \frac{bc}{ac}
     \end{matrix}
-\end{align*}
+\end{align}
 \begin{Code}{language=tex}
 ここで係数行列の各行を$r_1 = \PVecs{a&b}$, $r_2 = \PVecs{c&d}$と表します．右側に基本変形の内容を記載し，左側は変形後を表しています．
 
-\begin{align*}
+\begin{align}
     \PMat{ac&bc&\vdots&cp\\ac&ad&\vdots&aq} &
     \quad \begin{matrix}
         r_1\times c\\r_2\times a
@@ -311,7 +311,7 @@ i \ln i = i\cdot \boxed{i\frac{\pi}{2}} &= i^2 \cdot \frac{\pi}{2} = -\frac{\pi}
     \quad \begin{matrix}
         r_2\div \frac{bc}{ac}
     \end{matrix}
-\end{align*}
+\end{align}
 \end{Code}
 
 \subsection{DMat}
