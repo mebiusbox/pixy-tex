@@ -49,6 +49,24 @@ args = [
   "${FILENAME}.tex"
 ]
 
+[tasks.clean-sections]
+cwd = "${CARGO_MAKE_CURRENT_TASK_INITIAL_MAKEFILE_DIRECTORY}/sections"
+command = "pwsh"
+args = [
+  "-nop",
+  "-C",
+  "Get-ChildItem -Filter '*.tex' | ForEach-Object { latexmk -c $_ }"
+]
+
+[tasks.clear-sections]
+cwd = "${CARGO_MAKE_CURRENT_TASK_INITIAL_MAKEFILE_DIRECTORY}/sections"
+command = "pwsh"
+args = [
+  "-nop",
+  "-C",
+  "Get-ChildItem sections -Filter '*.tex' | ForEach-Object { latexmk -C $_ }"
+]
+
 [tasks.default]
 alias = "build"
 

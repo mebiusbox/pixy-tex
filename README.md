@@ -121,6 +121,15 @@ docs で公開している PDF を生成する TeX 環境．
 \end{Memo}
 ```
 
+### ExampleSentence
+
+```latex
+\begin{ExampleSentence}[
+  top=<Cvs>,
+  bottom=<Cvs>
+]{Sentence1}{Sentence2}
+```
+
 ### Color Theme
 
 | Name                | RGB           |

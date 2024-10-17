@@ -20,13 +20,13 @@
 % #1: 点同士の間隔
 \makeatletter
 \NewDocumentCommand \pixy@hruledots{O{.25\zw}}{%
-	\leavevmode\cleaders\hb@xt@#1{\hss\(\cdot\m@th\)\hss}\hfill\kern\z@\ignorespaces
+    \leavevmode\cleaders\hb@xt@#1{\hss\(\cdot\m@th\)\hss}\hfill\kern\z@\ignorespaces
 }
 \NewDocumentCommand \HRuleDots{m}{%
-	\noindent\pixy@hruledots\ #1 \pixy@hruledots\par%
+    \noindent\pixy@hruledots\ #1 \pixy@hruledots\par%
 }
 \NewDocumentCommand \HRuleLeader{O{0pt}}{%
-	\noindent\hspace{#1}\cleaders\hbox{…………}\hfill \hspace{#1}\par%
+    \noindent\hspace{#1}\cleaders\hbox{…………}\hfill \hspace{#1}\par%
 }
 \makeatother
 \def\HRuleDash{\cleaders\hbox\ to 2em{-}\hfill}
@@ -109,45 +109,45 @@
 % Common Table
 \makeatletter
 \pgfkeys{%
-	/pixy/table/.cd,
-	rowhdr/.store in=\pixy@table@rowhdr,
-	rowhdr/.default=yes,
-	rowhdr/.is choice,
-	rowhdr/no/.style={rowbg=white,rowfg=black},
-	rowhdr/yes/.style={rowbg=azure3,rowfg=white},
-	rowbg/.store in=\pixy@table@rowbg,
-	rowfg/.store in=\pixy@table@rowfg,
-	colhdr/.store in=\pixy@table@colhdr,
-	colhdr/.default=yes,
-	colhdr/.is choice,
-	colhdr/no/.style={colbg=white,colfg=black,col=no},
-	colhdr/yes/.style={colbg=azure8,colfg=black,col=yes},
-	colbg/.store in=\pixy@table@colbg,
-	colfg/.store in=\pixy@table@colfg,
-	col/.store in=\pixy@table@col,
-	even/.store in=\pixy@table@even,
-	even/.default=yes,
-	even/.is choice,
-	even/no/.style={evenbg=white},
-	even/yes/.style={evenbg=azure9},
-	evenbg/.store in=\pixy@table@evenbg
+    /pixy/table/.cd,
+    rowhdr/.store in=\pixy@table@rowhdr,
+    rowhdr/.default=yes,
+    rowhdr/.is choice,
+    rowhdr/no/.style={rowbg=white,rowfg=black},
+    rowhdr/yes/.style={rowbg=azure3,rowfg=white},
+    rowbg/.store in=\pixy@table@rowbg,
+    rowfg/.store in=\pixy@table@rowfg,
+    colhdr/.store in=\pixy@table@colhdr,
+    colhdr/.default=yes,
+    colhdr/.is choice,
+    colhdr/no/.style={colbg=white,colfg=black,col=no},
+    colhdr/yes/.style={colbg=azure8,colfg=black,col=yes},
+    colbg/.store in=\pixy@table@colbg,
+    colfg/.store in=\pixy@table@colfg,
+    col/.store in=\pixy@table@col,
+    even/.store in=\pixy@table@even,
+    even/.default=yes,
+    even/.is choice,
+    even/no/.style={evenbg=white},
+    even/yes/.style={evenbg=azure9},
+    evenbg/.store in=\pixy@table@evenbg
 }
 \NewDocumentEnvironment{Table}{o m +b}{%
-	\pgfkeys{/pixy/table/.cd, rowhdr=no, colhdr=no, even=no}
-	\IfValueT{#1}{\pgfkeys{/pixy/table/.cd, #1}}{}
-	\ifthenelse{\equal{\pixy@table@col}{yes}}{
-		\begin{tblr}{colspec={#2},vline{2}={solid},hlines={0.05em,solid,azure2},hline{1,Z}={1.5pt},%
-			row{even}={bg={\pixy@table@evenbg}},%
-			row{1}={bg={\pixy@table@rowbg},fg={\pixy@table@rowfg}},%
-			column{1}={bg={\pixy@table@colbg},fg={\pixy@table@colfg}}}%
-			#3
-	}{
-		\begin{tblr}{colspec={#2},vline{2}={solid},hlines={0.05em,solid,azure2},hline{1,Z}={1.5pt},%
-			row{even}={bg={\pixy@table@evenbg}},%
-			row{1}={bg={\pixy@table@rowbg},fg={\pixy@table@rowfg}}}%
-			#3
-	}
-	\end{tblr}
+    \pgfkeys{/pixy/table/.cd, rowhdr=no, colhdr=no, even=no}
+    \IfValueT{#1}{\pgfkeys{/pixy/table/.cd, #1}}{}
+    \ifthenelse{\equal{\pixy@table@col}{yes}}{
+        \begin{tblr}{colspec={#2},vline{2}={solid},hlines={0.05em,solid,azure2},hline{1,Z}={1.5pt},%
+            row{even}={bg={\pixy@table@evenbg}},%
+            row{1}={bg={\pixy@table@rowbg},fg={\pixy@table@rowfg}},%
+            column{1}={bg={\pixy@table@colbg},fg={\pixy@table@colfg}}}%
+            #3
+    }{
+        \begin{tblr}{colspec={#2},vline{2}={solid},hlines={0.05em,solid,azure2},hline{1,Z}={1.5pt},%
+            row{even}={bg={\pixy@table@evenbg}},%
+            row{1}={bg={\pixy@table@rowbg},fg={\pixy@table@rowfg}}}%
+            #3
+    }
+    \end{tblr}
 }{}
 \makeatother
 %------------------------------------------------------------
@@ -158,58 +158,58 @@
 % 囲み（中央タイトル）
 \makeatletter
 \pgfkeys{
-	/pixy/note/.cd,
-	colback/.store in=\pixy@note@colback,
-	colback/.default=black!5!white,
-	trans/.store in=\pixy@note@trans,
-	trans/.default=yes,
-	type/.store in=\pixy@note@type,
-	type/.default=normal,
-	sharp/.store in=\pixy@note@sharp,
-	sharp/.default=yes,
-	thin/.store in=\pixy@note@thin,
-	thin/.default=yes,
-	eval/sharp/.is choice,
-	eval/sharp/no/.style={},
-	eval/sharp/yes/.style={sharp corners},
-	eval/trans/.is choice,
-	eval/trans/no/.style={},
-	eval/trans/yes/.style={colback=white},
-	eval/thin/.is choice,
-	eval/thin/no/.style={},
-	eval/thin/yes/.style={boxrule=0.05em},% default=0.5mm
-	eval/colback/.style={colback=#1},
-	eval/type/.is choice,
-	eval/type/normal/.style={},
-	eval/type/left/.style={%
-		coltitle=black, colbacktitle=white, top=4mm,%
-		attach boxed title to top left={yshift=-3mm,xshift=3mm},%
-		boxed title style={colframe=white, sharp corners}%
-	},
-	eval/type/invleft/.style={%
-		frame empty, interior empty,%
-		coltitle=white, colbacktitle=ColorThemeBlack, top=4mm,%
-		extras broken={frame empty, interior empty},%
-		borderline={0.5mm}{0mm}{ColorThemeBlack},%
-		attach boxed title to top left={yshift=-3mm,xshift=3mm},%
-		boxed title style={boxrule=0pt,sharp corners=all}, varwidth boxed title%
-	},
-	eval/title/.estyle={\ifstrempty{#1}{}{title=#1}}
+    /pixy/note/.cd,
+    colback/.store in=\pixy@note@colback,
+    colback/.default=black!5!white,
+    trans/.store in=\pixy@note@trans,
+    trans/.default=yes,
+    type/.store in=\pixy@note@type,
+    type/.default=normal,
+    sharp/.store in=\pixy@note@sharp,
+    sharp/.default=yes,
+    thin/.store in=\pixy@note@thin,
+    thin/.default=yes,
+    eval/sharp/.is choice,
+    eval/sharp/no/.style={},
+    eval/sharp/yes/.style={sharp corners},
+    eval/trans/.is choice,
+    eval/trans/no/.style={},
+    eval/trans/yes/.style={colback=white},
+    eval/thin/.is choice,
+    eval/thin/no/.style={},
+    eval/thin/yes/.style={boxrule=0.05em},% default=0.5mm
+    eval/colback/.style={colback=#1},
+    eval/type/.is choice,
+    eval/type/normal/.style={},
+    eval/type/left/.style={%
+        coltitle=black, colbacktitle=white, top=4mm,%
+        attach boxed title to top left={yshift=-3mm,xshift=3mm},%
+        boxed title style={colframe=white, sharp corners}%
+    },
+    eval/type/invleft/.style={%
+        frame empty, interior empty,%
+        coltitle=white, colbacktitle=ColorThemeBlack, top=4mm,%
+        extras broken={frame empty, interior empty},%
+        borderline={0.5mm}{0mm}{ColorThemeBlack},%
+        attach boxed title to top left={yshift=-3mm,xshift=3mm},%
+        boxed title style={boxrule=0pt,sharp corners=all}, varwidth boxed title%
+    },
+    eval/title/.estyle={\ifstrempty{#1}{}{title=#1}}
 }
 \NewDocumentEnvironment{Note}{o m}{
-	\pgfkeys{/pixy/note/.cd, colback, type, sharp=no, trans=no, thin=no}
-	\IfValueT{#1}{\pgfkeys{/pixy/note/.cd,#1}}
-	\begin{tcolorbox}[%
-		breakable, enhanced,%
-		fonttitle=\bfseries,%
-		top=2mm, bottom=2mm, before skip=3.5mm,%
-		/pixy/note/eval/title={#2},%
-		/pixy/note/eval/sharp={\pixy@note@sharp},%
-		/pixy/note/eval/thin={\pixy@note@thin},%
-		/pixy/note/eval/type={\pixy@note@type},%
-		/pixy/note/eval/colback={\pixy@note@colback},%
-		/pixy/note/eval/trans={\pixy@note@trans}%
-	]
+    \pgfkeys{/pixy/note/.cd, colback, type, sharp=no, trans=no, thin=no}
+    \IfValueT{#1}{\pgfkeys{/pixy/note/.cd,#1}}
+    \begin{tcolorbox}[%
+        breakable, enhanced,%
+        fonttitle=\bfseries,%
+        top=2mm, bottom=2mm, before skip=3.5mm,%
+        /pixy/note/eval/title={#2},%
+        /pixy/note/eval/sharp={\pixy@note@sharp},%
+        /pixy/note/eval/thin={\pixy@note@thin},%
+        /pixy/note/eval/type={\pixy@note@type},%
+        /pixy/note/eval/colback={\pixy@note@colback},%
+        /pixy/note/eval/trans={\pixy@note@trans}%
+    ]
 }{\end{tcolorbox}}
 % http://tex.bootmath.com/how-to-create-highlight-boxes-in-latex.html
 % \def\bracketcolor{red!75!black}
@@ -265,70 +265,70 @@
     },
 }
 \pgfkeys{
-	/pixy/adm/.cd,
-	type/.store in=\pixy@adm@type,
-	type/.default=note,
-	eval/type/.is choice,
-	eval/type/note/.style={colframe=ColorThemeFore, colback=ColorThemeBack},
-	eval/type/info/.style={colframe=ColorThemePrimary, colback=ColorThemeBack},
-	eval/type/warn/.style={colframe=ColorThemeSecondary, colback=ColorThemeBack},
-	eval/type/error/.style={colframe=red!75!black, colback=red!5!white},
-	eval/title/.estyle={\ifstrempty{#1}{}{title=#1}}
+    /pixy/adm/.cd,
+    type/.store in=\pixy@adm@type,
+    type/.default=note,
+    eval/type/.is choice,
+    eval/type/note/.style={colframe=ColorThemeFore, colback=ColorThemeBack},
+    eval/type/info/.style={colframe=ColorThemePrimary, colback=ColorThemeBack},
+    eval/type/warn/.style={colframe=ColorThemeSecondary, colback=ColorThemeBack},
+    eval/type/error/.style={colframe=red!75!black, colback=red!5!white},
+    eval/title/.estyle={\ifstrempty{#1}{}{title=#1}}
 }
 \NewDocumentEnvironment{Admonition}{o m}{%
-	\pgfkeys{/pixy/adm/.cd, type}
-	\IfValueT{#1}{\pgfkeys{/pixy/adm/.cd, #1}}
-	\begin{tcolorbox}[%
-		breakable,%
-		before skip=10pt plus 2pt minus 2pt,%
-		after skip=10pt plus 2pt minus 2pt,%
-		boxrule=0.4pt,%
-		fonttitle=\gtfamily\bfseries,%
-		/pixy/adm/eval/title=#2,%
-		/pixy/adm/eval/type={\pixy@adm@type}%
-	]
+    \pgfkeys{/pixy/adm/.cd, type}
+    \IfValueT{#1}{\pgfkeys{/pixy/adm/.cd, #1}}
+    \begin{tcolorbox}[%
+        breakable,%
+        before skip=10pt plus 2pt minus 2pt,%
+        after skip=10pt plus 2pt minus 2pt,%
+        boxrule=0.4pt,%
+        fonttitle=\gtfamily\bfseries,%
+        /pixy/adm/eval/title=#2,%
+        /pixy/adm/eval/type={\pixy@adm@type}%
+    ]
 }{\end{tcolorbox}}
 \pgfkeys{
-	/pixy/label/.cd,
-	type/.store in=\pixy@label@type,
-	type/.default=normal,
-	eval/type/.is choice,
-	eval/type/normal/.style={colframe=ColorThemeFore, colback=ColorThemeBack},
-	eval/type/main/.style={colframe=ColorThemePrimary, colback=ColorThemeBack},
-	eval/type/accent/.style={colframe=ColorThemeSecondary, colback=ColorThemeBack},
-	eval/type/inv/.style={colframe=ColorThemeBack, colback=ColorThemeFore},
-	eval/type/invmain/.style={colframe=ColorThemePrimary, colback=ColorThemePrimary},
-	eval/type/invaccent/.style={colframe=ColorThemeSecondary, colback=ColorThemeSecondary},
-	eval/type/gray/.style={colframe=ColorThemeFore, colback=ColorThemeSub1},
-	eval/type/blue/.style={colframe=ColorThemePrimary, colback=ColorThemeSub2},
-	eval/type/red/.style={colframe=ColorThemeSecondary, colback=ColorThemeSub3},
-	eval/type/trans/.style={colframe=ColorThemeBack, colback=ColorThemeBack},
-	eval/color/.is choice,
-	eval/color/normal/.code={},
-	eval/color/main/.code={\color{ColorThemePrimary}},
-	eval/color/accent/.code={\color{ColorThemeSecondary}},
-	eval/color/inv/.code={\color{ColorThemeBack}},
-	eval/color/invmain/.code={\color{ColorThemeBack}},
-	eval/color/invaccent/.code={\color{ColorThemeBack}},
-	eval/color/gray/.code={\color{ColorThemeFore}},
-	eval/color/blue/.code={\color{ColorThemePrimary}},
-	eval/color/red/.code={\color{ColorThemeSecondary}},
-	eval/color/trans/.code={}
+    /pixy/label/.cd,
+    type/.store in=\pixy@label@type,
+    type/.default=normal,
+    eval/type/.is choice,
+    eval/type/normal/.style={colframe=ColorThemeFore, colback=ColorThemeBack},
+    eval/type/main/.style={colframe=ColorThemePrimary, colback=ColorThemeBack},
+    eval/type/accent/.style={colframe=ColorThemeSecondary, colback=ColorThemeBack},
+    eval/type/inv/.style={colframe=ColorThemeBack, colback=ColorThemeFore},
+    eval/type/invmain/.style={colframe=ColorThemePrimary, colback=ColorThemePrimary},
+    eval/type/invaccent/.style={colframe=ColorThemeSecondary, colback=ColorThemeSecondary},
+    eval/type/gray/.style={colframe=ColorThemeFore, colback=ColorThemeSub1},
+    eval/type/blue/.style={colframe=ColorThemePrimary, colback=ColorThemeSub2},
+    eval/type/red/.style={colframe=ColorThemeSecondary, colback=ColorThemeSub3},
+    eval/type/trans/.style={colframe=ColorThemeBack, colback=ColorThemeBack},
+    eval/color/.is choice,
+    eval/color/normal/.code={},
+    eval/color/main/.code={\color{ColorThemePrimary}},
+    eval/color/accent/.code={\color{ColorThemeSecondary}},
+    eval/color/inv/.code={\color{ColorThemeBack}},
+    eval/color/invmain/.code={\color{ColorThemeBack}},
+    eval/color/invaccent/.code={\color{ColorThemeBack}},
+    eval/color/gray/.code={\color{ColorThemeFore}},
+    eval/color/blue/.code={\color{ColorThemePrimary}},
+    eval/color/red/.code={\color{ColorThemeSecondary}},
+    eval/color/trans/.code={}
 }
 \NewDocumentCommand \pixy@labelcbox{m m}{
-	\pgfkeys{/pixy/label/.cd, type}
-	\IfValueT{#1}{\pgfkeys{/pixy/label/.cd, #1}}
-	\tcbox[%
-		boxrule=0.4pt, top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm,%
-		/pixy/label/eval/type={\pixy@label@type}%
-	]{\pgfkeys{/pixy/label/eval/color={\pixy@label@type}}\small #2}
+    \pgfkeys{/pixy/label/.cd, type}
+    \IfValueT{#1}{\pgfkeys{/pixy/label/.cd, #1}}
+    \tcbox[%
+        boxrule=0.4pt, top=0mm, bottom=0mm, left=0mm, right=0mm, on line, arc=0.5mm,%
+        /pixy/label/eval/type={\pixy@label@type}%
+    ]{\pgfkeys{/pixy/label/eval/color={\pixy@label@type}}\small #2}
 }
 \NewDocumentCommand \LabelItem{o m m}{
-	\item[\pixy@labelcbox{#1}{#2}] #3
+    \item[\pixy@labelcbox{#1}{#2}] #3
 }
 \NewDocumentCommand \LabelText{o m m}{
-	\begin{itemize}
-		\LabelItem[#1]{#2}{#3}
+    \begin{itemize}
+        \LabelItem[#1]{#2}{#3}
     \end{itemize}
 }
 \makeatother
@@ -471,123 +471,123 @@
 \renewcommand{\thelstnumber}{\arabic{lstnumber}\,:}
 \NewTCBListing{Code}{O{} m}{
     breakable,
-	enhanced,
-	% colframe=gray!20,
-	% title=#3,
-	boxrule=0.4pt,
-	% before skip=10mm,%
-	top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
-	% borderline={0.5mm}{0mm}{ColorThemeBlack},%
-	% leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
-	colframe=black, colback=black!3!white,%
-	% colframe=red!50!black, colback=yellow!10!white,
-	sharp corners,%
-	listing only,
-	listing options={
-		% numbers=left,
-		% numberstyle={\codefont\pixycodesize},
-		% numbersep=1.5\zw,
-		% xleftmargin=3\zw,
-		% lineskip=-0.5ex,
-		style=PixyCodeStyle,
-		#2},
-	#1
+    enhanced,
+    % colframe=gray!20,
+    % title=#3,
+    boxrule=0.4pt,
+    % before skip=10mm,%
+    top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
+    % borderline={0.5mm}{0mm}{ColorThemeBlack},%
+    % leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
+    colframe=black, colback=black!3!white,%
+    % colframe=red!50!black, colback=yellow!10!white,
+    sharp corners,%
+    listing only,
+    listing options={
+        % numbers=left,
+        % numberstyle={\codefont\pixycodesize},
+        % numbersep=1.5\zw,
+        % xleftmargin=3\zw,
+        % lineskip=-0.5ex,
+        style=PixyCodeStyle,
+        #2},
+    #1
 }
 \NewTCBListing{NCode}{O{} m}{
     breakable,
-	enhanced,
-	% colframe=gray!20,
-	% title=#3,
-	boxrule=0.4pt,
-	% before skip=10mm,%
-	top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
-	% borderline={0.5mm}{0mm}{ColorThemeBlack},%
-	% leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
-	colframe=black, colback=black!3!white,%
-	% colframe=red!50!black, colback=yellow!10!white,
-	sharp corners,%
-	listing only,
-	listing options={
-		numbers=left,
-		numberstyle={\codefont\pixycodesize},
-		numbersep=1.5\zw,
-		xleftmargin=3\zw,
-		% lineskip=-0.5ex,
-		style=PixyCodeStyle,
-		#2},
-	#1
+    enhanced,
+    % colframe=gray!20,
+    % title=#3,
+    boxrule=0.4pt,
+    % before skip=10mm,%
+    top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
+    % borderline={0.5mm}{0mm}{ColorThemeBlack},%
+    % leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
+    colframe=black, colback=black!3!white,%
+    % colframe=red!50!black, colback=yellow!10!white,
+    sharp corners,%
+    listing only,
+    listing options={
+        numbers=left,
+        numberstyle={\codefont\pixycodesize},
+        numbersep=1.5\zw,
+        xleftmargin=3\zw,
+        % lineskip=-0.5ex,
+        style=PixyCodeStyle,
+        #2},
+    #1
 }
 \NewTCBListing{Source}{O{} m}{
     breakable,
-	enhanced,
-	% colframe=gray!20,
-	% title=#3,
-	boxrule=0.4pt,
-	% before skip=10mm,%
-	top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
-	% borderline={0.5mm}{0mm}{ColorThemeBlack},%
-	% leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
-	colframe=azure3, colback=cyan!3!white,%
-	% colframe=red!50!black, colback=yellow!10!white,
-	sharp corners,%
-	listing only,
-	listing options={
-		% numbers=left,
-		% numberstyle={\codefont\pixycodesize},
-		% numbersep=1.5\zw,
-		% xleftmargin=3\zw,
-		% lineskip=-0.5ex,
-		style=PixyCodeStyle,
-		#2},
-	#1
+    enhanced,
+    % colframe=gray!20,
+    % title=#3,
+    boxrule=0.4pt,
+    % before skip=10mm,%
+    top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
+    % borderline={0.5mm}{0mm}{ColorThemeBlack},%
+    % leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
+    colframe=azure3, colback=cyan!3!white,%
+    % colframe=red!50!black, colback=yellow!10!white,
+    sharp corners,%
+    listing only,
+    listing options={
+        % numbers=left,
+        % numberstyle={\codefont\pixycodesize},
+        % numbersep=1.5\zw,
+        % xleftmargin=3\zw,
+        % lineskip=-0.5ex,
+        style=PixyCodeStyle,
+        #2},
+    #1
 }
 \NewTCBListing{NSource}{O{} m}{
     breakable,
-	enhanced,
-	% colframe=gray!20,
-	% title=#3,
-	boxrule=0.4pt,
-	% before skip=10mm,%
-	top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
-	% borderline={0.5mm}{0mm}{ColorThemeBlack},%
-	% leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
-	colframe=azure3, colback=cyan!3!white,%
-	% colframe=red!50!black, colback=yellow!10!white,
-	sharp corners,%
-	listing only,
-	listing options={
-		numbers=left,
-		numberstyle={\codefont\pixycodesize},
-		numbersep=1.5\zw,
-		xleftmargin=3\zw,
-		% lineskip=-0.5ex,
-		style=PixyCodeStyle,
-		#2},
-	#1
+    enhanced,
+    % colframe=gray!20,
+    % title=#3,
+    boxrule=0.4pt,
+    % before skip=10mm,%
+    top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
+    % borderline={0.5mm}{0mm}{ColorThemeBlack},%
+    % leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
+    colframe=azure3, colback=cyan!3!white,%
+    % colframe=red!50!black, colback=yellow!10!white,
+    sharp corners,%
+    listing only,
+    listing options={
+        numbers=left,
+        numberstyle={\codefont\pixycodesize},
+        numbersep=1.5\zw,
+        xleftmargin=3\zw,
+        % lineskip=-0.5ex,
+        style=PixyCodeStyle,
+        #2},
+    #1
 }
 \NewTCBListing{Pre}{O{} m}{
     breakable,
-	enhanced,
-	% colframe=gray!20,
-	% title=#3,
-	boxrule=0.4pt,
-	% before skip=10mm,%
-	top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
-	% borderline={0.5mm}{0mm}{ColorThemeBlack},%
-	% leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
-	colframe=black, colback=white,%
-	% colframe=red!50!black, colback=yellow!10!white,
-	sharp corners,%
-	listing only,
-	listing options={
-		% numbers=left,
-		% numberstyle={\codefont\pixycodesize},
-		% numbersep=1.5\zw,
-		% xleftmargin=3\zw,
-		% lineskip=-0.5ex,
-		style=PixyCodeStyle,
-		#2},
-	#1
+    enhanced,
+    % colframe=gray!20,
+    % title=#3,
+    boxrule=0.4pt,
+    % before skip=10mm,%
+    top=0mm, bottom=0mm, middle=0pt, boxsep=0pt,%
+    % borderline={0.5mm}{0mm}{ColorThemeBlack},%
+    % leftlower=0pt,rightlower=0pt,ColorThemeGraph=0pt,
+    colframe=black, colback=white,%
+    % colframe=red!50!black, colback=yellow!10!white,
+    sharp corners,%
+    listing only,
+    listing options={
+        % numbers=left,
+        % numberstyle={\codefont\pixycodesize},
+        % numbersep=1.5\zw,
+        % xleftmargin=3\zw,
+        % lineskip=-0.5ex,
+        style=PixyCodeStyle,
+        #2},
+    #1
 }
 %------------------------------------------------------------
 % MARK: Images
@@ -595,24 +595,24 @@
 \newdimen\fb@xsep%
 \newdimen\fb@xrule%
 \pgfkeys{%
-	/pixy/image/.cd,
-	size/.is choice,
-	size/wf/.style={width},
-	size/w0/.style={width=1.0\textwidth},
-	size/w9/.style={width=0.9\textwidth},
-	size/w8/.style={width=0.8\textwidth},
-	size/w7/.style={width=0.7\textwidth},
-	size/w6/.style={width=0.6\textwidth},
-	size/w5/.style={width=0.5\textwidth},
-	size/w4/.style={width=0.4\textwidth},
-	size/w3/.style={width=0.3\textwidth},
-	size/w2/.style={width=0.2\textwidth},
-	size/w1/.style={width=0.1\textwidth},
-	size/.default=wf,
-	width/.store in=\pixy@image@width,
-	width/.default={},
-	frame/.store in=\pixy@image@frame,
-	frame/.default=yes,
+    /pixy/image/.cd,
+    size/.is choice,
+    size/wf/.style={width},
+    size/w0/.style={width=1.0\textwidth},
+    size/w9/.style={width=0.9\textwidth},
+    size/w8/.style={width=0.8\textwidth},
+    size/w7/.style={width=0.7\textwidth},
+    size/w6/.style={width=0.6\textwidth},
+    size/w5/.style={width=0.5\textwidth},
+    size/w4/.style={width=0.4\textwidth},
+    size/w3/.style={width=0.3\textwidth},
+    size/w2/.style={width=0.2\textwidth},
+    size/w1/.style={width=0.1\textwidth},
+    size/.default=wf,
+    width/.store in=\pixy@image@width,
+    width/.default={},
+    frame/.store in=\pixy@image@frame,
+    frame/.default=yes,
     center/.store in=\pixy@image@center,
     center/.default=yes,
     caption/.store in=\pixy@image@caption,
@@ -622,41 +622,41 @@
     eval/center/.is choice,
     eval/center/no/.code={},
     eval/center/yes/.code={\centering},
-	eval/caption/.code={
+    eval/caption/.code={
         \ifthenelse{\equal{#1}{}}{}{\caption{#1}}
     },
-	eval/label/.code={
+    eval/label/.code={
         \ifthenelse{\equal{#1}{}}{}{\label{#1}}
     },
-	eval/image/.code n args={3}{
-		\ifthenelse{\equal{#1}{}}{
-			\includegraphics[#2]{#3}
-		}{
-			\includegraphics[width=#1,#2]{#3}
-		}
-	}
+    eval/image/.code n args={3}{
+        \ifthenelse{\equal{#1}{}}{
+            \includegraphics[#2]{#3}
+        }{
+            \includegraphics[width=#1,#2]{#3}
+        }
+    }
 }
 \NewDocumentCommand \Image{o m m m}{%
-	\pgfkeys{/pixy/image/.cd, size, frame=no, center=yes, caption, label}%
-	\IfValueT{#1}{\pgfkeys{/pixy/image/.cd, #1}}%
-	\begin{figure}[#2]%
+    \pgfkeys{/pixy/image/.cd, size, frame=no, center=yes, caption, label}%
+    \IfValueT{#1}{\pgfkeys{/pixy/image/.cd, #1}}%
+    \begin{figure}[#2]%
         \pgfkeys{/pixy/image/eval/center=\pixy@image@center}%
-		\ifthenelse{\equal{\pixy@image@frame}{yes}}{%
-			\fb@xsep=\fboxsep%
-    		\fb@xrule=\fboxrule%
-    		\fboxsep=0pt%
-    		\fboxrule=0.5pt%
-			\fbox{%
-				\pgfkeys{/pixy/image/eval/image={\pixy@image@width}{#3}{#4}}
-			}%
-			\fboxsep=\fb@xsep%
-    		\fboxrule=\fb@xrule%
-		}{
-			\pgfkeys{/pixy/image/eval/image={\pixy@image@width}{#3}{#4}}
-		}
-		\pgfkeys{/pixy/image/eval/caption={\pixy@image@caption}}%
-		\pgfkeys{/pixy/image/eval/label={\pixy@image@label}}%
-	\end{figure}%
+        \ifthenelse{\equal{\pixy@image@frame}{yes}}{%
+            \fb@xsep=\fboxsep%
+            \fb@xrule=\fboxrule%
+            \fboxsep=0pt%
+            \fboxrule=0.5pt%
+            \fbox{%
+                \pgfkeys{/pixy/image/eval/image={\pixy@image@width}{#3}{#4}}
+            }%
+            \fboxsep=\fb@xsep%
+            \fboxrule=\fb@xrule%
+        }{
+            \pgfkeys{/pixy/image/eval/image={\pixy@image@width}{#3}{#4}}
+        }
+        \pgfkeys{/pixy/image/eval/caption={\pixy@image@caption}}%
+        \pgfkeys{/pixy/image/eval/label={\pixy@image@label}}%
+    \end{figure}%
 }
 \makeatother
 %------------------------------------------------------------
@@ -683,30 +683,30 @@
 %------------------------------------------------------------
 \makeatletter
 \pgfkeys{%
-	/pixy/memo/.cd,%
-	width/.store in=\pixy@memo@width,
-	width/.default=1mm,
-	offset/.store in=\pixy@memo@offset,
-	offset/.default=0pt,
-	color/.store in=\pixy@memo@color,
-	color/.default=black
+    /pixy/memo/.cd,%
+    width/.store in=\pixy@memo@width,
+    width/.default=1mm,
+    offset/.store in=\pixy@memo@offset,
+    offset/.default=0pt,
+    color/.store in=\pixy@memo@color,
+    color/.default=black
 }
 \NewDocumentEnvironment{Memo}{o m}{%
-	\pgfkeys{/pixy/memo/.cd, width, offset, color}
-	\IfValueT{#1}{\pgfkeys{/pixy/memo/.cd, #1}}{}
-	\begin{tcolorbox}[
-		blanker,
-		colback=white,%
-		colbacktitle=white,%
-		coltitle=black,%
-		fonttitle=\bfseries,%
-		left=2mm,
-		before skip=6pt, after skip=6pt,
-		bottomrule=0pt,%
-		boxrule=0pt,%
-		borderline west={\pixy@memo@width}{\pixy@memo@offset}{\pixy@memo@color},
-		#2
-	]
+    \pgfkeys{/pixy/memo/.cd, width, offset, color}
+    \IfValueT{#1}{\pgfkeys{/pixy/memo/.cd, #1}}{}
+    \begin{tcolorbox}[
+        blanker,
+        colback=white,%
+        colbacktitle=white,%
+        coltitle=black,%
+        fonttitle=\bfseries,%
+        left=2mm,
+        before skip=6pt, after skip=6pt,
+        bottomrule=0pt,%
+        boxrule=0pt,%
+        borderline west={\pixy@memo@width}{\pixy@memo@offset}{\pixy@memo@color},
+        #2
+    ]
 }{\end{tcolorbox}}
 \makeatother
 %------------------------------------------------------------
@@ -729,20 +729,32 @@
 % MARK: User definitions
 \NewDocumentCommand \RefLabelText{m}{\LabelText[type=gray]{参考}{#1}}
 \NewDocumentCommand \ExampleLabelText{m}{\LabelText{例題}{#1}}
-\NewDocumentCommand \ExampleSentence{O{.5} m m}{
-    \vspace{#1\Cvs}
+\makeatletter
+\pgfkeys{%
+    /pixy/esent/.cd,%
+    top/.store in=\pixy@esent@top,
+    top/.default={.5},%
+    bottom/.store in=\pixy@esent@bottom,
+    bottom/.default={-.5},%
+    vspace/.code={\vspace{#1\Cvs}}%
+}
+\NewDocumentCommand \ExampleSentence{o m m}{
+    \pgfkeys{/pixy/esent/.cd,top,bottom}
+    \IfValueT{#1}{\pgfkeys{/pixy/esent/.cd,#1}}{}
+    \pgfkeys{/pixy/esent/vspace={\pixy@esent@top}}
     \begin{minipage}{\textwidth}
     \begin{itemize}
-		\LabelItem[type=gray]{例文}{#2}
-		\LabelItem[type=trans]{}{\scriptsize #3}
+        \LabelItem[type=gray]{例文}{#2}
+        \LabelItem[type=trans]{}{\scriptsize #3}
     \end{itemize}
     \end{minipage}
-    \vspace{.5\Cvs}
+    \pgfkeys{/pixy/esent/vspace={\pixy@esent@bottom}}
 }
+\makeatother
 \NewDocumentCommand \ExampleSentenceItem{m m}{
     \begin{itemize}
-		\LabelItem[type=gray]{例文}{#1}
-		\LabelItem[type=trans]{}{\scriptsize #2}
+        \LabelItem[type=gray]{例文}{#1}
+        \LabelItem[type=trans]{}{\scriptsize #2}
     \end{itemize}
 }
 \NewDocumentEnvironment{Rule}{O{}}
