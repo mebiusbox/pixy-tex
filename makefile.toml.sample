@@ -64,7 +64,7 @@ command = "pwsh"
 args = [
   "-nop",
   "-C",
-  "Get-ChildItem sections -Filter '*.tex' | ForEach-Object { latexmk -C $_ }"
+  "Get-ChildItem -Filter '*.tex' | ForEach-Object { latexmk -C $_ }"
 ]
 
 [tasks.default]
