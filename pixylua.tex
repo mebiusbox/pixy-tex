@@ -677,7 +677,7 @@
     boxed title style={boxrule=0pt,sharp corners=all}, varwidth boxed title, title=#1}
 \NewDocumentEnvironment{Theorem}{O{定理} m}
     {\refstepcounter{theorem}
-     \ifstrempty{#2}{\begin{theoremcbox}{#1~\thetheorem.}}
+     \ifstrempty{#2}{\begin{theoremcbox}{#1~\thetheorem}}
      {\begin{theoremcbox}{#1~\thetheorem:~{#2}}}}
     {\end{theoremcbox}}
 %------------------------------------------------------------
