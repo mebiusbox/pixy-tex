@@ -38,6 +38,4 @@ Thumbs.db
 *.listing
 
 # project
-navi.yaml
-/**/*.pdf
-tex/cheatsheet/images
+
