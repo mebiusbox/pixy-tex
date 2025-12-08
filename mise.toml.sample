@@ -25,9 +25,11 @@ run = "pdfcrop --margins 10 5 ${env:FILENAME}.pdf ${env.FILENAME}.pdf"
 run = "pdftocairo -png -r 300 -singlefie ${env:FILENAME}.pdf"
 
 [tasks.clean]
+alias = "c"
 run = "latexmk -c ${env:FILENAME}.tex"
 
 [tasks.clear]
+alias = "C"
 run = "latexmk -C ${env:FILENAME}.tex"
 
 [tasks.clean-sections]
@@ -39,15 +41,19 @@ dir = "sections"
 run = "Get-ChildItem -Filter '*.tex' | ForEach-Object { latexmk -C $_ }"
 
 [tasks.build]
+alias = "b"
 depends = ["make", "rename"]
 
 [tasks.rebuild]
+alias = "bb"
 depends = ["remake", "rename"]
 
 [tasks.make]
+alias = "m"
 run = "latexmk ${env:FILENAME}.tex"
 
 [tasks.remake]
+alias = "mm"
 run = "latexmk -gg ${env:FILENAME}.tex"
 
 [tasks.rename]
