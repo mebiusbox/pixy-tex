@@ -1,16 +1,12 @@
-[config]
-skip_core_tasks = true
-
-[tasks.default]
-alias = "build"
+# [settings]
+# experimental = true
+# windows_default_inline_shell_args = "pwsh -c"
 
 [tasks.test]
 description = "Build document (empty or 'all' or '{class}_{size}_{fontsize}')"
-script_runner = "pwsh"
-script_runner_args = ["-nop"]
-script_extension = "ps1"
-script = '''
-Set-Location -LiteralPath "${env:CARGO_MAKE_CURRENT_TASK_INITIAL_MAKEFILE_DIRECTORY}\test"
+shell="pwsh -c"
+dir="test"
+run = '''
 $list = @(
     ("\input{../pixylua_article_a4_9_2col}", "main_article.tex", "article_a4_9_2col.pdf"),
     ("\input{../pixylua_article_a4_10}", "main_article.tex", "article_a4_10.pdf"),
@@ -74,10 +70,9 @@ Remove-Item $tempfile
 
 [tasks.test-samples]
 description = "Build samples"
-script_runner = "pwsh"
-script_extension = "ps1"
-script = '''
-Set-Location -LiteralPath "${env:CARGO_MAKE_CURRENT_TASK_INITIAL_MAKEFILE_DIRECTORY}\test"
+shell="pwsh -c"
+dir = "test"
+run = '''
 $targets = @(
     "sample_lualatex.tex",
     "sample_font.tex",
@@ -93,39 +88,25 @@ foreach ($_ in $targets) {
 '''
 
 [tasks.uplatex]
-command = "latexmk"
-args = [
-  "-latex=uplatex",
-  "-g",
-  "-e",
-  "`$latex=q/uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 -interaction=nonstopmode -file-line-error %S/",
-  "-e",
-  "`$bibtex=q/uplatex %O %B/",
-  "-e",
-  "`$biber=q/biber %O --bblencoding=utf8 u -U --output_safechars %B/",
-  "-e",
-  "`$makeindex=q/upmendex %O -o %D %S/",
-  "-e",
-  "`$dvipdf=q/dvipdfmx -v %O -o %D %S/",
-  "-norc",
-  "-pdfdvi",
-  "${@}"
-]
+shell="pwsh -c"
+run = '''
+latexmk \
+    -latex-uplatex
+    -g \
+    -e `$latex=q/uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 -interaction=nonstopmode -file-line-error %S/ \
+    -e `$bibtex=q/uplatex %O %B/ \
+    -e `$biber=q/biber %O --bblencoding=utf8 u -U --output_safechars %B/ \
+    -e `$makeindex=q/upmendex %O -o %D %S/ \
+    -e `$dvipdf=q/dvipdfmx -v %O -o %D %S/ \
+    -norc \
+    -pdfdvi
+'''
 
 [tasks.clean]
 description = "Clean book"
-category = "Common"
-command = "latexmk"
-args = [
-    "-c",
-    "${@}"
-]
+run = "latexmk -c"
 
 [tasks.clear]
 description = "Clean book"
-category = "Common"
-command = "latexmk"
-args = [
-    "-C",
-    "${@}"
-]
+run = "latexmk -C"
+

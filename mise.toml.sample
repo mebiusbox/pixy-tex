@@ -1,0 +1,54 @@
+[settings]
+# experimental = true
+windows_default_inline_shell_args = "pwsh -c"
+jobs = 1
+
+[env]
+FILENAME = "main"
+PUBLISHNAME = "output"
+
+[tasks.latex]
+run = '''
+lualatex \
+    -file-line-error \
+    -synctex=1 \
+    -interaction=nonstopmode \
+    -halt-on-error \
+    --fmt=lualatex.fmt \
+    ${env:FILENAME}.tex
+'''
+
+[tasks.pdf-crop]
+run = "pdfcrop --margins 10 5 ${env:FILENAME}.pdf ${env.FILENAME}.pdf"
+
+[tasks.pdf-png]
+run = "pdftocairo -png -r 300 -singlefie ${env:FILENAME}.pdf"
+
+[tasks.clean]
+run = "latexmk -c ${env:FILENAME}.tex"
+
+[tasks.clear]
+run = "latexmk -C ${env:FILENAME}.tex"
+
+[tasks.clean-sections]
+dir = "sections"
+run = "Get-ChildItem -Filter '*.tex' | ForEach-Object { latexmk -c $_ }"
+
+[tasks.clear-sections]
+dir = "sections"
+run = "Get-ChildItem -Filter '*.tex' | ForEach-Object { latexmk -C $_ }"
+
+[tasks.build]
+depends = ["make", "rename"]
+
+[tasks.rebuild]
+depends = ["remake", "rename"]
+
+[tasks.make]
+run = "latexmk ${env:FILENAME}.tex"
+
+[tasks.remake]
+run = "latexmk -gg ${env:FILENAME}.tex"
+
+[tasks.rename]
+run = 'Copy-Item -LP "${env:FILENAME}.pdf" -Destination "${env:PUBLISHNAME}.pdf" -Force'
