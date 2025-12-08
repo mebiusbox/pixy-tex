@@ -1,2 +1,5 @@
 $pdflatex = 'lualatex --cmdx -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error --fmt=lualatex.fmt %S';
 $pdf_mode = 1;
+# $pdf_previewer = '"C:\Users\<user>\AppData\Local\SumatraPDF\SumatraPDF.exe" -reuse-instance %O %S';
+# $preview_continuous_mode = 1;
+push @generated_exts, "listing";
