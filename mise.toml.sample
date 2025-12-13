@@ -19,18 +19,18 @@ lualatex \
 '''
 
 [tasks.pdf-crop]
-run = "pdfcrop --margins 10 5 ${env:FILENAME}.pdf ${env.FILENAME}.pdf"
+run = 'pdfcrop --margins 10 5 "${env:FILENAME}.pdf" "${env.FILENAME}.pdf"'
 
 [tasks.pdf-png]
-run = "pdftocairo -png -r 300 -singlefie ${env:FILENAME}.pdf"
+run = 'pdftocairo -png -r 300 -singlefie "${env:FILENAME}.pdf"'
 
 [tasks.clean]
 alias = "c"
-run = "latexmk -c ${env:FILENAME}.tex"
+run = 'latexmk -c "${env:FILENAME}.tex"'
 
 [tasks.clear]
 alias = "C"
-run = "latexmk -C ${env:FILENAME}.tex"
+run = 'latexmk -C "${env:FILENAME}.tex"'
 
 [tasks.clean-sections]
 dir = "sections"
@@ -50,11 +50,11 @@ depends = ["remake", "rename"]
 
 [tasks.make]
 alias = "m"
-run = "latexmk ${env:FILENAME}.tex"
+run = 'latexmk "${env:FILENAME}.tex"'
 
 [tasks.remake]
 alias = "M"
-run = "latexmk -gg ${env:FILENAME}.tex"
+run = 'latexmk -gg "${env:FILENAME}.tex"'
 
 [tasks.rename]
 run = 'Copy-Item -LP "${env:FILENAME}.pdf" -Destination "${env:PUBLISHNAME}.pdf" -Force'
