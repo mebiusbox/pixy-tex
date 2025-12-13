@@ -45,7 +45,7 @@ alias = "b"
 depends = ["make", "rename"]
 
 [tasks.rebuild]
-alias = "bb"
+alias = "B"
 depends = ["remake", "rename"]
 
 [tasks.make]
@@ -53,7 +53,7 @@ alias = "m"
 run = "latexmk ${env:FILENAME}.tex"
 
 [tasks.remake]
-alias = "mm"
+alias = "M"
 run = "latexmk -gg ${env:FILENAME}.tex"
 
 [tasks.rename]
