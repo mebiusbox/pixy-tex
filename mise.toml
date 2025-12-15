@@ -4,7 +4,7 @@
 
 [tasks.test]
 description = "Build document (empty or 'all' or '{class}_{size}_{fontsize}')"
-shell="pwsh -c"
+shell="pwsh -C"
 dir="test"
 run = '''
 $list = @(
@@ -70,7 +70,7 @@ Remove-Item $tempfile
 
 [tasks.test-samples]
 description = "Build samples"
-shell="pwsh -c"
+shell="pwsh -C"
 dir = "test"
 run = '''
 $targets = @(
@@ -88,7 +88,7 @@ foreach ($_ in $targets) {
 '''
 
 [tasks.uplatex]
-shell="pwsh -c"
+shell="pwsh -C"
 run = '''
 latexmk \
     -latex-uplatex
